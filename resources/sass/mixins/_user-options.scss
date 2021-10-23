@@ -1,0 +1,10 @@
+@mixin option-container {
+    position: absolute;
+    z-index: 101;
+    background-color: #f9f9f9;
+    height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    transform: translate(-100%, 0);
+}

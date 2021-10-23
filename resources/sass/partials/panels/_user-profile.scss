@@ -1,0 +1,50 @@
+.user-profile-container {
+    @include option-container();
+    
+    .user-profile-header {
+        background-color: #ededed;
+        height: 60px;
+        padding: 10px 16px;
+        border-top-left-radius: 10px;
+
+        &-icon {
+            width: 30px;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        &-text {
+            width: calc(100% - 30px);
+            font-size: 20px;
+            font-family: revert;
+        }
+    }
+
+    .user-profile-photo-container{
+        padding: 30px;
+        .user-profile-photo{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            top: 0px;
+            left: 0px;
+
+            img {
+                @include image();
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .user-profile-data-container{
+        background-color: white;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.move-container {
+    opacity: 1;
+    transform: translate(0%, 0);
+    transition: opacity 0.6s ease-out, transform 0.6s;
+}

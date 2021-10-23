@@ -1,0 +1,6 @@
+@include('partials.panels.user-profile')
+@include('partials.panels.notifications-profile')
+@include('partials.panels.user-add-friend')
+@include('components.user-settings-container')
+@include('components.chat-search')
+@include('partials.friends-list')

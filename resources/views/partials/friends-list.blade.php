@@ -1,0 +1,15 @@
+<div class="friends-list-container overflow-auto">
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+    @include('components.chat-item-list')
+</div>

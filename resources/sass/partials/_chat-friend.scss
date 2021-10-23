@@ -1,0 +1,33 @@
+.chat-friend {
+    &-header {
+        background-color: #ededed;
+        height: 60px;
+        padding: 10px 16px;
+        border-top-right-radius: 10px;
+    }
+
+    &-messages {
+        height: calc(100% - 130px);
+        background-color: #e9ccab57;
+    }
+
+    &-sender {
+        background-color: #ededed;
+        height: 70px;
+        padding: 15px 16px;
+        border-bottom-right-radius: 10px;
+        bottom: 0;
+
+        input {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: none;
+            padding-left: 17px;
+            font-size: 15px;
+        }
+        input:focus{
+            outline: none;
+        }
+    }
+}

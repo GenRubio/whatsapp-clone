@@ -1,0 +1,61 @@
+@mixin icon {
+    font-size: 21px;
+    cursor: pointer;
+    color: grey;
+    margin: 0 10px;
+}
+
+.chat-friends-user-settings-container{
+    background-color: #ededed;
+    height: 60px;
+    padding: 10px 16px;
+    border-top-left-radius: 10px;
+
+    .user-settings-image-container{
+        width: 60px;
+
+        .user-settings-image{
+            min-height: 40px;
+            width: 40px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 50%;
+            cursor: pointer;
+
+            img {
+                @include image();
+            }
+        }
+    }
+
+    .user-settings-options-container{
+        width: calc(100% - 65px);
+
+        .user-settings-add-user{
+            @include icon();
+        }
+
+        .user-settings-out{
+            @include icon();
+        }
+
+        .user-settings-bell{
+            @include icon();
+
+            .fa-bell{
+                position: relative;
+            }
+
+            .bell-messages-count{
+                position: absolute;
+                background-color: #46e146;
+                color: white;
+                text-align: center;
+                font-size: 8px;
+                border-radius: 50%;
+                padding: 2px;
+                transform: translate(50%, -238%);
+            }
+        }
+    }
+}
