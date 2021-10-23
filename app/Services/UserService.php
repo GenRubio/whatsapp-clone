@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
  */
 class UserService extends Controller
 {
+    private $errors = [];
     private $userRepository;
     /**
      * UserService constructor.
@@ -25,25 +26,36 @@ class UserService extends Controller
     }
 
     public function validateUser($name, $password){
-        $userExist = $this->userIsExist($name);
-        if ($userExist && $this->makeAuthUser($userExist)){
+        if ($this->authUser($name, $password)){
             return true;
         }
         else{
-            $user = $this->userRepository->firstOrCreate($this->prepareData($name, $password));
-  
-            if ($user && $this->makeAuthUser($user)){
-                return true;
-            }
             return false;
         }
     }
 
-    private function prepareData($name, $password){
+    private function authUser($name, $password){
+        if (Auth::attempt(['name' => $name, 'password' => $password]))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function checkIfExistUser($name){
+        return $this->userRepository->getUserByName($name) ? true : false;
+    }
+
+    public function createUser($request){
+
+        $this->userRepository->create($this->prepareData($request));
+    }
+
+    private function prepareData($request){
         $data = [
-            'name' => $name,
-            'password' => Hash::make($password),
-            'email' => '',
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+            'email' => $request->email,
             'uid' => $this->makeUid(),
             'friend_code' => $this->makeFriendCode()
         ];
@@ -65,17 +77,5 @@ class UserService extends Controller
             $uid = uniqid();
         }
         return $uid;
-    }
-
-    private function makeAuthUser($user){
-        Auth::login($user);
-        if (Auth::check()) {
-            return true;
-        }
-        return false;
-    }
-
-    private function userIsExist($name){
-        return $this->userRepository->getUser($name);
     }
 }

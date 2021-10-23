@@ -10308,6 +10308,13 @@ button.toast-close-button {
 .validation-container .validation-login-container .validation-form {
   width: calc(100% - 520px);
 }
+.validation-container .validation-login-container .validation-form .validation-form-title {
+  font-size: 35px;
+}
+.validation-container .validation-login-container .validation-form .change-validate-view {
+  color: #3490dc;
+  cursor: pointer;
+}
 @media (max-width: 960px) {
   .validation-container .validation-login-container .validation-form {
     width: calc(100% - 320px);

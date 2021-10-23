@@ -8,8 +8,9 @@ namespace App\Repositories\User;
  */
 interface UserRepositoryInterface
 {
-    public function firstOrCreate($data);
-    public function getUser($name);
+    public function create($data);
+    public function getUserByName($name);
+    public function getUserCredentials($name, $password);
     public function checkUid($uid);
     public function checkFriendCode($friendCode);
 }

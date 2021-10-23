@@ -26,26 +26,30 @@ class UserRepository extends Repository implements UserRepositoryInterface
         parent::__construct($this->model);
     }
 
-    public function firstOrCreate($data){
-        return $this->model::firstOrCreate([
-            'name' => $data['name'],
-            'password' => $data['password']
-        ], [
-            'email' => $data['email'],
-            'uid' => $data['uid'],
-            'friend_code' => $data['friend_code']
-        ]);
+    public function create($data)
+    {
+        $this->model::insert($data);
     }
 
-    public function getUser($name){
+    public function getUserByName($name)
+    {
         return $this->model->where('name', $name)->first();
     }
 
-    public function checkUid($uid){
+    public function getUserCredentials($name, $passowrd)
+    {
+        return $this->model->where('name', $name)
+            ->where('password', $passowrd)
+            ->first();
+    }
+
+    public function checkUid($uid)
+    {
         return $this->model->where('uid', $uid)->first();
     }
 
-    public function checkFriendCode($friendCode){
+    public function checkFriendCode($friendCode)
+    {
         return $this->model->where('friend_code', $friendCode)->first();
     }
 }

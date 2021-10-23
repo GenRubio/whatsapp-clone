@@ -44,6 +44,15 @@
         .validation-form {
             width: calc(100% - 520px);
 
+            .validation-form-title{
+                font-size: 35px;
+            }
+
+            .change-validate-view{
+                color: #3490dc;
+                cursor: pointer;
+            }
+
             @media (max-width: 960px) {
                 width: calc(100% - 320px);
             }

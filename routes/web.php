@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,7 +10,8 @@ Route::get('/', function () {
 
 // Home Routes
 Route::prefix('home')->group(function () {
-    Route::post('/validation', [LoginController::class, 'userValidation'])->name('home.login');
+    Route::post('/login', [LoginController::class, 'userValidation'])->name('home.login');
+    Route::post('/register', [RegisterController::class, 'register'])->name('home.register');
 });
 
 // Routes require auth

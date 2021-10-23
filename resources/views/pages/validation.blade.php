@@ -5,7 +5,8 @@
             <img src="{{ asset('/images/home/chat.png') }}">
         </div>
         <div class="validation-form">
-           @include('partials.form-login')
+           @include('partials.forms.form-login')
+           @include('partials.forms.form-register')
         </div>
     </div>
 </div>

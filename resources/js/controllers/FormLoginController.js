@@ -1,38 +1,66 @@
-const Utils = require('../objects/Utils');
+const Utils = require("../objects/Utils");
 
 const FormLoginController = {
     loginFormEl: {
-        selector: "#validation-form"
+        selector: "#login-form",
     },
-    init(){
+    notAccountButtonEl: {
+        selector: ".not-acount-button-js",
+    },
+    registerFormEl:{
+        selector: "#register-form"
+    },
+    submitButtonEl: {
+        selector: ".submit-login-button-js"
+    },
+    init() {
         if (!Utils.checkSection(this.loginFormEl.selector)) {
             return false;
-          } else {
+        } else {
             this.setListeners();
-          }
+        }
     },
-    setListeners(){
-        $(document).on('submit', this.loginFormEl.selector, (e) => {
-            this.validationHandler(e);
+    setListeners() {
+        $(document).on("submit", this.loginFormEl.selector, (e) => {
+            this.loginHandler(e);
+        });
+
+        $(document).on("click", this.notAccountButtonEl.selector, (e) => {
+            this.openRegisterFormHandler();
         });
     },
-    validationHandler(e){
+    openRegisterFormHandler(){
+        $(this.loginFormEl.selector).addClass('d-none');
+        $(this.registerFormEl.selector).removeClass('d-none');
+    },
+    loginHandler(e) {
         e.preventDefault();
+        this.blockSendButton(true);
 
-        const item = e.currentTarget;
+        const item = $(e.currentTarget);
         $.ajax({
             url: Utils.getUrl("homeLogin"),
             method: "POST",
-            data: $(item).serialize(),
-            success:function(data){
-                if (data.success){
-                    location.href = Utils.getUrl("home")
+            data: item.serialize(),
+            success: function (data) {
+                if (data.success) {
+                    location.href = Utils.getUrl("home");
+                } else {
+                    toastr.error("Nombre o contraseña incorrectos.");
                 }
-                else{
-                    toastr.error('Este nombre de usuario ya esta en uso.');
-                }
-            }
-        })
+                FormLoginController.blockSendButton(false);
+            },
+        });
+    },
+    blockSendButton(success){
+        if (success){
+            $(this.submitButtonEl.selector).attr('disabled', true);
+            $(this.submitButtonEl.selector).text('Cargando...');
+        }
+        else{
+            $(this.submitButtonEl.selector).attr('disabled', false);
+            $(this.submitButtonEl.selector).text('Go to chat');
+        }
     }
 };
 
