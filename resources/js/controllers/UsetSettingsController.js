@@ -20,7 +20,9 @@ const UserSettingsController = {
     userAddFriendEl:{
         selector: ".user-settings-add-user-js",
         container: ".user-add-friend-container-js",
-        backButton: ".add-friend-back-button-js"
+        backButton: ".add-friend-back-button-js",
+        searchInput: "#searchFriendInput",
+        resultContainer: ".user-add-search-result-container"
     },
     init() {
         this.setListeners();
@@ -61,6 +63,9 @@ const UserSettingsController = {
     showUserAddFriendHandler(){
         const container = $(UserSettingsController.userAddFriendEl.container);
         container.addClass('move-container');
+
+        $(this.userAddFriendEl.searchInput).val("");
+        $(this.userAddFriendEl.resultContainer).empty();
     },
     closeUserNotificationsHandler(){
         const container = $(UserSettingsController.userNotificationsEl.container);
