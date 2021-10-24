@@ -47,19 +47,28 @@ class UserService extends Controller
     }
 
     public function createUser($request){
-
-        $this->userRepository->create($this->prepareData($request));
+        $userData = $this->prepareData($request);
+        if (!$this->errors){
+            $this->userRepository->create($userData);
+        }
+        return $this->errors;
     }
 
     private function prepareData($request){
-        $data = [
-            'name' => $request->name,
-            'password' => Hash::make($request->password),
-            'email' => $request->email,
-            'uid' => $this->makeUid(),
-            'friend_code' => $this->makeFriendCode()
-        ];
-
+        $data = [];
+        $response = validateEmail($request->email);
+        if ($response['success']){
+            $data = [
+                'name' => $request->name,
+                'password' => Hash::make($request->password),
+                'email' => $request->email,
+                'uid' => $this->makeUid(),
+                'friend_code' => $this->makeFriendCode()
+            ];
+        }
+        else{
+            array_push($this->errors, $response['message']);
+        }
         return $data;
     }
 

@@ -16,9 +16,14 @@ class RegisterController extends Controller
         if (!(new UserService)->checkIfExistUser($request->name)){
 
             $errors = (new UserService)->createUser($request);
-
-            $success = true;
-            $message = "Usuario creado correctamente";
+            if ($errors){
+                $success = false;
+                $message = $errors[0];
+            }
+            else{
+                $success = true;
+                $message = "Usuario creado correctamente";
+            }
         }
         else{
             $message = "Este nombre de usuario ya esta en uso.";
