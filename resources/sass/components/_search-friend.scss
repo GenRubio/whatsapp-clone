@@ -1,0 +1,51 @@
+.user-add-search-result-container{
+    margin-top: 20px;
+
+    .search-friend-item-container{
+        min-height: 70px;
+        padding: 16px;
+        cursor: pointer;
+        transition: all 100ms ease;
+        background-color: #ededed;
+    
+        .search-friend-item-image-container {
+            width: 60px;
+    
+            .search-friend-item-image {
+                min-height: 49px;
+                width: 49px;
+                overflow: hidden;
+                position: relative;
+                border-radius: 50%;
+                cursor: pointer;
+    
+                img {
+                    @include image();
+                }
+            }
+        }
+    
+        .search-friend-item-content-container {
+            width: calc(100% - 60px);
+    
+            .search-friend-item-data {
+                width: 70%;
+                .search-friend-item-name {
+                    font-weight: bold;
+                    font-size: 17px;
+                    font-family: unset;
+                    line-height: 1.1;
+                    color: #000000a3;
+                }
+            }
+    
+            .search-friend-item-end-data {
+                width: 30%;
+                .search-friend-item-time {
+                    font-size: 13px;
+                    color: #0000009c;
+                }
+            }
+        }
+    }
+}

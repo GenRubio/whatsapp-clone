@@ -33,6 +33,8 @@
                 width: 30%;
                 @include chat-container();
                 min-width: 300px;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
             }
 
             .chat-messages-container {

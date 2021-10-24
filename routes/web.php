@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Chat\SearchFriendController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('settings')->group(function () {
         Route::get('/log-out', [LoginController::class, 'logOut'])->name('settings.logOut');
     });
+
+    Route::get('/search-friend', [SearchFriendController::class, 'search'])->name('search.friend');
 });

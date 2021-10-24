@@ -10366,6 +10366,8 @@ button.toast-close-button {
   overflow: hidden;
   transform: translateZ(0);
   min-width: 300px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 #chat-page .page-chat-container .chat-container-content .chat-messages-container {
   width: 70%;
@@ -10380,7 +10382,6 @@ button.toast-close-button {
   background-color: #ededed;
   height: 60px;
   padding: 10px 16px;
-  border-top-left-radius: 10px;
 }
 .chat-friends-user-settings-container .user-settings-image-container {
   width: 60px;
@@ -10507,12 +10508,59 @@ button.toast-close-button {
   border-bottom: 1px solid #ededed;
   margin-bottom: -15px;
 }
-.chat-item-container:last-child {
-  border-bottom-left-radius: 10px;
-}
 
 .chat-item-selected {
   background-color: #ebebeb;
+}
+
+.user-add-search-result-container {
+  margin-top: 20px;
+}
+.user-add-search-result-container .search-friend-item-container {
+  min-height: 70px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 100ms ease;
+  background-color: #ededed;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-image-container {
+  width: 60px;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-image-container .search-friend-item-image {
+  min-height: 49px;
+  width: 49px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-image-container .search-friend-item-image img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-content-container {
+  width: calc(100% - 60px);
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-data {
+  width: 70%;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-data .search-friend-item-name {
+  font-weight: bold;
+  font-size: 17px;
+  font-family: unset;
+  line-height: 1.1;
+  color: #000000a3;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-end-data {
+  width: 30%;
+}
+.user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-end-data .search-friend-item-time {
+  font-size: 13px;
+  color: #0000009c;
 }
 
 .friends-list-container {

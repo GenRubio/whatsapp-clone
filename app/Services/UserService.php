@@ -72,6 +72,10 @@ class UserService extends Controller
         return $data;
     }
 
+    public function getUserByFriendCode($code){
+        return $this->userRepository->checkFriendCode($code);
+    }
+
     private function makeFriendCode(){
         $code = uniqid('#');
         while ($this->userRepository->checkFriendCode($code)){

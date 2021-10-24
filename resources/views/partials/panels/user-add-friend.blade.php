@@ -12,7 +12,10 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="prefixSearch">@</span>
             </div>
-            <input type="text" class="form-control" aria-describedby="prefixSearch" placeholder="Escribe idetificador se usuario">
+            <input id="searchFriendInput" type="text" class="form-control" aria-describedby="prefixSearch"
+                placeholder="Escribe idetificador se usuario">
         </div>
+    </div>
+    <div class="user-add-search-result-container">
     </div>
 </div>

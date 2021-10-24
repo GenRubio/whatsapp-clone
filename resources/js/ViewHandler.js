@@ -1,6 +1,7 @@
 const FormLoginController = require("./controllers/FormLoginController");
 const UserSettingsController = require('./controllers/UsetSettingsController');
 const FormRegisterController = require('./controllers/FormRegisterController');
+const SearchFriendController = require('./controllers/SearchFriendController');
 
 const ViewHandler = {
     init(data) {
@@ -14,6 +15,7 @@ const ViewHandler = {
         FormLoginController.init();
         UserSettingsController.init();
         FormRegisterController.init();
+        SearchFriendController.init();
     },
 };
 
