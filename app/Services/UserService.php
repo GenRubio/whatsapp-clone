@@ -25,6 +25,10 @@ class UserService extends Controller
         $this->userRepository = new UserRepository();
     }
 
+    public function addFriend($id){
+        $this->userRepository->addFriend($id);
+    }
+
     public function validateUser($name, $password){
         if ($this->authUser($name, $password)){
             return true;

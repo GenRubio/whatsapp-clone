@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Chat\MakeFriendController;
 use App\Http\Controllers\Chat\SearchFriendController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/log-out', [LoginController::class, 'logOut'])->name('settings.logOut');
     });
 
-    Route::get('/search-friend', [SearchFriendController::class, 'search'])->name('search.friend');
+    Route::prefix('make-friend')->group(function (){
+        Route::get('/search-friend', [SearchFriendController::class, 'search'])->name('search.friend');
+        Route::post('/send-request', [MakeFriendController::class, 'sendRequest'])->name('friend.send.request');
+    });
 });

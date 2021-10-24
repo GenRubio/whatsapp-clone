@@ -54,4 +54,11 @@ if (!function_exists('validateEmail')) {
     }
 }
 
+if (!function_exists('friendSearchStatus')) {
+    function friendSearchStatus($friendId)
+    {
+        return UtilsHelper::friendSearchStatus($friendId);
+    }
+}
+
 

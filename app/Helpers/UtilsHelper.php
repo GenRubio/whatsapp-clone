@@ -38,4 +38,17 @@ class UtilsHelper
         }
         return $response;
     }
+
+    public static function friendSearchStatus($friendId){
+        $friend = getUser()->friends()->firstWhere('friend_id', $friendId);
+        if ($friend){
+            if ($friend->pivot->accepted){
+               return "Accepted";
+            }
+            else{
+               return "Pending";
+            }
+        }
+        return null;
+    }
 }

@@ -52,4 +52,9 @@ class UserRepository extends Repository implements UserRepositoryInterface
     {
         return $this->model->where('friend_code', $friendCode)->first();
     }
+
+    public function addFriend($id){
+        $user = $this->model->where('id', auth()->user()->id)->first();
+        $user->friends()->attach($id);
+    }
 }
