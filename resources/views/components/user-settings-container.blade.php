@@ -10,9 +10,12 @@
         </div>
         <div class="user-settings-bell user-settings-bell-js">
             <i class="far fa-bell"></i>
-            <div class="bell-messages-count d-none">
-                111
-            </div>
+            @if (count(pendingFriendRequest()) > 0)
+                <div class="bell-messages-count">
+                    {{ count(pendingFriendRequest()) }}
+                </div>
+            @endif
+
         </div>
         <div class="user-settings-out user-settings-out-js">
             <i class="fas fa-sign-out-alt"></i>

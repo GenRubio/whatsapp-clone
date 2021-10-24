@@ -48,12 +48,15 @@
             .bell-messages-count{
                 position: absolute;
                 background-color: #46e146;
+                overflow: hidden;
+                font-size: 9px;
                 color: white;
-                text-align: center;
-                font-size: 8px;
                 border-radius: 50%;
-                padding: 2px;
-                transform: translate(50%, -238%);
+                width: 15px;
+                height: 15px;
+                top: 13px;
+                right: 61px;
+                text-align: center;
             }
         }
     }

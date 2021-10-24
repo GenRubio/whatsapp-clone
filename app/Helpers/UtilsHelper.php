@@ -51,4 +51,8 @@ class UtilsHelper
         }
         return null;
     }
+
+    public static function pendingFriendRequest(){
+        return getUser()->friendsRequest()->where('accepted', 0)->get();
+    }
 }

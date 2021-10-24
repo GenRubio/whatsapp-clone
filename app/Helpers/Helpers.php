@@ -61,4 +61,11 @@ if (!function_exists('friendSearchStatus')) {
     }
 }
 
+if (!function_exists('pendingFriendRequest')) {
+    function pendingFriendRequest()
+    {
+        return UtilsHelper::pendingFriendRequest();
+    }
+}
+
 
