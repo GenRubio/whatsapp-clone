@@ -7,7 +7,7 @@ const MakeFriendController = {
     addFriendButtonEl: {
         selector: ".add-new-friend-button-js",
     },
-    csrfToke: {
+    csrfToken: {
         selector: 'meta[name="csrf-token"]',
     },
     init() {
@@ -29,7 +29,7 @@ const MakeFriendController = {
 
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $(this.csrfToke.selector).attr("content"),
+                "X-CSRF-TOKEN": $(this.csrfToken.selector).attr("content"),
             },
             url: Utils.getUrl("friendSendRequest"),
             method: "POST",

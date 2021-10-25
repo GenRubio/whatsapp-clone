@@ -57,4 +57,9 @@ class UserRepository extends Repository implements UserRepositoryInterface
         $user = $this->model->where('id', auth()->user()->id)->first();
         $user->friends()->attach($id);
     }
+
+    public function cancelFriendRequest($id){
+        $user = $this->model->where('id', auth()->user()->id)->first();
+        $user->friendsRequest()->detach($id);
+    }
 }

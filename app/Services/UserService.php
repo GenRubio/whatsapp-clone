@@ -25,6 +25,13 @@ class UserService extends Controller
         $this->userRepository = new UserRepository();
     }
 
+    public function cancelFriendRequest($code){
+        $request = $this->getUserByFriendCode($code);
+        if ($request){
+            $this->userRepository->cancelFriendRequest($request->id);
+        }
+    }
+
     public function addFriend($id){
         $this->userRepository->addFriend($id);
     }

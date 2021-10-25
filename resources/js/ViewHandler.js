@@ -3,6 +3,7 @@ const UserSettingsController = require('./controllers/UsetSettingsController');
 const FormRegisterController = require('./controllers/FormRegisterController');
 const SearchFriendController = require('./controllers/SearchFriendController');
 const MakeFriendController = require('./controllers/MakeFriendController');
+const NotificationsController = require('./controllers/NotificationsController');
 
 const ViewHandler = {
     init(data) {
@@ -18,6 +19,7 @@ const ViewHandler = {
         FormRegisterController.init();
         SearchFriendController.init();
         MakeFriendController.init();
+        NotificationsController.init();
     },
 };
 
