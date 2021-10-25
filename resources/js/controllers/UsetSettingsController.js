@@ -57,30 +57,30 @@ const UserSettingsController = {
         });
     },
     closeUserAddFriendHandler(){
-        const container = $(UserSettingsController.userAddFriendEl.container);
+        const container = $(this.userAddFriendEl.container);
         container.removeClass('move-container');
     },
     showUserAddFriendHandler(){
-        const container = $(UserSettingsController.userAddFriendEl.container);
+        const container = $(this.userAddFriendEl.container);
         container.addClass('move-container');
 
         $(this.userAddFriendEl.searchInput).val("");
         $(this.userAddFriendEl.resultContainer).empty();
     },
     closeUserNotificationsHandler(){
-        const container = $(UserSettingsController.userNotificationsEl.container);
+        const container = $(this.userNotificationsEl.container);
         container.removeClass('move-container');
     },
     showUserNotificationsHandler(){
-        const container = $(UserSettingsController.userNotificationsEl.container);
+        const container = $(this.userNotificationsEl.container);
         container.addClass('move-container');
     },
     closeUserProfileHandler(){
-        const container = $(UserSettingsController.userProfileEl.container);
+        const container = $(this.userProfileEl.container);
         container.removeClass('move-container');
     },
     showUserProfileHandler() {
-        const container = $(UserSettingsController.userProfileEl.container);
+        const container = $(this.userProfileEl.container);
         container.addClass('move-container');
     },
     logOutHandler() {

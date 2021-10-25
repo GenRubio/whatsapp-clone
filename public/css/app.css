@@ -10566,6 +10566,62 @@ button.toast-close-button {
   color: #0000009c;
 }
 
+.pending-friend-item-container {
+  margin-top: 5px;
+  min-height: 70px;
+  padding: 16px;
+  background-color: #ededed;
+}
+.pending-friend-item-container .pending-friend-item-image-container {
+  width: 60px;
+}
+.pending-friend-item-container .pending-friend-item-image-container .pending-friend-item-image {
+  min-height: 49px;
+  width: 49px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pending-friend-item-container .pending-friend-item-image-container .pending-friend-item-image img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.pending-friend-item-container .pending-friend-item-content-container {
+  width: calc(100% - 60px);
+}
+.pending-friend-item-container .pending-friend-item-content-container .pending-friend-item-data {
+  width: 40%;
+}
+.pending-friend-item-container .pending-friend-item-content-container .pending-friend-item-data .pending-friend-item-name {
+  font-weight: bold;
+  font-size: 17px;
+  font-family: unset;
+  line-height: 1.1;
+  color: #000000a3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inherit;
+}
+@media (max-width: 1200px) {
+  .pending-friend-item-container .pending-friend-item-content-container .pending-friend-item-data {
+    width: 20%;
+  }
+}
+.pending-friend-item-container .pending-friend-item-content-container .pending-friend-item-end-data {
+  width: 60%;
+}
+@media (max-width: 1200px) {
+  .pending-friend-item-container .pending-friend-item-content-container .pending-friend-item-end-data {
+    width: 80%;
+  }
+}
+
 .friends-list-container {
   height: calc(100% - 119px);
 }
@@ -10652,6 +10708,17 @@ button.toast-close-button {
   width: calc(100% - 30px);
   font-size: 20px;
   font-family: revert;
+}
+.user-notifications-container .user-notifications-content {
+  margin-top: 10;
+}
+.user-notifications-container .user-notifications-content .user-notifications-title {
+  padding: 12px 16px;
+  font-size: 17px;
+}
+.user-notifications-container .user-notifications-content hr {
+  padding: 0;
+  margin: 0;
 }
 
 .move-container {

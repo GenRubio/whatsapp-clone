@@ -31,6 +31,7 @@ const FormRegisterController = {
     },
     submitRegisterFormHandler(e){
         e.preventDefault();
+        const $item = this;
         const item = $(e.currentTarget);
         this.blockSendButton(true);
 
@@ -41,12 +42,12 @@ const FormRegisterController = {
             success:function(data){
                 if (data.success){
                     toastr.success(data.message);
-                    FormRegisterController.openLoginFormHandler();
+                    $item.openLoginFormHandler();
                 }
                 else{
                     toastr.error(data.message);
                 }
-                FormRegisterController.blockSendButton(false);
+                $item.blockSendButton(false);
             }
         })
     },

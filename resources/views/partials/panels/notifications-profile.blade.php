@@ -7,4 +7,21 @@
             Notificaciones
         </div>
     </div>
+    <div class="user-notifications-content">
+        @if (count(pendingFriendRequest()) > 0)
+            <div class="user-notifications-title">
+                Solicitudes de amistad
+            </div>
+            <hr>
+            @foreach (pendingFriendRequest() as $friendRequest)
+                @include('components.pending-friend-item', ['friendRequest' => $friendRequest])
+            @endforeach
+        @else
+            <div class="pending-friend-item-container d-flex justify-content-center align-items-center">
+                <div>
+                    No tienes solicitudes pendientes.
+                </div>
+            </div>
+        @endif
+    </div>
 </div>

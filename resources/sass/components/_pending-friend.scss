@@ -1,0 +1,54 @@
+.pending-friend-item-container{
+    margin-top: 5px;
+    min-height: 70px;
+    padding: 16px;
+    background-color: #ededed;
+
+    .pending-friend-item-image-container {
+        width: 60px;
+
+        .pending-friend-item-image {
+            min-height: 49px;
+            width: 49px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 50%;
+            cursor: pointer;
+
+            img {
+                @include image();
+            }
+        }
+    }
+
+    .pending-friend-item-content-container {
+        width: calc(100% - 60px);
+
+        .pending-friend-item-data {
+            width: 40%;
+            .pending-friend-item-name {
+                font-weight: bold;
+                font-size: 17px;
+                font-family: unset;
+                line-height: 1.1;
+                color: #000000a3;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: inherit;
+            }
+
+            @media(max-width: 1200px){
+                width: 20%;
+            }
+        }
+
+        .pending-friend-item-end-data {
+            width: 60%;
+
+            @media(max-width: 1200px){
+                width: 80%;
+            }
+        }
+    }
+}

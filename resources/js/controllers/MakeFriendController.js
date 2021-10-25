@@ -23,6 +23,7 @@ const MakeFriendController = {
         });
     },
     addFriendHandler(e) {
+        const $item = this;
         const item = $(e.currentTarget);
         this.disableSendButton();
 
@@ -38,7 +39,7 @@ const MakeFriendController = {
             success:function(data){
                 if (data.success){
                     toastr.success(data.message);
-                    $(MakeFriendController.addFriendButtonEl.selector).html('Pending');
+                    $($item.addFriendButtonEl.selector).html('Pending');
                 }
                 else{
                     toastr.error(data.message);

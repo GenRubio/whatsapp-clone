@@ -23,6 +23,7 @@ const SearchFriendController = {
         });
     },
     searchFriendHandler(e) {
+        const $item = this;
         const item = $(e.currentTarget);
 
         $.ajax({
@@ -32,7 +33,7 @@ const SearchFriendController = {
                 value: item.val(),
             },
             success: function (data) {
-                $(SearchFriendController.resultContainerEl.selector).html(
+                $($item.resultContainerEl.selector).html(
                     data.content
                 );
             },

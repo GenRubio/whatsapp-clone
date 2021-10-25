@@ -15,7 +15,6 @@
                     {{ count(pendingFriendRequest()) }}
                 </div>
             @endif
-
         </div>
         <div class="user-settings-out user-settings-out-js">
             <i class="fas fa-sign-out-alt"></i>

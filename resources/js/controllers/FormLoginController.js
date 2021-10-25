@@ -35,6 +35,7 @@ const FormLoginController = {
     },
     loginHandler(e) {
         e.preventDefault();
+        const $item = this;
         this.blockSendButton(true);
 
         const item = $(e.currentTarget);
@@ -48,7 +49,7 @@ const FormLoginController = {
                 } else {
                     toastr.error("Nombre o contraseña incorrectos.");
                 }
-                FormLoginController.blockSendButton(false);
+                $item.blockSendButton(false);
             },
         });
     },
