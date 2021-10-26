@@ -1,0 +1,20 @@
+{
+    "name": "whtasapp-clone-app",
+    "version": "1.0.0",
+    "description": "Whatsapp clone app",
+    "main": "main.js",
+    "author": "GenRubio",
+    "license": "MIT",
+    "scripts": {
+        "start": "electron .",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish",
+        "lint": "echo \"No linting configured\"",
+        "build-installer": "electron-builder"
+    },
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.0-beta.61",
+        "electron": "^15.3.0"
+    }
+}
