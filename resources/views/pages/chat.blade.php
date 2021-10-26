@@ -10,3 +10,7 @@
         </div>
     </div>
 </div>
+
+@push('socket')
+    @include('socket-connection')
+@endpush

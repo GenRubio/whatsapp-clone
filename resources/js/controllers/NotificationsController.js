@@ -59,6 +59,9 @@ const NotificationsController = {
             success:function(data){
                 $($this.requestsFriendListEl.selector).html(data.content);
                 $($this.bellEl.selector).html(data.bell);
+                if (typeof(data.socketData) != "undefined" && data.socketData !== null){
+                    socket.emit('notification', data.socketData);
+                }
             }
         });
     },
