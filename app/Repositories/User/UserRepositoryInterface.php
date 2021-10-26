@@ -13,6 +13,7 @@ interface UserRepositoryInterface
     public function getUserCredentials($name, $password);
     public function checkUid($uid);
     public function checkFriendCode($friendCode);
-    public function addFriend($id);
+    public function addFriend($id, $accepted);
     public function cancelFriendRequest($friendId);
+    public function acceptFriendRequest($friendId);
 }

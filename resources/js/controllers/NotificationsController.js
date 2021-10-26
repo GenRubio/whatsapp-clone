@@ -30,17 +30,28 @@ const NotificationsController = {
         $(document).on('click', this.cancelFriendRequestEl.selector, (e) => {
             this.cancelFriendHandler(e);
         });
+
+        $(document).on('click', this.acceptFriendRequestEl.selector, (e) => {
+            this.acceptFriendHandler(e);
+        });
+    },
+    acceptFriendHandler(e){
+        const item = $(e.currentTarget);
+        this.sendAjax(item, Utils.getUrl("acceptFriendRequest"));
     },
     cancelFriendHandler(e){
-        const $this = this;
         const item = $(e.currentTarget);
+        this.sendAjax(item, Utils.getUrl("removeFriendRequest"));
+    },
+    sendAjax(item, url){
+        const $this = this;
         this.disableButtons();
 
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $(this.csrfToken.selector).attr("content"),
             },
-            url: Utils.getUrl("removeFriendRequest"),
+            url: url,
             method: "POST",
             data: {
                 code: item.data('code')

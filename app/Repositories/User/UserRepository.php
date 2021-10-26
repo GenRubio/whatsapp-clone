@@ -53,13 +53,22 @@ class UserRepository extends Repository implements UserRepositoryInterface
         return $this->model->where('friend_code', $friendCode)->first();
     }
 
-    public function addFriend($id){
+    public function addFriend($id, $accepted){
         $user = $this->model->where('id', auth()->user()->id)->first();
-        $user->friends()->attach($id);
+        $user->friends()->attach($id, [
+            'accepted' => $accepted
+        ]);
     }
 
     public function cancelFriendRequest($id){
         $user = $this->model->where('id', auth()->user()->id)->first();
         $user->friendsRequest()->detach($id);
+    }
+
+    public function acceptFriendRequest($id){
+        $user = $this->model->where('id', auth()->user()->id)->first();
+        return $user->friendsRequest()->updateExistingPivot($id, [
+            'accepted' => true,
+        ]);
     }
 }

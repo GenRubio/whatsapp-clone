@@ -26,14 +26,24 @@ class UserService extends Controller
     }
 
     public function cancelFriendRequest($code){
-        $request = $this->getUserByFriendCode($code);
-        if ($request){
-            $this->userRepository->cancelFriendRequest($request->id);
+        $friendRequest = $this->getUserByFriendCode($code);
+        if ($friendRequest){
+            $this->userRepository->cancelFriendRequest($friendRequest->id);
         }
     }
 
-    public function addFriend($id){
-        $this->userRepository->addFriend($id);
+    public function acceptFriendRequest($code){
+        $friendRequest = $this->getUserByFriendCode($code);
+        if ($friendRequest){
+            $response = $this->userRepository->acceptFriendRequest($friendRequest->id);
+            if ($response){
+                $this->addFriend($friendRequest->id, true);
+            }
+        }
+    }
+
+    public function addFriend($id, $accepted){
+        $this->userRepository->addFriend($id, $accepted);
     }
 
     public function validateUser($name, $password){

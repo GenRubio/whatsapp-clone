@@ -17,7 +17,7 @@ class MakeFriendController extends Controller
         $friend = (new UserService())->getUserByFriendCode($request->friendCode);
         
         if ($friend && !friendSearchStatus($friend->id)) {
-            (new UserService())->addFriend($friend->id);
+            (new UserService())->addFriend($friend->id, false);
 
             $success = true;
             $message = "Solicitud enviada correctamente.";
