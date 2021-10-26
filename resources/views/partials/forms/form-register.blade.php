@@ -1,4 +1,4 @@
-<form id="register-form" class="d-none">
+<form id="register-form" class="d-none" autocomplete="off">
     @csrf
     <div class="validation-form-title">
         Register

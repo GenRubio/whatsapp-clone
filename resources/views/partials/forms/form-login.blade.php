@@ -1,4 +1,4 @@
-<form id="login-form">
+<form id="login-form" autocomplete="off">
     @csrf
     <div class="validation-form-title">
         Login
