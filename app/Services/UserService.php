@@ -42,6 +42,11 @@ class UserService extends Controller
         }
     }
 
+    public function getFriendByCode($code){
+        $friend = $this->getUserByFriendCode($code);
+        return $this->userRepository->getFriend($friend->id);
+    }
+
     public function addFriend($id, $accepted){
         $this->userRepository->addFriend($id, $accepted);
     }

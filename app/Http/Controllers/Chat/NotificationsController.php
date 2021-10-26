@@ -11,7 +11,12 @@ class NotificationsController extends Controller
 {
     public function acceptFriendRequest(Request $request)
     {
+        $friendUid = null;
         (new UserService())->acceptFriendRequest($request->code);
+        $friend = (new UserService())->getFriendByCode($request->code);
+        if ($friend){
+            $friendUid = $friend->uid;
+        }
 
         $pendingRequests = pendingFriendRequest();
         
@@ -20,8 +25,9 @@ class NotificationsController extends Controller
                 'pendingFriendRequests' => $pendingRequests ,
             ])->render(),
             'bell' => view('components.bell-count-messages', [
-                'pendingFriendRequests' => count($pendingRequests ),
-            ])->render()
+                'pendingFriendRequests' => count($pendingRequests),
+            ])->render(),
+            'friendUid' => $friendUid
         ], Response::HTTP_CREATED);
     }
 
