@@ -5,6 +5,7 @@ Whatsapp clone es una app basada en Whtsapp Web que cuenta con las opciones:
 - Agregar amigos.
 - Chatear con los amigos agregados.
 - Administración de la app mediante Backpack
+- Desktop App usando Electron
 
 ## Install
 1) En la terminal:
