@@ -26,8 +26,15 @@ php artisan migrate
 ```bash
 php artisan serv
 ```
+## Node initialization
+1) Abrimos nueva terminal dentro de la carpeta 'node' de raiz del proyecto
+
+2) En la terminal:
+``` bash
+node server.js
+```
 ## Electron Install
-1) Abrimos nueva terminal dentro de la carpeta electron de raiz del proyecto
+1) Abrimos nueva terminal dentro de la carpeta 'electron' de raiz del proyecto
 
 2) En la terminal:
 ``` bash
