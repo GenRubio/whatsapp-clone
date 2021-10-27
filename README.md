@@ -14,7 +14,6 @@ Whatsapp clone es una app basada en Whtsapp Web que cuenta con las opciones:
 composer install
 npm install
 npm run dev
-backpack install
 ```
 
 2) Ejecutar las migraciones:
