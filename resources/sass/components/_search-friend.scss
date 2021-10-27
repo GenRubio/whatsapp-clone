@@ -37,13 +37,18 @@
                     line-height: 1.1;
                     color: #000000a3;
                 }
+
+                @media(max-width: 1200px){
+                    width: 50%;
+                }
+               
             }
     
             .search-friend-item-end-data {
                 width: 30%;
-                .search-friend-item-time {
-                    font-size: 13px;
-                    color: #0000009c;
+
+                @media(max-width: 1200px){
+                    width: 50%;
                 }
             }
         }

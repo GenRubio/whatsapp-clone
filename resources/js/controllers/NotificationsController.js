@@ -59,11 +59,14 @@ const NotificationsController = {
             success:function(data){
                 $($this.requestsFriendListEl.selector).html(data.content);
                 $($this.bellEl.selector).html(data.bell);
-                if (typeof(data.socketData) != "undefined" && data.socketData !== null){
-                    socket.emit('notification', data.socketData);
-                }
+                $this.sendAlertToFriendSocket(data);
             }
         });
+    },
+    sendAlertToFriendSocket(data){
+        if (typeof(data.socketData) != "undefined" && data.socketData !== null){
+            socket.emit('notification', data.socketData);
+        }
     },
     disableButtons(){
         $(this.cancelFriendRequestEl.selector).attr('disabled', true);

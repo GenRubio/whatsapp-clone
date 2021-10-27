@@ -36,7 +36,8 @@ class NotificationsController extends Controller
     {
         return json_encode([
             'uid' => $friend->uid,
-            'name' => getUser()->name
+            'name' => getUser()->name,
+            'channel' => 'friend-accept-request'
         ]);
     }
 

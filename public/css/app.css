@@ -10558,12 +10558,18 @@ button.toast-close-button {
   line-height: 1.1;
   color: #000000a3;
 }
+@media (max-width: 1200px) {
+  .user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-data {
+    width: 50%;
+  }
+}
 .user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-end-data {
   width: 30%;
 }
-.user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-end-data .search-friend-item-time {
-  font-size: 13px;
-  color: #0000009c;
+@media (max-width: 1200px) {
+  .user-add-search-result-container .search-friend-item-container .search-friend-item-content-container .search-friend-item-end-data {
+    width: 50%;
+  }
 }
 
 .pending-friend-item-container {
