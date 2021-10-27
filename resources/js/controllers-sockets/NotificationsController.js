@@ -1,4 +1,5 @@
 const Utils = require("../objects/Utils");
+const Notifications = require('../controllers/NotificationsController');
 
 const NotificationsController = {
     chatPageEl:{
@@ -15,9 +16,17 @@ const NotificationsController = {
         socket.on('friend-accept-request-' + userChannel,  (data) => {
             this.friendAcceptRequestHandler(data);
         });
+
+        socket.on('friend-send-request-' + userChannel, (data) => {
+            this.friendSendRequestHandler(data);
+        });
+    },
+    friendSendRequestHandler(data){
+        toastr.info(data.name + " te envio una solicitud de amistad.");
+        Notifications.reloadNotificationsContent();
     },
     friendAcceptRequestHandler(data){
-        toastr.success(data.name + ": acepto la solicitud de amistad.");
+        toastr.success(data.name + " acepto la solicitud de amistad.");
     }
 };
 

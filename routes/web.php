@@ -34,5 +34,7 @@ Route::middleware('auth')->group(function () {
             ->name('accept.friend.request');
         Route::post('/remove-friend-request', [NotificationsController::class, 'removeFriendRequest'])
             ->name('remove.friend.request');
+        Route::get('/reload-content', [NotificationsController::class, 'reloadContent'])
+            ->name('notifications.reload');
     });
 });

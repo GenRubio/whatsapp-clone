@@ -6,5 +6,6 @@ window.routes = {
     'searchFriend': "{!! route('search.friend') !!}",
     'friendSendRequest': "{!! route('friend.send.request') !!}",
     'acceptFriendRequest': "{!! route('accept.friend.request') !!}",
-    'removeFriendRequest': "{!! route('remove.friend.request') !!}"
+    'removeFriendRequest': "{!! route('remove.friend.request') !!}",
+    'notificationsReload': "{!! route('notifications.reload') !!}"
 }

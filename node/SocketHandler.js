@@ -13,9 +13,18 @@ const SocketHandler = {
                     case "friend-accept-request":
                         $this.sendNotificationFriendAcceptRequest(item);
                         break;
+                    case "friend-send-request":
+                        $this.sendNotificationFriendSendRequest(item);
+                        break;
                 }
             });
         });
+    },
+    sendNotificationFriendSendRequest(item) {
+        const response = {
+            name: item.name,
+        };
+        this.io.emit("friend-send-request-" + item.uid, response);
     },
     sendNotificationFriendAcceptRequest(item) {
         const response = {

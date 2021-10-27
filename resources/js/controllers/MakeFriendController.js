@@ -23,7 +23,7 @@ const MakeFriendController = {
         });
     },
     addFriendHandler(e) {
-        const $item = this;
+        const $this = this;
         const item = $(e.currentTarget);
         this.disableSendButton();
 
@@ -34,22 +34,27 @@ const MakeFriendController = {
             url: Utils.getUrl("friendSendRequest"),
             method: "POST",
             data: {
-                friendCode: item.data('code'),
+                friendCode: item.data("code"),
             },
-            success:function(data){
-                if (data.success){
+            success: function (data) {
+                if (data.success) {
                     toastr.success(data.message);
-                    $($item.addFriendButtonEl.selector).html('Pending');
-                }
-                else{
+                    $($this.addFriendButtonEl.selector).html("Pending");
+                    $this.sendFriendRequestSocket(data);
+                } else {
                     toastr.error(data.message);
                 }
-            }
+            },
         });
     },
-    disableSendButton(){
-        $(this.addFriendButtonEl.selector).attr('disabled', true);
-    }
+    sendFriendRequestSocket(data) {
+        if (typeof data.socketData != "undefined" && data.socketData !== null) {
+            socket.emit("notification", data.socketData);
+        }
+    },
+    disableSendButton() {
+        $(this.addFriendButtonEl.selector).attr("disabled", true);
+    },
 };
 
 module.exports = MakeFriendController;

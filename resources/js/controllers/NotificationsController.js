@@ -63,6 +63,18 @@ const NotificationsController = {
             }
         });
     },
+    reloadNotificationsContent(){
+        const $this = this;
+        
+        $.ajax({
+            url:  Utils.getUrl("notificationsReload"),
+            method: "GET",
+            success:function(data){
+                $($this.requestsFriendListEl.selector).html(data.content);
+                $($this.bellEl.selector).html(data.bell);
+            }
+        });
+    },
     sendAlertToFriendSocket(data){
         if (typeof(data.socketData) != "undefined" && data.socketData !== null){
             socket.emit('notification', data.socketData);

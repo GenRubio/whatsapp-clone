@@ -55,4 +55,18 @@ class NotificationsController extends Controller
             ])->render()
         ], Response::HTTP_CREATED);
     }
+
+    public function reloadContent()
+    {
+        $pendingRequests = pendingFriendRequest();
+
+        return response()->json([
+            'content' => view('components.pending-friend-list', [
+                'pendingFriendRequests' => $pendingRequests,
+            ])->render(),
+            'bell' => view('components.bell-count-messages', [
+                'pendingFriendRequests' => count($pendingRequests),
+            ])->render()
+        ], Response::HTTP_CREATED);
+    }
 }

@@ -13,11 +13,13 @@ class MakeFriendController extends Controller
     {
         $success = false;
         $message = 'Ha ocurrido un error';
+        $socketData = null;
 
         $friend = (new UserService())->getUserByFriendCode($request->friendCode);
         
         if ($friend && !friendSearchStatus($friend->id)) {
             (new UserService())->addFriend($friend->id, false);
+            $socketData = $this->getSocketData($friend);
 
             $success = true;
             $message = "Solicitud enviada correctamente.";
@@ -27,7 +29,17 @@ class MakeFriendController extends Controller
 
         return response()->json([
             'success' => $success,
-            'message' => $message
+            'message' => $message,
+            'socketData' => $socketData
         ], Response::HTTP_CREATED);
+    }
+
+    private function getSocketData($friend)
+    {
+        return json_encode([
+            'uid' => $friend->uid,
+            'name' => getUser()->name,
+            'channel' => 'friend-send-request'
+        ]);
     }
 }
