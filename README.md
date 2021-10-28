@@ -14,7 +14,6 @@ Whatsapp clone es una app basada en Whtsapp Web que cuenta con las opciones:
 composer install
 npm install
 npm run dev
-backpack install
 ```
 
 2) Ejecutar las migraciones:
@@ -26,8 +25,15 @@ php artisan migrate
 ```bash
 php artisan serv
 ```
+## Node initialization
+1) Abrimos nueva terminal dentro de la carpeta 'node' de raiz del proyecto
+
+2) En la terminal:
+``` bash
+node server.js
+```
 ## Electron Install
-1) Abrimos nueva terminal dentro de la carpeta electron de raiz del proyecto
+1) Abrimos nueva terminal dentro de la carpeta 'electron' de raiz del proyecto
 
 2) En la terminal:
 ``` bash
