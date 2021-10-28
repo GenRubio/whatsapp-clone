@@ -25,6 +25,10 @@ class UserService extends Controller
         $this->userRepository = new UserRepository();
     }
 
+    public function updateUserImage($imageUrl){
+        $this->userRepository->updateImage($imageUrl);
+    }
+
     public function cancelFriendRequest($code){
         $friendRequest = $this->getUserByFriendCode($code);
         if ($friendRequest){

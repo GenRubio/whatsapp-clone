@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Chat\MakeFriendController;
 use App\Http\Controllers\Chat\NotificationsController;
 use App\Http\Controllers\Chat\SearchFriendController;
+use App\Http\Controllers\Chat\UploadUserImgController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,5 +37,10 @@ Route::middleware('auth')->group(function () {
             ->name('remove.friend.request');
         Route::get('/reload-content', [NotificationsController::class, 'reloadContent'])
             ->name('notifications.reload');
+    });
+
+    Route::prefix('profile')->group(function () {
+        Route::post('/upload-image', [UploadUserImgController::class, 'upload'])
+            ->name('upload.user.image');
     });
 });

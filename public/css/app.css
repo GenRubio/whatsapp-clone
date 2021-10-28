@@ -10289,6 +10289,8 @@ button.toast-close-button {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 @media (max-width: 660px) {
   .validation-container .validation-login-container .validation-image img {
@@ -10401,6 +10403,8 @@ button.toast-close-button {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 .chat-friends-user-settings-container .user-settings-options-container {
   width: calc(100% - 65px);
@@ -10472,6 +10476,8 @@ button.toast-close-button {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 .chat-item-container .chat-item-content-container {
   width: calc(100% - 60px);
@@ -10544,6 +10550,8 @@ button.toast-close-button {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 .user-add-search-result-container .search-friend-item-container .search-friend-item-content-container {
   width: calc(100% - 60px);
@@ -10596,6 +10604,8 @@ button.toast-close-button {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 .pending-friend-item-container .pending-friend-item-content-container {
   width: calc(100% - 60px);
@@ -10667,6 +10677,7 @@ button.toast-close-button {
   height: 200px;
   top: 0px;
   left: 0px;
+  cursor: pointer;
 }
 .user-profile-container .user-profile-photo-container .user-profile-photo img {
   height: 100%;
@@ -10675,6 +10686,7 @@ button.toast-close-button {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 1px solid white;
   border-radius: 50%;
 }
 .user-profile-container .user-profile-data-container {

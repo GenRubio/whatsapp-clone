@@ -7,5 +7,6 @@ window.routes = {
     'friendSendRequest': "{!! route('friend.send.request') !!}",
     'acceptFriendRequest': "{!! route('accept.friend.request') !!}",
     'removeFriendRequest': "{!! route('remove.friend.request') !!}",
-    'notificationsReload': "{!! route('notifications.reload') !!}"
+    'notificationsReload': "{!! route('notifications.reload') !!}",
+    'uploadUserImg': "{!! route('upload.user.image') !!}"
 }

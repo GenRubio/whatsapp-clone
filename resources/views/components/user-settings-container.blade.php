@@ -1,7 +1,11 @@
 <div class="chat-friends-user-settings-container d-flex justify-content-between">
     <div class="user-settings-image-container">
         <div class="user-settings-image user-settings-image-js">
-            <img src="{{ asset('/images/avatars/pp.jpg') }}">
+            @if (getUser()->image)
+                <img class="user-profile-img-js" src="{{ asset(getUser()->image) }}">
+            @else
+                <img class="user-profile-img-js" src="{{ asset(config('utils.config.default-avatar')) }}">
+            @endif
         </div>
     </div>
     <div class="user-settings-options-container d-flex justify-content-end align-items-center">

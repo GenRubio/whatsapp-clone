@@ -28,10 +28,10 @@
             height: 200px;
             top: 0px;
             left: 0px;
+            cursor: pointer;
 
             img {
                 @include image();
-                border-radius: 50%;
             }
         }
     }

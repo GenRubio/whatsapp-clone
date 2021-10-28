@@ -1,7 +1,8 @@
-<div class="chat-item-container d-flex justify-content-between align-items-center">
+<div class="chat-item-container chat-item-container-js d-flex justify-content-between align-items-center"
+    data-friend-channel="">
     <div class="chat-item-image-container">
         <div class="chat-item-image">
-            <img src="{{ asset('/images/avatars/pp.jpg') }}">
+            <img src="{{ asset(config('utils.config.default-avatar')) }}">
         </div>
     </div>
     <div class="chat-item-content-container d-flex flex-wrap justify-content-between">

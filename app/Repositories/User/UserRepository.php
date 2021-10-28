@@ -72,4 +72,10 @@ class UserRepository extends Repository implements UserRepositoryInterface
     public function getFriend($id){
         return getUser()->friends()->wherePivot('friend_id', $id)->first();
     }
+
+    public function updateImage($image){
+        $this->model->where('id', getUser()->id)->update([
+            'image' => $image
+        ]);
+    }
 }

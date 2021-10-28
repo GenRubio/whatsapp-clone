@@ -4,6 +4,7 @@ const FormRegisterController = require('./controllers/FormRegisterController');
 const SearchFriendController = require('./controllers/SearchFriendController');
 const MakeFriendController = require('./controllers/MakeFriendController');
 const NotificationsController = require('./controllers/NotificationsController');
+const ProfileImageController = require('./controllers/ProfileImageController');
 const SocketNotificationsController = require('./controllers-sockets/NotificationsController');
 
 const ViewHandler = {
@@ -21,6 +22,7 @@ const ViewHandler = {
         SearchFriendController.init();
         MakeFriendController.init();
         NotificationsController.init();
+        ProfileImageController.init();
         SocketNotificationsController.init();
     },
 };

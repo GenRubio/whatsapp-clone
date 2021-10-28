@@ -17,4 +17,5 @@ interface UserRepositoryInterface
     public function cancelFriendRequest($friendId);
     public function acceptFriendRequest($friendId);
     public function getFriend($id);
+    public function updateImage($image);
 }

@@ -8,9 +8,14 @@
         </div>
     </div>
     <div class="user-profile-photo-container d-flex justify-content-center">
-        <div class="user-profile-photo">
-            <img src="{{ asset('/images/avatars/pp.jpg') }}">
+        <div class="user-profile-photo user-profile-photo-js">
+            @if (getUser()->image)
+                <img class="user-profile-img-js" src="{{ asset(getUser()->image) }}">
+            @else
+                <img class="user-profile-img-js" src="{{ asset(config('utils.config.default-avatar')) }}">
+            @endif
         </div>
+        <input type="file" id="profile-image-input-js" class="d-none" />
     </div>
     <div class="user-profile-data-container">
         <div class="user-profile-data-title">
