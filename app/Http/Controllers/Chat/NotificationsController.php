@@ -18,18 +18,7 @@ class NotificationsController extends Controller
         if ($friend) {
             $socketData = $this->getSocketData($friend);
         }
-
-        $pendingRequests = pendingFriendRequest();
-
-        return response()->json([
-            'content' => view('components.pending-friend-list', [
-                'pendingFriendRequests' => $pendingRequests,
-            ])->render(),
-            'bell' => view('components.bell-count-messages', [
-                'pendingFriendRequests' => count($pendingRequests),
-            ])->render(),
-            'socketData' => $socketData
-        ], Response::HTTP_CREATED);
+        return response()->json($this->getJson($socketData), Response::HTTP_CREATED);
     }
 
     private function getSocketData($friend)
@@ -44,29 +33,26 @@ class NotificationsController extends Controller
     public function removeFriendRequest(Request $request)
     {
         (new UserService())->cancelFriendRequest($request->code);
-        $pendingRequests = pendingFriendRequest();
-
-        return response()->json([
-            'content' => view('components.pending-friend-list', [
-                'pendingFriendRequests' => $pendingRequests,
-            ])->render(),
-            'bell' => view('components.bell-count-messages', [
-                'pendingFriendRequests' => count($pendingRequests),
-            ])->render()
-        ], Response::HTTP_CREATED);
+        return response()->json($this->getJson(), Response::HTTP_CREATED);
     }
 
     public function reloadContent()
     {
+        return response()->json($this->getJson(), Response::HTTP_CREATED);
+    }
+
+    private function getJson($socketData = null)
+    {
         $pendingRequests = pendingFriendRequest();
 
-        return response()->json([
+        return [
             'content' => view('components.pending-friend-list', [
                 'pendingFriendRequests' => $pendingRequests,
             ])->render(),
             'bell' => view('components.bell-count-messages', [
                 'pendingFriendRequests' => count($pendingRequests),
-            ])->render()
-        ], Response::HTTP_CREATED);
+            ])->render(),
+            'socketData' => $socketData
+        ];
     }
 }

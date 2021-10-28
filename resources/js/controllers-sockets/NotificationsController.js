@@ -26,7 +26,7 @@ const NotificationsController = {
         Notifications.reloadNotificationsContent();
     },
     friendAcceptRequestHandler(data){
-        toastr.success(data.name + " acepto la solicitud de amistad.");
+        toastr.info(data.name + " acepto la solicitud de amistad.");
     }
 };
 

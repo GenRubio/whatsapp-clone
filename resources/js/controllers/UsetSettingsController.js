@@ -58,30 +58,35 @@ const UserSettingsController = {
     },
     closeUserAddFriendHandler(){
         const container = $(this.userAddFriendEl.container);
-        container.removeClass('move-container');
+        this.moveContainer(container, -100);
     },
     showUserAddFriendHandler(){
         const container = $(this.userAddFriendEl.container);
-        container.addClass('move-container');
+        this.moveContainer(container, 0);
 
         $(this.userAddFriendEl.searchInput).val("");
         $(this.userAddFriendEl.resultContainer).empty();
     },
     closeUserNotificationsHandler(){
         const container = $(this.userNotificationsEl.container);
-        container.removeClass('move-container');
+        this.moveContainer(container, -100);
     },
     showUserNotificationsHandler(){
         const container = $(this.userNotificationsEl.container);
-        container.addClass('move-container');
+        this.moveContainer(container, 0);
     },
     closeUserProfileHandler(){
         const container = $(this.userProfileEl.container);
-        container.removeClass('move-container');
+        this.moveContainer(container, -100);
     },
     showUserProfileHandler() {
         const container = $(this.userProfileEl.container);
-        container.addClass('move-container');
+        this.moveContainer(container, 0);
+    },
+    moveContainer(container, position){
+        container.css('opacity', '1');
+        container.css('transform', 'translate(' + position + '%, 0)') ;
+        container.css('transition', ' opacity 0.6s ease-out, transform 0.6s');
     },
     logOutHandler() {
         $.ajax({
