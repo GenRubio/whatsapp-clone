@@ -39,7 +39,10 @@
 
             .chat-messages-container {
                 width: 70%;
+                min-width: 350px;
                 @include chat-container();
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
             }
         }
     }

@@ -4,6 +4,34 @@
         height: 60px;
         padding: 10px 16px;
         border-top-right-radius: 10px;
+
+        .chat-friend-left-section {
+            .chat-friend-image {
+                min-height: 40px;
+                width: 40px;
+                overflow: hidden;
+                position: relative;
+                border-radius: 50%;
+                cursor: pointer;
+
+                img {
+                    @include image();
+                }
+            }
+
+            .chat-friend-info {
+                .chat-friend-name {
+                    position: relative;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    font-weight: bold;
+                    font-size: 17px;
+                    font-family: unset;
+                    color: black;
+                }
+            }
+        }
     }
 
     &-messages {
@@ -26,7 +54,7 @@
             padding-left: 17px;
             font-size: 15px;
         }
-        input:focus{
+        input:focus {
             outline: none;
         }
     }

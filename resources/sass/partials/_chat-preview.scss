@@ -1,0 +1,25 @@
+.chat-preview-container{
+    background-color: #f8f9fa;
+
+    #particles-js {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        position: fixed;
+    }
+
+    .chat-preview-logo{
+        min-height: 500px;
+        width: 500px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 50%;
+        background-color: #ffffff2b;
+
+        img {
+            @include image();
+        }
+    }
+}
