@@ -6,9 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('title')
     <!-- Scripts -->
-    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
-        integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
-    </script>
+    <script src="{{ asset('js/library/socket.io.min.js') }}"></script>
     @stack('socket')
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/library/particles-manager.js') }}" defer></script>

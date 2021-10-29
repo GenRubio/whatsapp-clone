@@ -1,7 +1,11 @@
 <div class="pending-friend-item-container d-flex justify-content-between align-items-center">
     <div class="pending-friend-item-image-container">
         <div class="pending-friend-item-image">
-            <img src="{{ asset('/images/avatars/pp.jpg') }}">
+            @if ($friendRequest->image)
+                <img class="user-profile-img-js" src="{{ asset($friendRequest->image) }}">
+            @else
+                <img class="user-profile-img-js" src="{{ asset(config('utils.config.default-avatar')) }}">
+            @endif
         </div>
     </div>
     <div class="pending-friend-item-content-container d-flex flex-wrap justify-content-between align-items-center">
