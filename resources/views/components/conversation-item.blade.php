@@ -2,13 +2,17 @@
     data-friend-channel="">
     <div class="chat-item-image-container">
         <div class="chat-item-image">
-            <img src="{{ asset(config('utils.config.default-avatar')) }}">
+            @if ($friend->image)
+                <img class="friend-profile-img-js" src="{{ asset($friend->image) }}">
+            @else
+                <img class="friend-profile-img-js" src="{{ asset(config('utils.config.default-avatar')) }}">
+            @endif
         </div>
     </div>
     <div class="chat-item-content-container d-flex flex-wrap justify-content-between">
         <div class="chat-item-data">
             <div class="chat-item-name">
-                Gen
+                {{ $friend->name }}
             </div>
             <div class="chat-item-message">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem libero incidunt, eius illum soluta

@@ -10412,6 +10412,12 @@ button.toast-close-button {
 .chat-friends-user-settings-container .user-settings-options-container {
   width: calc(100% - 65px);
 }
+.chat-friends-user-settings-container .user-settings-options-container .user-settings-new-chat {
+  font-size: 21px;
+  cursor: pointer;
+  color: grey;
+  margin: 0 10px;
+}
 .chat-friends-user-settings-container .user-settings-options-container .user-settings-add-user {
   font-size: 21px;
   cursor: pointer;
@@ -10643,6 +10649,14 @@ button.toast-close-button {
 
 .friends-list-container {
   height: calc(100% - 119px);
+  border-right: 1px solid #00000014;
+}
+
+.friends-list-container .friends-list-container-empty {
+  min-height: 70px;
+  padding: 16px;
+  transition: all 100ms ease;
+  background-color: #ededed;
 }
 
 .user-profile-container {
@@ -10654,6 +10668,7 @@ button.toast-close-button {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   transform: translate(-100%, 0);
+  border-right: 1px solid #00000014;
 }
 .user-profile-container .user-profile-header {
   background-color: #ededed;
@@ -10707,6 +10722,7 @@ button.toast-close-button {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   transform: translate(-100%, 0);
+  border-right: 1px solid #00000014;
 }
 .user-notifications-container .user-notifications-header {
   background-color: #ededed;
@@ -10736,12 +10752,6 @@ button.toast-close-button {
   margin: 0;
 }
 
-.move-container {
-  opacity: 1;
-  transform: translate(0%, 0);
-  transition: opacity 0.6s ease-out, transform 0.6s;
-}
-
 .user-add-friend-container {
   position: absolute;
   z-index: 101;
@@ -10751,6 +10761,7 @@ button.toast-close-button {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   transform: translate(-100%, 0);
+  border-right: 1px solid #00000014;
 }
 .user-add-friend-container .user-add-friend-header {
   background-color: #ededed;
@@ -10773,10 +10784,36 @@ button.toast-close-button {
   background-color: #f6f6f6;
 }
 
-.move-container {
-  opacity: 1;
-  transform: translate(0%, 0);
-  transition: opacity 0.6s ease-out, transform 0.6s;
+.new-chat-container {
+  position: absolute;
+  z-index: 101;
+  background-color: #f9f9f9;
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  transform: translate(-100%, 0);
+  border-right: 1px solid #00000014;
+}
+.new-chat-container .new-chat-header {
+  background-color: #ededed;
+  height: 60px;
+  padding: 10px 16px;
+  border-top-left-radius: 10px;
+}
+.new-chat-container .new-chat-header-icon {
+  width: 30px;
+  font-size: 23px;
+  cursor: pointer;
+}
+.new-chat-container .new-chat-header-text {
+  width: calc(100% - 30px);
+  font-size: 20px;
+  font-family: revert;
+}
+.new-chat-container .new-chat-search-container {
+  padding: 11px 16px;
+  background-color: #f6f6f6;
 }
 
 .chat-friend-header {
@@ -10864,4 +10901,11 @@ button.toast-close-button {
      object-fit: cover;
   border: 1px solid white;
   border-radius: 50%;
+}
+
+.conversations-list-container .conversations-list-container-empty {
+  min-height: 70px;
+  padding: 16px;
+  transition: all 100ms ease;
+  background-color: #ededed;
 }

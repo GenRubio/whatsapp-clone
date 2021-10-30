@@ -49,6 +49,9 @@ class NotificationsController extends Controller
             'content' => view('components.pending-friend-list', [
                 'pendingFriendRequests' => $pendingRequests,
             ])->render(),
+            'friendList' => view('partials.friends-list', [
+                'friends' => getUser()->friends,
+            ])->render(),
             'bell' => view('components.bell-count-messages', [
                 'pendingFriendRequests' => count($pendingRequests),
             ])->render(),

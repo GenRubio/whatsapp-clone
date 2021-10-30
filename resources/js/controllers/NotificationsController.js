@@ -1,4 +1,5 @@
 const Utils = require("../objects/Utils");
+const ReloadContentController = require('./ReloadContentController');
 
 const NotificationsController = {
     chatPageEl: {
@@ -9,12 +10,6 @@ const NotificationsController = {
     },
     acceptFriendRequestEl: {
         selector: ".accept-friend-request-js"
-    },
-    bellEl:{
-        selector: ".bell-messages-count-js"
-    },
-    requestsFriendListEl: {
-        selector: ".notification-list-js"
     },
     csrfToken: {
         selector: 'meta[name="csrf-token"]'
@@ -57,21 +52,10 @@ const NotificationsController = {
                 code: item.data('code')
             },
             success:function(data){
-                $($this.requestsFriendListEl.selector).html(data.content);
-                $($this.bellEl.selector).html(data.bell);
+                ReloadContentController.reloadFrindList(data);
+                ReloadContentController.reloadRequestFriendList(data);
+                ReloadContentController.reloadBell(data);
                 $this.sendAlertToFriendSocket(data);
-            }
-        });
-    },
-    reloadNotificationsContent(){
-        const $this = this;
-        
-        $.ajax({
-            url:  Utils.getUrl("notificationsReload"),
-            method: "GET",
-            success:function(data){
-                $($this.requestsFriendListEl.selector).html(data.content);
-                $($this.bellEl.selector).html(data.bell);
             }
         });
     },

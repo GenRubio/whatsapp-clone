@@ -30,6 +30,10 @@
     .user-settings-options-container{
         width: calc(100% - 65px);
 
+        .user-settings-new-chat{
+            @include icon();
+        }
+
         .user-settings-add-user{
             @include icon();
         }

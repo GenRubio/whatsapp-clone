@@ -1,7 +1,7 @@
-.user-notifications-container {
+.new-chat-container {
     @include option-container();
-
-    .user-notifications-header {
+    
+    .new-chat-header {
         background-color: #ededed;
         height: 60px;
         padding: 10px 16px;
@@ -20,16 +20,8 @@
         }
     }
 
-    .user-notifications-content {
-        margin-top: 10;
-
-        .user-notifications-title {
-            padding: 12px 16px;
-            font-size: 17px;
-        }
-        hr{
-            padding: 0;
-            margin: 0;
-        }
+    .new-chat-search-container{
+        padding: 11px 16px;
+        background-color: #f6f6f6;
     }
 }

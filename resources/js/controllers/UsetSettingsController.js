@@ -24,10 +24,23 @@ const UserSettingsController = {
         searchInput: "#searchFriendInput",
         resultContainer: ".user-add-search-result-container"
     },
+    userNewChatEl:{
+        selector: ".user-settings-new-chat-js",
+        container: ".new-chat-container-js",
+        backButton: ".new-chat-back-button-js"
+    },
     init() {
         this.setListeners();
     },
     setListeners() {
+        $(document).on("click", this.userNewChatEl.selector, () => {
+            this.showUserNewChatHandler();
+        });
+
+        $(document).on("click", this.userNewChatEl.backButton, () => {
+            this.closeUserNewChatHandler();
+        });
+
         $(document).on("click", this.logOutButtonEl.selector, () => {
             this.logOutHandler();
         });
@@ -55,6 +68,14 @@ const UserSettingsController = {
         $(document).on("click", this.userNotificationsEl.backButton, () => {
             this.closeUserNotificationsHandler();
         });
+    },
+    closeUserNewChatHandler(){
+        const container = $(this.userNewChatEl.container);
+        this.moveContainer(container, -100);
+    },
+    showUserNewChatHandler(){
+        const container = $(this.userNewChatEl.container);
+        this.moveContainer(container, 0);
     },
     closeUserAddFriendHandler(){
         const container = $(this.userAddFriendEl.container);
