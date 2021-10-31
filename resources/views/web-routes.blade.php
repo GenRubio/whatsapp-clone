@@ -10,5 +10,6 @@ window.routes = {
     'notificationsReload': "{!! route('notifications.reload') !!}",
     'uploadUserImg': "{!! route('upload.user.image') !!}",
     'openConversation': "{!! route('open.conversation') !!}",
-    'sendMessage': "{!! route('send.message') !!}"
+    'sendMessage': "{!! route('send.message') !!}",
+    'receiveMessage': "{!! route('receive.message') !!}"
 }

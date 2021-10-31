@@ -50,5 +50,7 @@ Route::middleware('auth')->group(function () {
             ->name('open.conversation');
         Route::post('/send-message', [ConversationController::class, 'sendMessage'])
             ->name('send.message');
+        Route::post('/receive-message', [ConversationController::class, 'receiveMessage'])
+            ->name('receive.message');
     });
 });

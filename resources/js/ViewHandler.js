@@ -8,6 +8,7 @@ const ProfileImageController = require('./controllers/ProfileImageController');
 const NewChatController = require('./controllers/NewChatController');
 const MessagesController = require('./controllers/MessagesController');
 const SocketNotificationsController = require('./controllers-sockets/NotificationsController');
+const SocketMessagesController = require('./controllers-sockets/MessagesController');
 
 const ViewHandler = {
     init(data) {
@@ -28,6 +29,7 @@ const ViewHandler = {
         NewChatController.init();
         MessagesController.init();
         SocketNotificationsController.init();
+        SocketMessagesController.init();
     },
 };
 

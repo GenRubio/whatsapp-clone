@@ -7,8 +7,8 @@ const MessagesController = {
     inputMessageEl: {
         selector: "#input-message",
     },
-    messagesContainerEl:{
-        selector: ".chat-friend-messages-js"
+    messagesContainerEl: {
+        selector: ".chat-friend-messages-js",
     },
     csrfToken: {
         selector: 'meta[name="csrf-token"]',
@@ -37,23 +37,34 @@ const MessagesController = {
             url: Utils.getUrl("sendMessage"),
             method: "POST",
             data: {
-                'friendCode': item.data('friend-code'),
-                'message': item.val()
+                friendCode: item.data("friend-code"),
+                message: item.val(),
             },
-            success:function(data){
-                if (data.success){
+            success: function (data) {
+                if (data.success) {
+                    $this.sendMessageToFriendSocket(data);
                     $this.addMessageToConversation(data.content);
+                    $this.scrollToEnd();
                 }
                 $this.clearInputMessage();
-            }
-        })
+            },
+        });
     },
-    addMessageToConversation(content){
+    scrollToEnd(){
+        let container = $(this.messagesContainerEl.selector);
+        container.scrollTop(container.height());
+    },
+    sendMessageToFriendSocket(data) {
+        if (typeof data.socketData != "undefined" && data.socketData !== null) {
+            socket.emit("messages", data.socketData);
+        }
+    },
+    addMessageToConversation(content) {
         $(this.messagesContainerEl.selector).append(content);
     },
-    clearInputMessage(){
+    clearInputMessage() {
         $(this.inputMessageEl.selector).val("");
-    }
+    },
 };
 
 module.exports = MessagesController;

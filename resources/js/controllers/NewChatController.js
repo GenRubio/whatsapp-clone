@@ -10,6 +10,9 @@ const NewChatController = {
     conversationContainerEl:{
         selector: ".chat-messages-container-js"
     },
+    messagesContainerEl: {
+        selector: ".chat-friend-messages-js"
+    },
     csrfToken: {
         selector: 'meta[name="csrf-token"]',
     },
@@ -45,9 +48,14 @@ const NewChatController = {
             success:function(data){
                 if (data.success){
                     $($this.conversationContainerEl.selector).html(data.content);
+                    $this.scrollToEnd();
                 }
             }
         })
+    },
+    scrollToEnd(){
+        let container = $(this.messagesContainerEl.selector);
+        container.scrollTop(container.height());
     },
     setChatItemActive(item){
         item.addClass('selected');

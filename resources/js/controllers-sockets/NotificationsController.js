@@ -1,5 +1,4 @@
 const Utils = require("../objects/Utils");
-const Notifications = require('../controllers/NotificationsController');
 const ReloadContentController = require('../controllers/ReloadContentController');
 
 const NotificationsController = {

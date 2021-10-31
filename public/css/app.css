@@ -10947,3 +10947,7 @@ button.toast-close-button {
   transition: all 100ms ease;
   background-color: #ededed;
 }
+
+.chat-friend-messages {
+  padding-bottom: 20px;
+}

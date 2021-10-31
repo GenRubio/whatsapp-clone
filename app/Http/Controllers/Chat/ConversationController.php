@@ -10,12 +10,13 @@ use Illuminate\Http\Response;
 
 class ConversationController extends Controller
 {
-    public function openConversation(Request $request){
+    public function openConversation(Request $request)
+    {
         $success = false;
         $content = null;
 
         $friend = (new UserService())->getFriendByCode($request->friendCode);
-        if ($friend){
+        if ($friend) {
             $success = true;
             $content = view('partials.chat-friend-messages', ['friend' => $friend])->render();
         }
@@ -26,12 +27,14 @@ class ConversationController extends Controller
         ], Response::HTTP_CREATED);
     }
 
-    public function sendMessage(Request $request){
+    public function sendMessage(Request $request)
+    {
         $success = false;
         $content = null;
+        $socketData = null;
 
         $friend = (new UserService())->getFriendByCode($request->friendCode);
-        if ($friend && $request->message != ""){
+        if ($friend && $request->message != "") {
             (new UserService())->sendMessage($friend->id, $request->message);
 
             $success = true;
@@ -39,11 +42,33 @@ class ConversationController extends Controller
                 'message' => $request->message,
                 'hour' => Carbon::now('Europe/Madrid')->format('H:i')
             ])->render();
+            $socketData = $this->getSocketData($friend, $request->message);
         }
 
         return response()->json([
             'success' => $success,
             'content' => $content,
+            'socketData' => $socketData
+        ], Response::HTTP_CREATED);
+    }
+
+    private function getSocketData($friend, $message)
+    {
+        return json_encode([
+            'uid' => $friend->uid,
+            'userCode' => getUser()->friend_code,
+            'message' => $message,
+            'channel' => 'send-message-to-friend'
+        ]);
+    }
+
+    public function receiveMessage(Request $request)
+    {
+        return response()->json([
+            'content' => view('components.messages.friend-message', [
+                'message' => $request->message,
+                'hour' => Carbon::now('Europe/Madrid')->format('H:i')
+            ])->render()
         ], Response::HTTP_CREATED);
     }
 }

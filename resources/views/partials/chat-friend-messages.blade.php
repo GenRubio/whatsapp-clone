@@ -1,4 +1,4 @@
-<div class="chat-friend conversation-friend-js h-100" data-channel="{{ $friend->uid }}">
+<div class="chat-friend conversation-friend-js h-100" data-friend-code="{{ $friend->friend_code }}">
     <div class="chat-friend-header d-flex justify-content-between align-items-center border w-100">
         <div class="chat-friend-left-section d-flex align-items-center">
             <div class="chat-friend-image">
