@@ -25,6 +25,10 @@ class UserService extends Controller
         $this->userRepository = new UserRepository();
     }
 
+    public function sendMessage($friendId, $message){
+        $this->userRepository->sendMessage($friendId, $message);
+    }
+
     public function updateUserImage($imageUrl){
         $this->userRepository->updateImage($imageUrl);
     }

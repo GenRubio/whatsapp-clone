@@ -1,5 +1,5 @@
 <div class="chat-item-container chat-item-container-js d-flex justify-content-between align-items-center"
-    data-friend-channel="">
+    data-friend-code="{{ $friend->friend_code }}">
     <div class="chat-item-image-container">
         <div class="chat-item-image">
             @if ($friend->image)

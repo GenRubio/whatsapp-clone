@@ -10527,8 +10527,11 @@ button.toast-close-button {
   margin-bottom: -15px;
 }
 
-.chat-item-selected {
-  background-color: #ebebeb;
+.selected {
+  background-color: #ededed;
+}
+.selected:hover {
+  background-color: #ededed;
 }
 
 .user-add-search-result-container {
@@ -10853,6 +10856,41 @@ button.toast-close-button {
 .chat-friend-messages {
   height: calc(100% - 130px);
   background-color: #e9ccab57;
+}
+.chat-friend-messages .my-message {
+  padding: 0 90px;
+}
+.chat-friend-messages .my-message-container {
+  background-color: white;
+  padding: 7px 14px;
+  border-radius: 11px;
+  border: 1px solid #0000001f;
+  font-size: 15px;
+  margin-top: 5px;
+  background-color: #c6dcef;
+}
+.chat-friend-messages .my-message-container span {
+  margin-left: 40px;
+  font-size: 11px;
+  position: relative;
+  top: 6px;
+}
+.chat-friend-messages .friend-message {
+  padding: 0 90px;
+}
+.chat-friend-messages .friend-message-container {
+  background-color: white;
+  padding: 7px 14px;
+  border-radius: 11px;
+  border: 1px solid #0000001f;
+  font-size: 15px;
+  margin-top: 5px;
+}
+.chat-friend-messages .friend-message-container span {
+  margin-left: 40px;
+  font-size: 11px;
+  position: relative;
+  top: 6px;
 }
 .chat-friend-sender {
   background-color: #ededed;

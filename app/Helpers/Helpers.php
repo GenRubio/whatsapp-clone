@@ -68,4 +68,17 @@ if (!function_exists('pendingFriendRequest')) {
     }
 }
 
+if (!function_exists('getConversation')) {
+    function getConversation($friendId)
+    {
+        return UtilsHelper::getConversation($friendId);
+    }
+}
+
+if (!function_exists('getHourMessage')) {
+    function getHourMessage($date)
+    {
+        return UtilsHelper::getHourMessage($date);
+    }
+}
 

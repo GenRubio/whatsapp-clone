@@ -26,8 +26,7 @@ class UtilsHelper
                 'success' => false,
                 'message' => 'Invalid email format'
             ];
-        }
-        else{
+        } else {
             $user = User::where('email', $email)->first();
             if ($user) {
                 $response = [
@@ -39,20 +38,38 @@ class UtilsHelper
         return $response;
     }
 
-    public static function friendSearchStatus($friendId){
+    public static function friendSearchStatus($friendId)
+    {
         $friend = getUser()->friends()->firstWhere('friend_id', $friendId);
-        if ($friend){
-            if ($friend->pivot->accepted){
-               return "Accepted";
-            }
-            else{
-               return "Pending";
+        if ($friend) {
+            if ($friend->pivot->accepted) {
+                return "Accepted";
+            } else {
+                return "Pending";
             }
         }
         return null;
     }
 
-    public static function pendingFriendRequest(){
+    public static function pendingFriendRequest()
+    {
         return getUser()->friendsRequest()->where('accepted', 0)->get();
+    }
+
+    public static function getConversation($friendId)
+    {
+        $messages = User::where('id', getUser()->id)->join('friend_user_message', function ($join) use ($friendId) {
+            $join->on('friend_user_message.from_user', '=', 'users.id')
+                ->where('friend_user_message.to_user', '=', $friendId);
+            $join->orOn('friend_user_message.to_user', '=', 'users.id')
+                ->where('friend_user_message.from_user', '=', $friendId);
+        })->orderBy('date', 'asc')->get();
+        
+        return $messages;
+    }
+
+    public static function getHourMessage($date)
+    {
+        return Carbon::parse($date)->format('H:i');
     }
 }

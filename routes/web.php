@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Chat\ConversationController;
 use App\Http\Controllers\Chat\MakeFriendController;
 use App\Http\Controllers\Chat\NotificationsController;
 use App\Http\Controllers\Chat\SearchFriendController;
@@ -42,5 +43,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('profile')->group(function () {
         Route::post('/upload-image', [UploadUserImgController::class, 'upload'])
             ->name('upload.user.image');
+    });
+
+    Route::prefix('conversation')->group(function () {
+        Route::post('/open', [ConversationController::class, 'openConversation'])
+            ->name('open.conversation');
+        Route::post('/send-message', [ConversationController::class, 'sendMessage'])
+            ->name('send.message');
     });
 });

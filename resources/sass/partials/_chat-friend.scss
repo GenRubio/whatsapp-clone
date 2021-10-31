@@ -37,6 +37,47 @@
     &-messages {
         height: calc(100% - 130px);
         background-color: #e9ccab57;
+
+        @mixin message-content-container {
+            background-color: white;
+            padding: 7px 14px;
+            border-radius: 11px;
+            border: 1px solid #0000001f;
+            font-size: 15px;
+            margin-top: 5px;
+
+        }
+
+        .my-message {
+            padding: 0 90px;
+
+            &-container {
+                @include message-content-container();
+                background-color: #c6dcef;
+
+                span {
+                    margin-left: 40px;
+                    font-size: 11px;
+                    position: relative;
+                    top: 6px;
+                }
+            }
+        }
+
+        .friend-message {
+            padding: 0 90px;
+
+            &-container {
+                @include message-content-container();
+
+                span {
+                    margin-left: 40px;
+                    font-size: 11px;
+                    position: relative;
+                    top: 6px;
+                }
+            }
+        }
     }
 
     &-sender {

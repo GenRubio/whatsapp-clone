@@ -5,6 +5,8 @@ const SearchFriendController = require('./controllers/SearchFriendController');
 const MakeFriendController = require('./controllers/MakeFriendController');
 const NotificationsController = require('./controllers/NotificationsController');
 const ProfileImageController = require('./controllers/ProfileImageController');
+const NewChatController = require('./controllers/NewChatController');
+const MessagesController = require('./controllers/MessagesController');
 const SocketNotificationsController = require('./controllers-sockets/NotificationsController');
 
 const ViewHandler = {
@@ -23,6 +25,8 @@ const ViewHandler = {
         MakeFriendController.init();
         NotificationsController.init();
         ProfileImageController.init();
+        NewChatController.init();
+        MessagesController.init();
         SocketNotificationsController.init();
     },
 };

@@ -70,6 +70,10 @@
     }
 }
 
-.chat-item-selected {
-    background-color: #ebebeb;
+.selected{
+    background-color: #ededed;
+
+    &:hover{
+        background-color: #ededed;
+    }
 }
