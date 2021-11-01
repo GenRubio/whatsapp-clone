@@ -17,6 +17,8 @@ class ConversationController extends Controller
 
         $friend = (new UserService())->getFriendByCode($request->friendCode);
         if ($friend) {
+
+            (new UserService())->markAsReadFriendMessages($friend->id);
             $success = true;
             $content = view('partials.chat-friend-messages', ['friend' => $friend])->render();
         }

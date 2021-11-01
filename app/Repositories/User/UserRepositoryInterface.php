@@ -19,4 +19,5 @@ interface UserRepositoryInterface
     public function getFriend($id);
     public function updateImage($image);
     public function sendMessage($friendId, $message);
+    public function markAsReadFriendMessages($friendId);
 }

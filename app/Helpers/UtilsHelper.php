@@ -63,9 +63,41 @@ class UtilsHelper
                 ->where('friend_user_message.to_user', '=', $friendId);
             $join->orOn('friend_user_message.to_user', '=', 'users.id')
                 ->where('friend_user_message.from_user', '=', $friendId);
-        })->orderBy('date', 'asc')->get();
-        
+            $join->orderBy('date', 'asc');
+        })->get();
+
         return $messages;
+    }
+
+    public static function getChatsList()
+    {
+        $chats = collect();
+
+        foreach (getUser()->friends as $friend) {
+            if (count(getConversation($friend->id)) > 0) {
+                $chats->push($friend);
+            }
+        }
+        return $chats;
+    }
+
+    public static function getLastMessage($friendId)
+    {
+        $message = User::where('id', getUser()->id)->join('friend_user_message', function ($join) use ($friendId) {
+            $join->on('friend_user_message.from_user', '=', 'users.id')
+                ->where('friend_user_message.to_user', '=', $friendId);
+            $join->orOn('friend_user_message.to_user', '=', 'users.id')
+                ->where('friend_user_message.from_user', '=', $friendId);
+            $join->orderBy('date', 'desc');
+        })->first();
+
+        return $message;
+    }
+
+    public static function getNotReadMessages($friendId)
+    {
+        return getUser()->friendMessages()->where('from_user', $friendId)
+            ->wherePivot('read', false)->count();
     }
 
     public static function getHourMessage($date)

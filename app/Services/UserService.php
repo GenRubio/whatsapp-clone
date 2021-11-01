@@ -25,6 +25,10 @@ class UserService extends Controller
         $this->userRepository = new UserRepository();
     }
 
+    public function markAsReadFriendMessages($friendId){
+        $this->userRepository->markAsReadFriendMessages($friendId);
+    }
+
     public function sendMessage($friendId, $message){
         $this->userRepository->sendMessage($friendId, $message);
     }

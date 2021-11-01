@@ -56,6 +56,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'friend_user_message', 'from_user', 'to_user')
             ->withPivot('message')
+            ->withPivot('read')
+            ->withPivot('date');
+    }
+
+    public function friendMessages()
+    {
+        return $this->belongsToMany(User::class, 'friend_user_message', 'to_user', 'from_user')
+            ->withPivot('message')
+            ->withPivot('read')
             ->withPivot('date');
     }
 

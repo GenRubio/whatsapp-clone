@@ -90,4 +90,10 @@ class UserRepository extends Repository implements UserRepositoryInterface
             'message' => $message
         ]);
     }
+
+    public function markAsReadFriendMessages($friendId){
+        getUser()->friendMessages()->updateExistingPivot($friendId, [
+            'read' => true,
+        ]);
+    }
 }

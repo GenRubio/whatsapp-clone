@@ -10511,7 +10511,9 @@ button.toast-close-button {
   width: 20%;
 }
 .chat-item-container .chat-item-content-container .chat-item-end-data .chat-item-time {
+  width: 100%;
   font-size: 13px;
+  text-align: end;
   color: #0000009c;
 }
 .chat-item-container .chat-item-content-container .chat-item-end-data .chat-item-unread {
@@ -10520,6 +10522,8 @@ button.toast-close-button {
   color: white;
   border-radius: 50%;
   font-size: 12px;
+  height: 20px;
+  width: 20px;
 }
 .chat-item-container .chat-item-content-container .chat-item-separator {
   width: 100%;
@@ -10941,6 +10945,10 @@ button.toast-close-button {
   border-radius: 50%;
 }
 
+.conversations-list-container {
+  height: calc(100% - 119px);
+  border-right: 1px solid #00000014;
+}
 .conversations-list-container .conversations-list-container-empty {
   min-height: 70px;
   padding: 16px;

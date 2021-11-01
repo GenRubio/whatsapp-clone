@@ -22,19 +22,7 @@
     </div>
     <div class="chat-friend-messages chat-friend-messages-js w-100 overflow-auto"
         style="background-image: url('{{ asset('/images/chat/background.png') }}')">
-        @foreach (getConversation($friend->id) as $message)
-            @if ($message->from_user == getUser()->id)
-                @include('components.messages.user-message', [
-                'message' => $message->message,
-                'hour' => getHourMessage($message->date)
-                ])
-            @else
-                @include('components.messages.friend-message', [
-                'message' => $message->message,
-                'hour' => getHourMessage($message->date)
-                ])
-            @endif
-        @endforeach
+        @include('components.messages.messages-list')
     </div>
     <div class="chat-friend-sender border w-100">
         <div class="chat-friend-input h-100">

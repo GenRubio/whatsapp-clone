@@ -82,3 +82,24 @@ if (!function_exists('getHourMessage')) {
     }
 }
 
+if (!function_exists('getChatsList')) {
+    function getChatsList()
+    {
+        return UtilsHelper::getChatsList();
+    }
+}
+
+
+if (!function_exists('getLastMessage')) {
+    function getLastMessage($friendId)
+    {
+        return UtilsHelper::getLastMessage($friendId);
+    }
+}
+
+if (!function_exists('getNotReadMessages')) {
+    function getNotReadMessages($friendId)
+    {
+        return UtilsHelper::getNotReadMessages($friendId);
+    }
+}
