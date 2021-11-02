@@ -10,6 +10,7 @@ const MessagesController = require('./controllers/MessagesController');
 const ConversationController = require('./controllers/ConversationController');
 const SocketNotificationsController = require('./controllers-sockets/NotificationsController');
 const SocketMessagesController = require('./controllers-sockets/MessagesController');
+const ElectronController = require('./controllers/electron/ElectronController');
 
 const ViewHandler = {
     init(data) {
@@ -32,6 +33,7 @@ const ViewHandler = {
         ConversationController.init();
         SocketNotificationsController.init();
         SocketMessagesController.init();
+        ElectronController.init();
     },
 };
 

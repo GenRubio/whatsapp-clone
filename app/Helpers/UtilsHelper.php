@@ -63,7 +63,6 @@ class UtilsHelper
                 ->where('friend_user_message.to_user', '=', $friendId);
             $join->orOn('friend_user_message.to_user', '=', 'users.id')
                 ->where('friend_user_message.from_user', '=', $friendId);
-            $join->orderBy('date', 'asc');
         })->get();
 
         return $messages;
@@ -88,7 +87,6 @@ class UtilsHelper
                 ->where('friend_user_message.to_user', '=', $friendId);
             $join->orOn('friend_user_message.to_user', '=', 'users.id')
                 ->where('friend_user_message.from_user', '=', $friendId);
-            $join->orderBy('date', 'desc');
         })->first();
 
         return $message;
