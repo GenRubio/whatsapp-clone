@@ -13,7 +13,7 @@
         </div>
         <hr>
         <div class="notification-list-js">
-            @include('components.pending-friend-list', ['pendingFriendRequests' => pendingFriendRequest()])
+            @include('components.pending-friend-list', ['pendingFriendRequests' => getUser()->pendingRequest])
         </div>
     </div>
 </div>

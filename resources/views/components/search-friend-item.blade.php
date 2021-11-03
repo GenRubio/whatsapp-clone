@@ -16,16 +16,9 @@
                 </div>
             </div>
             <div class="search-friend-item-end-data d-flex flex-wrap justify-content-end">
-                @php
-                    $friendStatus = friendSearchStatus($user->id);
-                @endphp
-                <button class="{{ $friendStatus ? 'disabled' : 'add-new-friend-button-js' }} btn btn-success w-100"
+                <button class="add-new-friend-button-js btn btn-success w-100"
                     data-code="{{ $user->friend_code }}">
-                    @if ($friendStatus)
-                        {{ $friendStatus }}
-                    @else
-                        <i class="fas fa-user-plus"></i> Add
-                    @endif
+                    <i class="fas fa-user-plus"></i> Add
                 </button>
             </div>
         </div>

@@ -25,42 +25,8 @@ class UserService extends Controller
         $this->userRepository = new UserRepository();
     }
 
-    public function markAsReadFriendMessages($friendId){
-        $this->userRepository->markAsReadFriendMessages($friendId);
-    }
-
-    public function sendMessage($friendId, $message){
-        $this->userRepository->sendMessage($friendId, $message);
-    }
-
     public function updateUserImage($imageUrl){
         $this->userRepository->updateImage($imageUrl);
-    }
-
-    public function cancelFriendRequest($code){
-        $friendRequest = $this->getUserByFriendCode($code);
-        if ($friendRequest){
-            $this->userRepository->cancelFriendRequest($friendRequest->id);
-        }
-    }
-
-    public function acceptFriendRequest($code){
-        $friendRequest = $this->getUserByFriendCode($code);
-        if ($friendRequest){
-            $response = $this->userRepository->acceptFriendRequest($friendRequest->id);
-            if ($response){
-                $this->addFriend($friendRequest->id, true);
-            }
-        }
-    }
-
-    public function getFriendByCode($code){
-        $friend = $this->getUserByFriendCode($code);
-        return $this->userRepository->getFriend($friend->id);
-    }
-
-    public function addFriend($id, $accepted){
-        $this->userRepository->addFriend($id, $accepted);
     }
 
     public function validateUser($name, $password){
@@ -112,6 +78,10 @@ class UserService extends Controller
 
     public function getUserByFriendCode($code){
         return $this->userRepository->checkFriendCode($code);
+    }
+
+    public function getUserById($id){
+        return $this->userRepository->getUserById($id);
     }
 
     private function makeFriendCode(){

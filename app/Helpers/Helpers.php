@@ -54,26 +54,6 @@ if (!function_exists('validateEmail')) {
     }
 }
 
-if (!function_exists('friendSearchStatus')) {
-    function friendSearchStatus($friendId)
-    {
-        return UtilsHelper::friendSearchStatus($friendId);
-    }
-}
-
-if (!function_exists('pendingFriendRequest')) {
-    function pendingFriendRequest()
-    {
-        return UtilsHelper::pendingFriendRequest();
-    }
-}
-
-if (!function_exists('getConversation')) {
-    function getConversation($friendId)
-    {
-        return UtilsHelper::getConversation($friendId);
-    }
-}
 
 if (!function_exists('getHourMessage')) {
     function getHourMessage($date)
@@ -82,13 +62,19 @@ if (!function_exists('getHourMessage')) {
     }
 }
 
-if (!function_exists('getChatsList')) {
-    function getChatsList()
+if (!function_exists('getConversation')) {
+    function getConversation($friendId, $order)
     {
-        return UtilsHelper::getChatsList();
+        return UtilsHelper::getConversation($friendId, $order);
     }
 }
 
+if (!function_exists('getChatsStarted')) {
+    function getChatsStarted()
+    {
+        return UtilsHelper::getChatsStarted();
+    }
+}
 
 if (!function_exists('getLastMessage')) {
     function getLastMessage($friendId)
@@ -101,5 +87,12 @@ if (!function_exists('getNotReadMessages')) {
     function getNotReadMessages($friendId)
     {
         return UtilsHelper::getNotReadMessages($friendId);
+    }
+}
+
+if (!function_exists('messageQuery')) {
+    function messageQuery($friendId)
+    {
+        return UtilsHelper::messageQuery($friendId);
     }
 }

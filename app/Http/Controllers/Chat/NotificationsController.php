@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Services\UserFriendService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,12 +12,17 @@ class NotificationsController extends Controller
 {
     public function acceptFriendRequest(Request $request)
     {
-        (new UserService())->acceptFriendRequest($request->code);
-
+        $userService = new UserService();
+        $userFriendService = new UserFriendService();
         $socketData = null;
-        $friend = (new UserService())->getFriendByCode($request->code);
-        if ($friend) {
-            $socketData = $this->getSocketData($friend);
+
+        $friendRequest = $userFriendService->getFriendRequest($request->code);
+        if ($friendRequest) {
+            $friend = $userService->getUserById($friendRequest->user_id);
+            if ($friend) {
+                $userFriendService->updateFriendRequest($friend->id);
+                $socketData = $this->getSocketData($friend);
+            }
         }
         return response()->json($this->getJson($socketData), Response::HTTP_CREATED);
     }
@@ -32,7 +38,11 @@ class NotificationsController extends Controller
 
     public function removeFriendRequest(Request $request)
     {
-        (new UserService())->cancelFriendRequest($request->code);
+        $userFriendService = new UserFriendService();
+
+        if ($userFriendService->getFriendRequest($request->code)) {
+            $userFriendService->cancelFriendRequest($request->code);
+        }
         return response()->json($this->getJson(), Response::HTTP_CREATED);
     }
 
@@ -43,19 +53,32 @@ class NotificationsController extends Controller
 
     private function getJson($socketData = null)
     {
-        $pendingRequests = pendingFriendRequest();
-
         return [
-            'content' => view('components.pending-friend-list', [
-                'pendingFriendRequests' => $pendingRequests,
-            ])->render(),
-            'friendList' => view('partials.friends-list', [
-                'friends' => getUser()->friends,
-            ])->render(),
-            'bell' => view('components.bell-count-messages', [
-                'pendingFriendRequests' => count($pendingRequests),
-            ])->render(),
+            'content' => $this->pendingRequestsListView(),
+            'friendList' => $this->friendsListView(),
+            'bell' => $this->bellNotificationsView(),
             'socketData' => $socketData
         ];
+    }
+
+    private function pendingRequestsListView()
+    {
+        return view('components.pending-friend-list', [
+            'pendingFriendRequests' => getUser()->pendingRequest,
+        ])->render();
+    }
+
+    private function friendsListView()
+    {
+        return view('partials.friends-list', [
+            'friends' => getUser()->friends,
+        ])->render();
+    }
+
+    private function bellNotificationsView()
+    {
+        return view('components.bell-count-messages', [
+            'pendingFriendRequests' => count(getUser()->pendingRequest),
+        ])->render();
     }
 }

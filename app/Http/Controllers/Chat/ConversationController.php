@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Services\MessageService;
 use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,13 +15,12 @@ class ConversationController extends Controller
     {
         $success = false;
         $content = null;
+        $userService = new UserService();
 
-        $friend = (new UserService())->getFriendByCode($request->friendCode);
+        $friend = $userService->getUserByFriendCode($request->friendCode);
         if ($friend) {
-
-            (new UserService())->markAsReadFriendMessages($friend->id);
             $success = true;
-            $content = view('partials.chat-friend-messages', ['friend' => $friend])->render();
+            $content = $this->messagesListView($friend);
         }
 
         return response()->json([
@@ -29,21 +29,25 @@ class ConversationController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    private function messagesListView($friend)
+    {
+        return view('partials.chat-friend-messages', ['friend' => $friend])->render();
+    }
+
     public function sendMessage(Request $request)
     {
         $success = false;
         $content = null;
         $socketData = null;
+        $userService = new UserService();
+        $messageService = new MessageService();
 
-        $friend = (new UserService())->getFriendByCode($request->friendCode);
+        $friend = $userService->getUserByFriendCode($request->friendCode);
         if ($friend && $request->message != "") {
-            (new UserService())->sendMessage($friend->id, $request->message);
+            $messageService->createMessage($friend->id, $request->message);
 
             $success = true;
-            $content = view('components.messages.user-message', [
-                'message' => $request->message,
-                'hour' => Carbon::now('Europe/Madrid')->format('H:i')
-            ])->render();
+            $content = $this->messageView($request->message, false);
             $socketData = $this->getSocketData($friend, $request->message);
         }
 
@@ -54,6 +58,21 @@ class ConversationController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    public function receiveMessage(Request $request)
+    {
+        return response()->json([
+            'content' => $this->messageView($request->message, true)
+        ], Response::HTTP_CREATED);
+    }
+
+    private function messageView($message, $toFriend)
+    {
+        return view($toFriend ? 'components.messages.friend-message' : 'components.messages.user-message', [
+            'message' => $message,
+            'hour' => Carbon::now('Europe/Madrid')->format('H:i')
+        ])->render();
+    }
+
     private function getSocketData($friend, $message)
     {
         return json_encode([
@@ -62,15 +81,5 @@ class ConversationController extends Controller
             'message' => $message,
             'channel' => 'send-message-to-friend'
         ]);
-    }
-
-    public function receiveMessage(Request $request)
-    {
-        return response()->json([
-            'content' => view('components.messages.friend-message', [
-                'message' => $request->message,
-                'hour' => Carbon::now('Europe/Madrid')->format('H:i')
-            ])->render()
-        ], Response::HTTP_CREATED);
     }
 }

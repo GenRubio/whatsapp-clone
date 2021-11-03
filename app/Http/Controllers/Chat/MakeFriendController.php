@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Services\UserFriendService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,15 +15,19 @@ class MakeFriendController extends Controller
         $success = false;
         $message = 'Ha ocurrido un error';
         $socketData = null;
+        $userService = new UserService();
+        $userFriendService = new UserFriendService();
 
-        $friend = (new UserService())->getUserByFriendCode($request->friendCode);
+        $friend = $userService->getUserByFriendCode($request->friendCode);
         
-        if ($friend && !friendSearchStatus($friend->id)) {
-            (new UserService())->addFriend($friend->id, false);
-            $socketData = $this->getSocketData($friend);
-
-            $success = true;
-            $message = "Solicitud enviada correctamente.";
+        if ($friend) {
+            if (!$userFriendService->checkIfExistFriendRequest($friend->id)){
+                $userFriendService->makeFriendRequest($friend->id);
+                $socketData = $this->getSocketData($friend);
+    
+                $success = true;
+                $message = "Solicitud enviada correctamente.";
+            }
         } else {
             $message = 'Este usuario no existe.';
         }

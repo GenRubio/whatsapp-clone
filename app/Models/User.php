@@ -45,33 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function friends()
-    {
-        return $this->belongsToMany(User::class, 'friend_user', 'user_id', 'friend_id')
-            ->withPivot('accepted')
-            ->where('friend_user.accepted', true);
+    public function friends(){
+        return $this->hasMany(UserFriend::class, 'user_id', 'id')->where('accepted', true);
     }
 
-    public function messages()
-    {
-        return $this->belongsToMany(User::class, 'friend_user_message', 'from_user', 'to_user')
-            ->withPivot('message')
-            ->withPivot('read')
-            ->withPivot('date');
-    }
-
-    public function friendMessages()
-    {
-        return $this->belongsToMany(User::class, 'friend_user_message', 'to_user', 'from_user')
-            ->withPivot('message')
-            ->withPivot('read')
-            ->withPivot('date');
-    }
-
-    public function friendsRequest()
-    {
-        return $this->belongsToMany(User::class, 'friend_user', 'friend_id', 'user_id')
-            ->withPivot('accepted')
-            ->where('friend_user.accepted', false);
+    public function pendingRequest(){
+        return $this->hasMany(UserFriend::class, 'friend_id', 'id')->where('accepted', false);
     }
 }

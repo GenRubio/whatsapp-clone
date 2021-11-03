@@ -10,7 +10,8 @@ use Illuminate\Http\Response;
 class SearchFriendController extends Controller
 {
     public function search(Request $request){
-        $user = (new UserService)->getUserByFriendCode($request->value);
+        $userService = new UserService();
+        $user = $userService->getUserByFriendCode($request->value);
 
         return response()->json([
             'content' => view('components.search-friend-item', ['user' => $user])->render()

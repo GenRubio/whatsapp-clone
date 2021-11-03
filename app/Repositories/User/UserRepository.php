@@ -53,30 +53,6 @@ class UserRepository extends Repository implements UserRepositoryInterface
         return $this->model->where('friend_code', $friendCode)->first();
     }
 
-    public function addFriend($id, $accepted)
-    {
-        getUser()->friends()->attach($id, [
-            'accepted' => $accepted
-        ]);
-    }
-
-    public function cancelFriendRequest($id)
-    {
-        getUser()->friendsRequest()->detach($id);
-    }
-
-    public function acceptFriendRequest($id)
-    {
-        return getUser()->friendsRequest()->updateExistingPivot($id, [
-            'accepted' => true,
-        ]);
-    }
-
-    public function getFriend($id)
-    {
-        return getUser()->friends()->wherePivot('friend_id', $id)->first();
-    }
-
     public function updateImage($image)
     {
         $this->model->where('id', getUser()->id)->update([
@@ -84,16 +60,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
         ]);
     }
 
-    public function sendMessage($friendId, $message)
-    {
-        getUser()->messages()->attach($friendId, [
-            'message' => $message
-        ]);
-    }
-
-    public function markAsReadFriendMessages($friendId){
-        getUser()->friendMessages()->updateExistingPivot($friendId, [
-            'read' => true,
-        ]);
+    public function getUserById($id){
+        return $this->model->where('id', $id)->first();
     }
 }

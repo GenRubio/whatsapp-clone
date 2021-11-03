@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Message;
 use App\Models\Page;
 use App\Models\PresetEmail;
 use App\Models\Rgpd;
@@ -38,42 +39,16 @@ class UtilsHelper
         return $response;
     }
 
-    public static function friendSearchStatus($friendId)
+    public static function getConversation($friendId, $order)
     {
-        $friend = getUser()->friends()->firstWhere('friend_id', $friendId);
-        if ($friend) {
-            if ($friend->pivot->accepted) {
-                return "Accepted";
-            } else {
-                return "Pending";
-            }
-        }
-        return null;
+        return messageQuery($friendId)->orderBy('date', $order)->get();
     }
 
-    public static function pendingFriendRequest()
-    {
-        return getUser()->friendsRequest()->where('accepted', 0)->get();
-    }
-
-    public static function getConversation($friendId)
-    {
-        $messages = User::where('id', getUser()->id)->join('friend_user_message', function ($join) use ($friendId) {
-            $join->on('friend_user_message.from_user', '=', 'users.id')
-                ->where('friend_user_message.to_user', '=', $friendId);
-            $join->orOn('friend_user_message.to_user', '=', 'users.id')
-                ->where('friend_user_message.from_user', '=', $friendId);
-        })->get();
-
-        return $messages;
-    }
-
-    public static function getChatsList()
+    public static function getChatsStarted()
     {
         $chats = collect();
-
         foreach (getUser()->friends as $friend) {
-            if (count(getConversation($friend->id)) > 0) {
+            if (count(getConversation($friend->user->id, 'asc')) > 0) {
                 $chats->push($friend);
             }
         }
@@ -82,24 +57,28 @@ class UtilsHelper
 
     public static function getLastMessage($friendId)
     {
-        $message = User::where('id', getUser()->id)->join('friend_user_message', function ($join) use ($friendId) {
-            $join->on('friend_user_message.from_user', '=', 'users.id')
-                ->where('friend_user_message.to_user', '=', $friendId);
-            $join->orOn('friend_user_message.to_user', '=', 'users.id')
-                ->where('friend_user_message.from_user', '=', $friendId);
-        })->first();
-
-        return $message;
+        return messageQuery($friendId)->orderBy('date', 'desc')->first();
     }
 
     public static function getNotReadMessages($friendId)
     {
-        return getUser()->friendMessages()->where('from_user', $friendId)
-            ->wherePivot('read', false)->count();
+        return messageQuery($friendId)->where('read', false)->count();
     }
 
     public static function getHourMessage($date)
     {
         return Carbon::parse($date)->format('H:i');
+    }
+
+    public static function messageQuery($friendId)
+    {
+        return Message::where(function ($query) use ($friendId) {
+            $query->where('from_user', getUser()->id)
+                ->where('to_user', $friendId);
+        })
+            ->orWhere(function ($query) use ($friendId) {
+                $query->where('from_user', $friendId)
+                    ->where('to_user', getUser()->id);
+            });
     }
 }

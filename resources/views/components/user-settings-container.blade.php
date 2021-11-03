@@ -19,7 +19,7 @@
             <i class="far fa-bell" title="Notifications"></i>
             <div class="bell-messages-count-js">
                 @include('components.bell-count-messages', [
-                'pendingFriendRequests' => count(pendingFriendRequest())
+                'pendingFriendRequests' => count(getUser()->pendingRequest)
                 ])
             </div>
         </div>
