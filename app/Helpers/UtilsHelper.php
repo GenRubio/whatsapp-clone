@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Models\PresetEmail;
 use App\Models\Rgpd;
 use App\Models\User;
+use App\Services\MessageService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +42,9 @@ class UtilsHelper
 
     public static function getConversation($friendId, $order)
     {
-        return messageQuery($friendId)->orderBy('date', $order)->get();
+        $messageService = new MessageService();
+        return $messageService->getConversationMessages($friendId)
+            ->orderBy('date', $order)->get();
     }
 
     public static function getChatsStarted()
@@ -57,28 +60,19 @@ class UtilsHelper
 
     public static function getLastMessage($friendId)
     {
-        return messageQuery($friendId)->orderBy('date', 'desc')->first();
+        $messageService = new MessageService();
+        return $messageService->getConversationMessages($friendId)
+            ->orderBy('date', 'desc')->first();
     }
 
     public static function getNotReadMessages($friendId)
     {
-        return messageQuery($friendId)->where('read', false)->count();
+        $messageService = new MessageService();
+        return $messageService->getConversationUserNotReadMessages($friendId);
     }
 
     public static function getHourMessage($date)
     {
         return Carbon::parse($date)->format('H:i');
-    }
-
-    public static function messageQuery($friendId)
-    {
-        return Message::where(function ($query) use ($friendId) {
-            $query->where('from_user', getUser()->id)
-                ->where('to_user', $friendId);
-        })
-            ->orWhere(function ($query) use ($friendId) {
-                $query->where('from_user', $friendId)
-                    ->where('to_user', getUser()->id);
-            });
     }
 }

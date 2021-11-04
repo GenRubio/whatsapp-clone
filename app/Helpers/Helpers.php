@@ -89,10 +89,3 @@ if (!function_exists('getNotReadMessages')) {
         return UtilsHelper::getNotReadMessages($friendId);
     }
 }
-
-if (!function_exists('messageQuery')) {
-    function messageQuery($friendId)
-    {
-        return UtilsHelper::messageQuery($friendId);
-    }
-}

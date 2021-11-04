@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('to_user')->index();
             $table->text('message');
             $table->boolean('read')->default(0);
-            $table->timestamp('date');
+            $table->dateTime('date');
             $table->foreign('from_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('to_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

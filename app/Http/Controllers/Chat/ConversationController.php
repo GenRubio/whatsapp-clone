@@ -16,11 +16,13 @@ class ConversationController extends Controller
         $success = false;
         $content = null;
         $userService = new UserService();
+        $messageService = new MessageService();
 
         $friend = $userService->getUserByFriendCode($request->friendCode);
         if ($friend) {
             $success = true;
             $content = $this->messagesListView($friend);
+            $messageService->updateNotReadMessages($friend->id);
         }
 
         return response()->json([

@@ -19,6 +19,18 @@ class MessageService extends Controller
         $this->messageRepository->create($this->prepareData($friendId, $message));
     }
 
+    public function updateNotReadMessages($friendId){
+        $this->messageRepository->updateNotReadMessages($friendId);
+    }
+
+    public function getConversationMessages($friendId){
+        return $this->messageRepository->getConversation($friendId);
+    }
+
+    public function getConversationUserNotReadMessages($friendId){
+        return $this->messageRepository->getConversationUserNotReadMessages($friendId);
+    }
+
     private function prepareData($friendId, $message){
         $data = [
             'from_user' => getUser()->id,
