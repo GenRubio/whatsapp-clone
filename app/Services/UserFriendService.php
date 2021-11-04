@@ -20,6 +20,10 @@ class UserFriendService extends Controller
         $this->userFriendRepository->create($this->prepareData($requestFriendId, getUser()->id, true));
     }
 
+    public function getFriend($friendId){
+        return getUser()->friends()->where('friend_id', $friendId)->first();
+    }
+
     public function cancelFriendRequest($requestFriendId){
         $this->userFriendRepository->cancelFriendRequest($requestFriendId);
     }

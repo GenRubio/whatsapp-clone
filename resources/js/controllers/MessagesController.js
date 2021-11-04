@@ -1,4 +1,5 @@
 const Utils = require("../objects/Utils");
+const ChatController = require('./ChatController');
 
 const MessagesController = {
     chatPageEl: {
@@ -30,6 +31,7 @@ const MessagesController = {
     },
     sendMessageHandler(item) {
         const $this = this;
+        const friendCode = item.data("friend-code");
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $(this.csrfToken.selector).attr("content"),
@@ -37,7 +39,7 @@ const MessagesController = {
             url: Utils.getUrl("sendMessage"),
             method: "POST",
             data: {
-                friendCode: item.data("friend-code"),
+                friendCode: friendCode,
                 message: item.val(),
             },
             success: function (data) {
@@ -45,6 +47,7 @@ const MessagesController = {
                     $this.sendMessageToFriendSocket(data);
                     $this.addMessageToConversation(data.content);
                     $this.scrollToEnd();
+                    ChatController.makeNewOrUpdateChatUserMessage(friendCode);
                 }
                 $this.clearInputMessage();
             },

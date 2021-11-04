@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\ConversationController;
 use App\Http\Controllers\Chat\MakeFriendController;
 use App\Http\Controllers\Chat\NotificationsController;
@@ -52,5 +53,10 @@ Route::middleware('auth')->group(function () {
             ->name('send.message');
         Route::post('/receive-message', [ConversationController::class, 'receiveMessage'])
             ->name('receive.message');
+    });
+
+    Route::prefix('chat')->group(function () {
+        Route::get('/update-chat-list-from-user-message', [ChatController::class, 'updateChatListUserMessage'])
+            ->name('chat.list.user.message.send');
     });
 });
