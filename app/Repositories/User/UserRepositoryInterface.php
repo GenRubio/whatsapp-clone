@@ -15,4 +15,5 @@ interface UserRepositoryInterface
     public function checkFriendCode($friendCode);
     public function updateImage($image);
     public function getUserById($id);
+    public function getUserByEmail($email);
 }

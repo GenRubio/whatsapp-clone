@@ -76,6 +76,10 @@ class UserService extends Controller
         return $data;
     }
 
+    public function getUserByEmail($email){
+        return $this->userRepository->getUserByEmail($email);
+    }
+
     public function getUserByFriendCode($code){
         return $this->userRepository->checkFriendCode($code);
     }

@@ -63,4 +63,8 @@ class UserRepository extends Repository implements UserRepositoryInterface
     public function getUserById($id){
         return $this->model->where('id', $id)->first();
     }
+
+    public function getUserByEmail($email){
+        return $this->model->where('email', $email)->first();
+    }
 }

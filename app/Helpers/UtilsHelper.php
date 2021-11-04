@@ -8,6 +8,7 @@ use App\Models\PresetEmail;
 use App\Models\Rgpd;
 use App\Models\User;
 use App\Services\MessageService;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,7 @@ class UtilsHelper
                 'message' => 'Invalid email format'
             ];
         } else {
-            $user = User::where('email', $email)->first();
+            $user = (new UserService())->getUserByEmail($email);
             if ($user) {
                 $response = [
                     'success' => false,
