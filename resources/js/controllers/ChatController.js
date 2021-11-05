@@ -43,7 +43,8 @@ const ChatController = {
             success: function (data) {
                 if (data.success) {
                     if (container) {
-                        let chatContainer = $this.getChatItemContainer(friendCode);
+                        let chatContainer =
+                            $this.getChatItemContainer(friendCode);
                         chatContainer.empty();
                         chatContainer.append(data.content);
                     } else {
@@ -54,6 +55,17 @@ const ChatController = {
                     }
                 }
             },
+        });
+    },
+    reorderChatsByLastMessageDate() {
+        let container = $(this.conversationListContainerEl.selector);
+        let chats = $(this.conversationItemEl.selector);
+        chats.sort(function(a,b){
+            a = parseFloat($(a).attr("data-last-message-date"));
+            b = parseFloat($(b).attr("data-last-message-date"));
+            return a>b ? -1 : a<b ? 1 : 0;
+        }).each(function(){
+            container.prepend(this);
         });
     },
     getChatItemContainer(friendCode) {

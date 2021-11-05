@@ -52,6 +52,9 @@ const MessagesController = {
             });
         }
         ChatController.makeNewOrUpdateChatUserMessage(data.friendCode);
+        setTimeout(function(){
+            ChatController.reorderChatsByLastMessageDate();
+        }, 800);
     },
     scrollToEnd(){
         let container = $(this.messagesContainerEl.selector);

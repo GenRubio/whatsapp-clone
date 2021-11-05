@@ -8,6 +8,7 @@ const ProfileImageController = require('./controllers/ProfileImageController');
 const NewChatController = require('./controllers/NewChatController');
 const MessagesController = require('./controllers/MessagesController');
 const ConversationController = require('./controllers/ConversationController');
+const ChatUtilsController = require('./controllers/ChatUtilsController');
 const SocketNotificationsController = require('./controllers-sockets/NotificationsController');
 const SocketMessagesController = require('./controllers-sockets/MessagesController');
 const ElectronController = require('./controllers/electron/ElectronController');
@@ -31,6 +32,7 @@ const ViewHandler = {
         NewChatController.init();
         MessagesController.init();
         ConversationController.init();
+        ChatUtilsController.init();
         SocketNotificationsController.init();
         SocketMessagesController.init();
         ElectronController.init();
