@@ -62,6 +62,12 @@ class ConversationController extends Controller
 
     public function receiveMessage(Request $request)
     {
+        $userService = new UserService();
+        $messageService = new MessageService();
+        $friend = $userService->getUserByFriendCode($request->friendCode);
+        if ($friend){
+            $messageService->updateNotReadMessages($friend->id);
+        }
         return response()->json([
             'content' => $this->messageView($request->message, true)
         ], Response::HTTP_CREATED);

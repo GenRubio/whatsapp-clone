@@ -1,4 +1,5 @@
 const Utils = require("../objects/Utils");
+const ChatController = require('../controllers/ChatController');
 
 const MessagesController = {
     chatPageEl: {
@@ -41,6 +42,7 @@ const MessagesController = {
                 url: Utils.getUrl("receiveMessage"),
                 method: "POST",
                 data: {
+                    friendCode: data.friendCode,
                     message: data.message,
                 },
                 success: function (data) {
@@ -49,6 +51,7 @@ const MessagesController = {
                 },
             });
         }
+        ChatController.makeNewOrUpdateChatUserMessage(data.friendCode);
     },
     scrollToEnd(){
         let container = $(this.messagesContainerEl.selector);
