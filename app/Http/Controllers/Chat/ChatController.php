@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 
 class ChatController extends Controller
 {
-    public function updateChatListUserMessage(Request $request){
+    public function updateChatList(Request $request){
         $success = false;
         $content = null;
         $userService = new UserService();

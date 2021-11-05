@@ -47,7 +47,7 @@ const MessagesController = {
                     $this.sendMessageToFriendSocket(data);
                     $this.addMessageToConversation(data.content);
                     $this.scrollToEnd();
-                    ChatController.makeNewOrUpdateChatUserMessage(friendCode);
+                    ChatController.makeNewOrUpdateChatItem(friendCode);
                 }
                 $this.clearInputMessage();
             },

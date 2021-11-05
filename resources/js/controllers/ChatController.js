@@ -24,7 +24,7 @@ const ChatController = {
         }
     },
     setListeners() {},
-    makeNewOrUpdateChatUserMessage(friendCode) {
+    makeNewOrUpdateChatItem(friendCode) {
         const $this = this;
         let container = $(
             this.conversationItemEl.selector +

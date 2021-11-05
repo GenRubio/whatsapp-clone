@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('chat')->group(function () {
-        Route::get('/update-chat-list-from-user-message', [ChatController::class, 'updateChatListUserMessage'])
-            ->name('chat.list.user.message.send');
+        Route::get('/update-chat-list', [ChatController::class, 'updateChatList'])
+            ->name('chat.list.user');
     });
 });

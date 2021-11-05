@@ -51,7 +51,7 @@ const MessagesController = {
                 },
             });
         }
-        ChatController.makeNewOrUpdateChatUserMessage(data.friendCode);
+        ChatController.makeNewOrUpdateChatItem(data.friendCode);
         setTimeout(function(){
             ChatController.reorderChatsByLastMessageDate();
         }, 800);
