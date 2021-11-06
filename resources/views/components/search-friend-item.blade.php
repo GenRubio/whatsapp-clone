@@ -16,9 +16,13 @@
                 </div>
             </div>
             <div class="search-friend-item-end-data d-flex flex-wrap justify-content-end">
-                <button class="add-new-friend-button-js btn btn-success w-100"
+                <button class="{{ $status ? 'disabled' : 'add-new-friend-button-js' }} btn btn-success w-100"
                     data-code="{{ $user->friend_code }}">
-                    <i class="fas fa-user-plus"></i> Add
+                    @if ($status)
+                        {{ $status }}
+                    @else
+                        <i class="fas fa-user-plus"></i> Add
+                    @endif
                 </button>
             </div>
         </div>
