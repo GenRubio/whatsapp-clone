@@ -18,7 +18,7 @@
         <label class="form-check-label">Check me out</label>
     </div>
     <button type="submit" class="submit-login-button-js btn btn-primary btn-block mt-2">Go to chat</button>
-    <div class="change-validate-view not-acount-button-js d-flex justify-content-center mt-3">
+    <div class="change-validate-view not-acount-button-js d-flex justify-content-center mt-3" data-toggle="modal" data-target="#registerFormModal">
         ¿No tienes cuenta? Click aqui
     </div>
 </form>

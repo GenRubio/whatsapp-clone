@@ -59,20 +59,13 @@ class UserService extends Controller
     }
 
     private function prepareData($request){
-        $data = [];
-        $response = validateEmail($request->email);
-        if ($response['success']){
-            $data = [
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
-                'email' => $request->email,
-                'uid' => $this->makeUid(),
-                'friend_code' => $this->makeFriendCode()
-            ];
-        }
-        else{
-            array_push($this->errors, $response['message']);
-        }
+        $data = [
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+            'email' => '',
+            'uid' => $this->makeUid(),
+            'friend_code' => $this->makeFriendCode()
+        ];
         return $data;
     }
 

@@ -24,14 +24,6 @@ const FormLoginController = {
         $(document).on("submit", this.loginFormEl.selector, (e) => {
             this.loginHandler(e);
         });
-
-        $(document).on("click", this.notAccountButtonEl.selector, (e) => {
-            this.openRegisterFormHandler();
-        });
-    },
-    openRegisterFormHandler(){
-        $(this.loginFormEl.selector).addClass('d-none');
-        $(this.registerFormEl.selector).removeClass('d-none');
     },
     loginHandler(e) {
         e.preventDefault();

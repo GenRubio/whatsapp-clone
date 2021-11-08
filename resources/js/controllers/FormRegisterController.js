@@ -13,6 +13,15 @@ const FormRegisterController = {
     submitButtonEl: {
         selector: ".submit-register-button-js"
     },
+    modalRegsiterEl: {
+        selector: "#registerFormModal"
+    },
+    encryptMessageButtonEl:{
+        selector: ".get-encrypt-message-js"
+    },
+    resultEncriptContainerEl:{
+        selector: ".result-encription-container-js"
+    },
     init() {
         if (!Utils.checkSection(this.registerFormEl.selector)) {
             return false;
@@ -21,17 +30,20 @@ const FormRegisterController = {
         }
     },
     setListeners() {
-        $(document).on("click", this.yesAccountButtonEl.selector, (e) => {
-            this.openLoginFormHandler();
-        });
-        
         $(document).on('submit', this.registerFormEl.selector, (e) => {
             this.submitRegisterFormHandler(e);
         });
+
+        $(document).on('click', this.encryptMessageButtonEl.selector, (e) => {
+            this.getMessageEncrypted(e);
+        });
+    },
+    getMessageEncrypted(e){
+        $(this.resultEncriptContainerEl.selector).removeClass('d-none');
     },
     submitRegisterFormHandler(e){
         e.preventDefault();
-        const $item = this;
+        const $this = this;
         const item = $(e.currentTarget);
         this.blockSendButton(true);
 
@@ -42,18 +54,14 @@ const FormRegisterController = {
             success:function(data){
                 if (data.success){
                     toastr.success(data.message);
-                    $item.openLoginFormHandler();
+                    $($this.modalRegsiterEl.selector).modal('hide')
                 }
                 else{
                     toastr.error(data.message);
                 }
-                $item.blockSendButton(false);
+                $this.blockSendButton(false);
             }
         })
-    },
-    openLoginFormHandler(){
-        $(this.registerFormEl.selector).addClass('d-none');
-        $(this.loginFormEl.selector).removeClass('d-none');
     },
     blockSendButton(success){
         if (success){
