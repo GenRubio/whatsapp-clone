@@ -46,7 +46,7 @@ const FormRegisterController = {
     },
     getMessageEncrypted(e){
         const $this = this;
-        let publicKey = $(this.publicPGPContainerEl.selector).text();
+        let publicKey = $(this.publicPGPContainerEl.selector).val();
         $.ajax({
             url: Utils.getUrl("homeTestRegister"),
             method: "GET",
