@@ -56,6 +56,7 @@ const FormRegisterController = {
             success:function(data){
                 if (data.success){
                     $($this.resultEncriptContainerEl.selector).removeClass('d-none');
+                    $($this.testPGPContainerEl.selector).text(data.content);
                 }
                 else{
                     toastr.error(data.message);

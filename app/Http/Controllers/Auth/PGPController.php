@@ -14,8 +14,10 @@ class PGPController extends Controller
         $message = "Error";
         $content = null;
 
-        dd($request->publicKey);
-
+        $content = getRegisterTestMessage($request->publicKey);
+        if ($content){
+            $success = true;
+        }
         return response()->json([
             'success' => $success,
             'message' => $message,

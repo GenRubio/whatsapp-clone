@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\AuthHelper;
+use App\Helpers\PHPHelper;
 use App\Helpers\UtilsHelper;
 
 /**
@@ -87,5 +88,12 @@ if (!function_exists('getNotReadMessages')) {
     function getNotReadMessages($friendId)
     {
         return UtilsHelper::getNotReadMessages($friendId);
+    }
+}
+
+if (!function_exists('getRegisterTestMessage')) {
+    function getRegisterTestMessage($publicKey)
+    {
+        return PHPHelper::getRegisterTestMessage($publicKey);
     }
 }
