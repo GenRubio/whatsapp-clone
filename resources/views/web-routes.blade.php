@@ -12,5 +12,6 @@ window.routes = {
     'openConversation': "{!! route('open.conversation') !!}",
     'sendMessage': "{!! route('send.message') !!}",
     'receiveMessage': "{!! route('receive.message') !!}",
-    'chatListUserSender': "{!! route('chat.list.user') !!}"
+    'chatListUserSender': "{!! route('chat.list.user') !!}",
+    'homeTestRegister': "{!! route('home.test.register') !!}"
 }

@@ -3,7 +3,7 @@
     <div>
         You can generate your PGP here: <a href="https://pgpkeygen.com/" target="_blank">Click</a>
     </div>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
+    <textarea class="form-control" id="user-public-pgp" rows="5"></textarea>
 </div>
 <button class="btn btn-primary get-encrypt-message-js">Get message</button>
 <div class="result-encription-container-js d-none">
@@ -18,7 +18,7 @@
                 To decrypt the message you can use this website: <a href="https://8gwifi.org/pgpencdec.jsp"
                     target="_blank">Click</a>
             </div>
-            <textarea name="message-encrypted" class="form-control" id="exampleFormControlTextarea1" rows="5"
+            <textarea name="message-encrypted" class="form-control" id="message-encrypted" rows="5"
                 required></textarea>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PGPController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\ConversationController;
@@ -18,6 +19,8 @@ Route::get('/', function () {
 Route::prefix('home')->group(function () {
     Route::post('/login', [LoginController::class, 'userValidation'])->name('home.login');
     Route::post('/register', [RegisterController::class, 'register'])->name('home.register');
+    Route::get('/get-test-message', [PGPController::class, 'getTestRegisterMessage'])
+        ->name('home.test.register');
 });
 
 // Routes require auth

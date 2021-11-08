@@ -22,6 +22,12 @@ const FormRegisterController = {
     resultEncriptContainerEl:{
         selector: ".result-encription-container-js"
     },
+    publicPGPContainerEl:{
+        selector: "#user-public-pgp"
+    },
+    testPGPContainerEl:{
+        selector: "#message-encrypted"
+    },
     init() {
         if (!Utils.checkSection(this.registerFormEl.selector)) {
             return false;
@@ -39,7 +45,23 @@ const FormRegisterController = {
         });
     },
     getMessageEncrypted(e){
-        $(this.resultEncriptContainerEl.selector).removeClass('d-none');
+        const $this = this;
+        let publicKey = $(this.publicPGPContainerEl.selector).text();
+        $.ajax({
+            url: Utils.getUrl("homeTestRegister"),
+            method: "GET",
+            data: {
+                publicKey: publicKey
+            },
+            success:function(data){
+                if (data.success){
+                    $($this.resultEncriptContainerEl.selector).removeClass('d-none');
+                }
+                else{
+                    toastr.error(data.message);
+                }
+            }
+        })
     },
     submitRegisterFormHandler(e){
         e.preventDefault();
