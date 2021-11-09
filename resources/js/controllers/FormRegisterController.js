@@ -1,8 +1,8 @@
 const Utils = require("../objects/Utils");
 
 const FormRegisterController = {
-    registerFormEl:{
-        selector: "#register-form"
+    registerFormEl: {
+        selector: "#register-form",
     },
     loginFormEl: {
         selector: "#login-form",
@@ -11,22 +11,22 @@ const FormRegisterController = {
         selector: ".yes-acount-button-js",
     },
     submitButtonEl: {
-        selector: ".submit-register-button-js"
+        selector: ".submit-register-button-js",
     },
     modalRegsiterEl: {
-        selector: "#registerFormModal"
+        selector: "#registerFormModal",
     },
-    encryptMessageButtonEl:{
-        selector: ".get-encrypt-message-js"
+    encryptMessageButtonEl: {
+        selector: ".get-encrypt-message-js",
     },
-    resultEncriptContainerEl:{
-        selector: ".result-encription-container-js"
+    resultEncriptContainerEl: {
+        selector: ".result-encription-container-js",
     },
-    publicPGPContainerEl:{
-        selector: "#user-public-pgp"
+    publicPGPContainerEl: {
+        selector: "#user-public-pgp",
     },
-    testPGPContainerEl:{
-        selector: "#message-encrypted"
+    testPGPContainerEl: {
+        selector: "#message-encrypted",
     },
     init() {
         if (!Utils.checkSection(this.registerFormEl.selector)) {
@@ -36,35 +36,38 @@ const FormRegisterController = {
         }
     },
     setListeners() {
-        $(document).on('submit', this.registerFormEl.selector, (e) => {
+        $(document).on("submit", this.registerFormEl.selector, (e) => {
             this.submitRegisterFormHandler(e);
         });
 
-        $(document).on('click', this.encryptMessageButtonEl.selector, (e) => {
+        $(document).on("click", this.encryptMessageButtonEl.selector, (e) => {
             this.getMessageEncrypted(e);
         });
     },
-    getMessageEncrypted(e){
+    getMessageEncrypted(e) {
         const $this = this;
         let publicKey = $(this.publicPGPContainerEl.selector).val();
         $.ajax({
             url: Utils.getUrl("homeTestRegister"),
             method: "GET",
             data: {
-                publicKey: publicKey
+                publicKey: publicKey,
             },
-            success:function(data){
-                if (data.success){
-                    $($this.resultEncriptContainerEl.selector).removeClass('d-none');
+            success: function (data) {
+                if (data.success) {
+                    $($this.resultEncriptContainerEl.selector).removeClass(
+                        "d-none"
+                    );
                     $($this.testPGPContainerEl.selector).text(data.content);
+                } else {
+                    toastr.error(data.message, {
+                        enableHtml: true,
+                    });
                 }
-                else{
-                    toastr.error(data.message);
-                }
-            }
-        })
+            },
+        });
     },
-    submitRegisterFormHandler(e){
+    submitRegisterFormHandler(e) {
         e.preventDefault();
         const $this = this;
         const item = $(e.currentTarget);
@@ -74,28 +77,28 @@ const FormRegisterController = {
             url: Utils.getUrl("homeRegister"),
             method: "POST",
             data: item.serialize(),
-            success:function(data){
-                if (data.success){
+            success: function (data) {
+                if (data.success) {
                     toastr.success(data.message);
-                    $($this.modalRegsiterEl.selector).modal('hide')
-                }
-                else{
-                    toastr.error(data.message);
+                    $($this.modalRegsiterEl.selector).modal("hide");
+                } else {
+                    toastr.error(data.message, {
+                        enableHtml: true,
+                    });
                 }
                 $this.blockSendButton(false);
-            }
-        })
+            },
+        });
     },
-    blockSendButton(success){
-        if (success){
-            $(this.submitButtonEl.selector).attr('disabled', true);
-            $(this.submitButtonEl.selector).text('Cargando...');
+    blockSendButton(success) {
+        if (success) {
+            $(this.submitButtonEl.selector).attr("disabled", true);
+            $(this.submitButtonEl.selector).text("Cargando...");
+        } else {
+            $(this.submitButtonEl.selector).attr("disabled", false);
+            $(this.submitButtonEl.selector).text("SING UP");
         }
-        else{
-            $(this.submitButtonEl.selector).attr('disabled', false);
-            $(this.submitButtonEl.selector).text('SING UP');
-        }
-    }
+    },
 };
 
 module.exports = FormRegisterController;
