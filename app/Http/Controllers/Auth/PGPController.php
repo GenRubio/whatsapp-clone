@@ -42,13 +42,14 @@ class PGPController extends Controller
         $errors = [];
         $errors[] = $this->validateKeyContains($key, "-----BEGIN PGP PUBLIC KEY BLOCK-----");
         $errors[] = $this->validateKeyContains($key, "-----END PGP PUBLIC KEY BLOCK-----");
+        $errors[] = $this->validateKeyContains($key, "Version:");
         $errors[] = $this->validateKetNotContainsComment($key, "Comment:");
         return $errors;
     }
 
     private function validateKeyContains($key, $text){
         if (!str_contains($key, $text)){
-            return "La clave es publica es incorrecta.";
+            return "La clave es publica es incorrecta. Falta: " . $text . " en la clave.";
         }
         return null;
     }
