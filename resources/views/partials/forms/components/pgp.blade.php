@@ -1,10 +1,22 @@
-
 <div class="form-group mt-3">
     <label for="exampleFormControlTextarea1"><b>PGP Public Key</b></label>
     <div>
         You can generate your PGP here: <a href="https://pgpkeygen.com/" target="_blank">Click</a>
     </div>
-    <textarea name="public_key" class="form-control" id="user-public-pgp" rows="5"></textarea>
+    <textarea name="public_key" class="form-control" id="user-public-pgp" rows="5" 
+    placeholed="-----BEGIN PGP PUBLIC KEY BLOCK-----
+    Version: Keybase OpenPGP v1.0.0
+
+    xo0EYYoNDwEEAKw9D69mGj4VSNnJOHrK4SjutgeAqWCFvfQB/EoPZKqnNZQlUQLG
+    gJ0TMH2Wes1ioOdUDNm0/HgruyJQxLn0iZX0yhMh/E7vCv62DKVVqHRSfIHKcyjG
+    hDCPoqIJ6odaWKLxzetkkr/kFEZTrWxqmVX9tsroYBSZKk5AsQwjeLkpABEBAAHN
+    J0V1Z2VueSBMeXViZXpueXkgPGtleWxvcnViaW9AZ21haWwuY29tPsKtBBMBCgAX
+    BQJhig0PAhsvAwsJBwMVCggCHgECF4AACgkQOAbBWAeMSGQxPwQAqbzKWatXyTC3
+    4YX7Qs+NUcmupn0IBPf7sn8TEsGXd9veBH+kPRYkzyPaIqwEs8zgh/r1nYNqYso6
+    zg==
+    =cCId
+    -----END PGP PUBLIC KEY BLOCK-----
+    " required></textarea>
 </div>
 <button class="btn btn-primary get-encrypt-message-js">Get message</button>
 <div class="result-encription-container-js d-none">
@@ -20,19 +32,7 @@
                     target="_blank">Click</a>
             </div>
             <textarea name="message_encrypted" class="form-control" id="message-encrypted" rows="5"
-                placeholed="-----BEGIN PGP PUBLIC KEY BLOCK-----
-                Version: Keybase OpenPGP v1.0.0
-       
-                xo0EYYoNDwEEAKw9D69mGj4VSNnJOHrK4SjutgeAqWCFvfQB/EoPZKqnNZQlUQLG
-                gJ0TMH2Wes1ioOdUDNm0/HgruyJQxLn0iZX0yhMh/E7vCv62DKVVqHRSfIHKcyjG
-                hDCPoqIJ6odaWKLxzetkkr/kFEZTrWxqmVX9tsroYBSZKk5AsQwjeLkpABEBAAHN
-                J0V1Z2VueSBMeXViZXpueXkgPGtleWxvcnViaW9AZ21haWwuY29tPsKtBBMBCgAX
-                BQJhig0PAhsvAwsJBwMVCggCHgECF4AACgkQOAbBWAeMSGQxPwQAqbzKWatXyTC3
-                4YX7Qs+NUcmupn0IBPf7sn8TEsGXd9veBH+kPRYkzyPaIqwEs8zgh/r1nYNqYso6
-                zg==
-                =cCId
-                -----END PGP PUBLIC KEY BLOCK-----
-                " required></textarea>
+                required></textarea>
         </div>
     </div>
     <div class="form-group">
