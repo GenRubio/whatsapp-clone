@@ -13,14 +13,24 @@ class PGPController extends Controller
         $success = false;
         $message = "Error";
         $content = null;
+        $errorsKeyDetected = false;
 
         $errorsKey = $this->validatePublicKey($request->publicKey); 
-        dd($errorsKey);
-
-        $content = getRegisterTestMessage($request->publicKey);
-        if ($content){
-            $success = true;
+        foreach($errorsKey as $error){
+            if ($error){
+                $message = $error;
+                $errorsKeyDetected = true;
+                break;
+            }
         }
+
+        if (!$errorsKeyDetected){
+            $content = getRegisterTestMessage($request->publicKey);
+            if ($content){
+                $success = true;
+            }
+        }
+
         return response()->json([
             'success' => $success,
             'message' => $message,
@@ -40,11 +50,13 @@ class PGPController extends Controller
         if (!str_contains($key, $text)){
             return "La clave es publica es incorrecta.";
         }
+        return null;
     }
 
     private function validateKetNotContainsComment($key, $text){
         if (str_contains($key, $text)){
             return "La clave es publica es incorrecta. Remueva el Comment:";
         }
+        return null;
     }
 }
