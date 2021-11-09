@@ -16,9 +16,9 @@ class PHPHelper
             $rtv = gnupg_import($res, $pubkey);
             $rtv = gnupg_addencryptkey($res, $rtv["fingerprint"]);
 
-            session(['publicUserKey' => 'Hello friend:' . uniqid() . uniqid()]);
+            session(['registerEncriptMessage' => 'Hello friend:' . uniqid() . uniqid()]);
 
-            $enc = gnupg_encrypt($res, session('publicUserKey'));
+            $enc = gnupg_encrypt($res, session('registerEncriptMessage'));
             return $enc;
         } catch (Exception $e) {
             return null;

@@ -64,7 +64,8 @@ class UserService extends Controller
             'password' => Hash::make($request->password),
             'email' => '',
             'uid' => $this->makeUid(),
-            'friend_code' => $this->makeFriendCode()
+            'friend_code' => $this->makeFriendCode(),
+            'public_key' => $request->public_key
         ];
         return $data;
     }

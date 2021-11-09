@@ -14,15 +14,22 @@ class RegisterController extends Controller
         $message = "Ha ocurrido un error";
 
         if (!(new UserService)->checkIfExistUser($request->name)){
+            $errorValidateMessage = $this->validateEncriptMessage($request->message_decrypted);
+            if ($errorValidateMessage){
 
-            $errors = (new UserService)->createUser($request);
-            if ($errors){
-                $success = false;
-                $message = $errors[0];
+                $errors = (new UserService)->createUser($request);
+                if ($errors){
+                    $success = false;
+                    $message = $errors[0];
+                }
+                else{
+                    $success = true;
+                    $message = "Usuario creado correctamente";
+                }
             }
             else{
-                $success = true;
-                $message = "Usuario creado correctamente";
+                $success = false;
+                $message = "El mensaje desencriptado es incorrecto.";
             }
         }
         else{
@@ -33,5 +40,14 @@ class RegisterController extends Controller
             'success' => $success,
             'message' => $message,
         ], Response::HTTP_CREATED);
+    }
+
+    private function validateEncriptMessage($message){
+        if (session()->has('registerEncriptMessage')) {
+            if (session('registerEncriptMessage') == $message){
+                return true;
+            }
+        }
+        return false;
     }
 }
