@@ -49,14 +49,14 @@ class PGPController extends Controller
 
     private function validateKeyContains($key, $text){
         if (!str_contains($key, $text)){
-            return "La clave es publica es incorrecta. Falta: " . $text . " en la clave.";
+            return "La clave es publica es incorrecta. \n Falta: \n" . $text . "\n en la clave.";
         }
         return null;
     }
 
     private function validateKetNotContainsComment($key, $text){
         if (str_contains($key, $text)){
-            return "La clave es publica es incorrecta. Remueva el Comment:";
+            return "La clave es publica es incorrecta. \nRemueva el Comment:";
         }
         return null;
     }
