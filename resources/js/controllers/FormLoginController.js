@@ -27,6 +27,7 @@ const FormLoginController = {
     },
     loginHandler(e) {
         e.preventDefault();
+
         const $item = this;
         this.blockSendButton(true);
 
@@ -43,6 +44,7 @@ const FormLoginController = {
                 }
                 $item.blockSendButton(false);
             },
+            
         });
     },
     blockSendButton(success){

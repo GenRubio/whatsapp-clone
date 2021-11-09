@@ -14,6 +14,9 @@ class PGPController extends Controller
         $message = "Error";
         $content = null;
 
+        $errorsKey = $this->validatePublicKey($request->publicKey); 
+        dd($errorsKey);
+
         $content = getRegisterTestMessage($request->publicKey);
         if ($content){
             $success = true;
@@ -23,5 +26,27 @@ class PGPController extends Controller
             'message' => $message,
             'content' => $content
         ], Response::HTTP_CREATED);
+    }
+
+    private function validatePublicKey($key){
+        $errors = [];
+        $errors[] = $this->validateKeyContains($key, "-----BEGIN PGP PUBLIC KEY BLOCK-----");
+        $errors[] = $this->validateKeyContains($key, "-----END PGP PUBLIC KEY BLOCK-----");
+        $errors[] = $this->validateKetNotContainsComment($key, "Comment:");
+        return $errors;
+    }
+
+    private function validateKeyContains($key, $text){
+        if (!str_contains($key, $text)){
+            return "La clave es publica es incorrecta.";
+        }
+        return null;
+    }
+
+    private function validateKetNotContainsComment($key, $text){
+        if (str_contains($key, $text)){
+            return "La clave es publica es incorrecta. Remueva el Comment:";
+        }
+        return null;
     }
 }
