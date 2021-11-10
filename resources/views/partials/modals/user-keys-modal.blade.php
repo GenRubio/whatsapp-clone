@@ -25,7 +25,7 @@
                         <textarea name="privateKey" class="form-control" rows="6" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Private key password</label>
+                        <label><b>Private key password</b></label>
                         <input name="privateKeyPassword" type="password" class="form-control"
                             placeholder="Private key password" required>
                     </div>
