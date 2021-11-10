@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -25,8 +26,10 @@ class PGPController extends Controller
         }
 
         if (!$errorsKeyDetected){
-            session('privateKey', $request->privateKey);
-            session('privateKeyPassword', $request->privateKeyPassword);
+            session(['privateKey' => $request->privateKey]);
+            session(['privateKeyPassword' => $request->privateKeyPassword]);
+            $success = true;
+            $message = "Las llaves se han guardado correctamente.";
         }
 
         return response()->json([
