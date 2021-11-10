@@ -24,8 +24,7 @@ const SessionPGPController = {
         });
     },
     savePrivateKeysHandler(e){
-        alert(1);
-        e.preventDafault();
+        e.preventDefault();
         const $this = this;
         const item = $(e.currentTarget);
 
