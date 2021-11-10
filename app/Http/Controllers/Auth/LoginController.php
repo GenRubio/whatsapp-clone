@@ -23,6 +23,7 @@ class LoginController extends Controller
     }
 
     public function logOut(){
+        session()->flush();
         Auth::logout();
 
         return response()->json([
