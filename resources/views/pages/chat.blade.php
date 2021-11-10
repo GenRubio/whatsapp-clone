@@ -12,3 +12,5 @@
 </div>
 
 @include('socket-connection')
+@include('chat-scripts')
+@include('partials.modals.user-keys-modal')

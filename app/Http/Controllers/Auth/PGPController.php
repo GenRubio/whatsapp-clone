@@ -9,6 +9,32 @@ use Illuminate\Http\Response;
 
 class PGPController extends Controller
 {
+    public function savePrivateKeys(Request $request){
+        $success = false;
+        $message = "Error";
+        $errorsKeyDetected = false;
+
+        
+        $errorsKey = $this->valdatePrivateKeys($request->privateKey); 
+        foreach($errorsKey as $error){
+            if ($error){
+                $message = $error;
+                $errorsKeyDetected = true;
+                break;
+            }
+        }
+
+        if (!$errorsKeyDetected){
+            session('privateKey', $request->privateKey);
+            session('privateKeyPassword', $request->privateKeyPassword);
+        }
+
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ], Response::HTTP_CREATED);
+    }
+
     public function getTestRegisterMessage(Request $request){
         $success = false;
         $message = "Error";
@@ -38,6 +64,15 @@ class PGPController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    private function valdatePrivateKeys($key){
+        $errors = [];
+        $errors[] = $this->validateKeyContains($key, "-----BEGIN PGP PRIVATE KEY BLOCK-----");
+        $errors[] = $this->validateKeyContains($key, "-----END PGP PRIVATE KEY BLOCK-----");
+        $errors[] = $this->validateKeyContains($key, "Version:");
+        $errors[] = $this->validateKetNotContainsComment($key, "Comment:");
+        return $errors;
+    }
+
     private function validatePublicKey($key){
         $errors = [];
         $errors[] = $this->validateKeyContains($key, "-----BEGIN PGP PUBLIC KEY BLOCK-----");
@@ -49,14 +84,14 @@ class PGPController extends Controller
 
     private function validateKeyContains($key, $text){
         if (!str_contains($key, $text)){
-            return "La clave es publica es incorrecta. </br>Falta: </br>" . $text . "</br> en la clave.";
+            return "La clave es incorrecta. </br>Falta: </br>" . $text . "</br> en la clave.";
         }
         return null;
     }
 
     private function validateKetNotContainsComment($key, $text){
         if (str_contains($key, $text)){
-            return "La clave es publica es incorrecta. </br>Remueva el Comment:";
+            return "La clave es incorrecta. </br>Remueva el Comment:";
         }
         return null;
     }

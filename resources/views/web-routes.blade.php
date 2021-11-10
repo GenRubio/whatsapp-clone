@@ -13,5 +13,6 @@ window.routes = {
     'sendMessage': "{!! route('send.message') !!}",
     'receiveMessage': "{!! route('receive.message') !!}",
     'chatListUserSender': "{!! route('chat.list.user') !!}",
-    'homeTestRegister': "{!! route('home.test.register') !!}"
+    'homeTestRegister': "{!! route('home.test.register') !!}",
+    'savePrivateKeys': "{!! route('save.private.keys') !!}"
 }

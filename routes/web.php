@@ -62,4 +62,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/update-chat-list', [ChatController::class, 'updateChatList'])
             ->name('chat.list.user');
     });
+
+    Route::prefix('pgp')->group(function () {
+        Route::post('/save-private-keys', [PGPController::class, 'savePrivateKeys'])
+            ->name('save.private.keys');
+    });
 });
