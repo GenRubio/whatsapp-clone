@@ -35,7 +35,7 @@ const SessionPGPController = {
             success:function(data){
                 if (data.success){
                     toastr.success(data.message);
-                    $$($this.keysModalEl.selector).modal('hide');
+                    $($this.keysModalEl.selector).modal('hide');
                     location.href = reload();
                 }
                 else{
