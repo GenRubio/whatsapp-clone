@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label><b>Private key password</b></label>
                             <input name="privateKeyPassword" type="password" class="form-control"
-                                placeholder="Private key password" required>
+                                placeholder="Passphrase" required>
                         </div>
                     </div>
                     <div class="modal-footer">
