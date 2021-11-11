@@ -4,11 +4,11 @@ const SessionPGPController = {
     chatPageEl: {
         selector: "#chat-page",
     },
-    keysModalEl:{
-        selector: "#userPrivateKeys"
+    keysModalEl: {
+        selector: "#userPrivateKeys",
     },
-    saveKeysFormEl:{
-        selector: "#save-session-private-keys"
+    saveKeysFormEl: {
+        selector: "#save-session-private-keys",
     },
     init() {
         if (!Utils.checkSection(this.chatPageEl.selector)) {
@@ -18,37 +18,37 @@ const SessionPGPController = {
             this.launchModal();
         }
     },
-    setListeners(){
-        $(document).on('submit', this.saveKeysFormEl.selector, (e) => {
+    setListeners() {
+        $(document).on("submit", this.saveKeysFormEl.selector, (e) => {
             this.savePrivateKeysHandler(e);
         });
     },
-    savePrivateKeysHandler(e){
+    savePrivateKeysHandler(e) {
         e.preventDefault();
         const $this = this;
         const item = $(e.currentTarget);
 
         $.ajax({
-            url: Utils.getUrl('savePrivateKeys'),
+            url: Utils.getUrl("savePrivateKeys"),
             method: "POST",
             data: item.serialize(),
-            success:function(data){
-                if (data.success){
+            success: function (data) {
+                if (data.success) {
                     toastr.success(data.message);
-                    $($this.keysModalEl.selector).modal('hide');
+                    $($this.keysModalEl.selector).modal("hide");
                     location.reload();
-                }
-                else{
+                } else {
                     toastr.error(data.message);
                 }
-            }
-        })
+            },
+        });
     },
-    launchModal(){
-        if (!window.privateKey && !window.privateKeyPassword){
-            $(this.keysModalEl.selector).modal('show');
+    launchModal() {
+        let modal = $(this.keysModalEl.selector).length;
+        if (modal) {
+            $(this.keysModalEl.selector).modal("show");
         }
-    }
+    },
 };
 
 module.exports = SessionPGPController;
