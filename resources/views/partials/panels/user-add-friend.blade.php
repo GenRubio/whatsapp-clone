@@ -10,7 +10,9 @@
     <div class="user-add-search-container">
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="prefixSearch">@</span>
+                <span class="input-group-text" id="prefixSearch">
+                    <i class="fas fa-search"></i>
+                </span>
             </div>
             <input id="searchFriendInput" type="text" class="form-control" aria-describedby="prefixSearch"
                 placeholder="Escribe idetificador se usuario">
