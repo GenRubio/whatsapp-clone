@@ -46,11 +46,12 @@ class ConversationController extends Controller
 
         $friend = $userService->getUserByFriendCode($request->friendCode);
         if ($friend && $request->message != "") {
-            $messageService->createMessage($friend->id, $request->message);
+            $message = encriptMessage($friend->public_key, $request->message);
+            $messageService->createMessage($friend->id, $message);
 
             $success = true;
             $content = $this->messageView($request->message, false);
-            $socketData = $this->getSocketData($friend, $request->message);
+            $socketData = $this->getSocketData($friend, $message);
         }
 
         return response()->json([

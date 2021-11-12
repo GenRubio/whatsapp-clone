@@ -4,10 +4,15 @@ namespace App\Helpers;
 
 use Exception;
 
-class PHPHelper
+class PGPHelper
 {
     public static function getRegisterTestMessage($publicKey)
     {
+        session(['registerEncriptMessage' => 'Hello friend:' . uniqid() . uniqid()]);
+        return encriptMessage($publicKey, session('registerEncriptMessage'));
+    }
+
+    public static function encriptMessage($publicKey, $message){
         try {
             putenv("GNUPGHOME=/tmp");
             $pubkey = $publicKey;
@@ -15,10 +20,7 @@ class PHPHelper
             $res = gnupg_init();
             $rtv = gnupg_import($res, $pubkey);
             $rtv = gnupg_addencryptkey($res, $rtv["fingerprint"]);
-
-            session(['registerEncriptMessage' => 'Hello friend:' . uniqid() . uniqid()]);
-
-            $enc = gnupg_encrypt($res, session('registerEncriptMessage'));
+            $enc = gnupg_encrypt($res, $message);
             return $enc;
         } catch (Exception $e) {
             return null;

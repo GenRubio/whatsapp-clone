@@ -1,7 +1,7 @@
 <?php
 
 use App\Helpers\AuthHelper;
-use App\Helpers\PHPHelper;
+use App\Helpers\PGPHelper;
 use App\Helpers\UtilsHelper;
 
 /**
@@ -94,6 +94,13 @@ if (!function_exists('getNotReadMessages')) {
 if (!function_exists('getRegisterTestMessage')) {
     function getRegisterTestMessage($publicKey)
     {
-        return PHPHelper::getRegisterTestMessage($publicKey);
+        return PGPHelper::getRegisterTestMessage($publicKey);
+    }
+}
+
+if (!function_exists('encriptMessage')) {
+    function encriptMessage($publicKey, $message)
+    {
+        return PGPHelper::encriptMessage($publicKey, $message);
     }
 }
