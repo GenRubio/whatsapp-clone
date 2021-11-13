@@ -1,8 +1,8 @@
 <div class="my-message d-flex justify-content-end w-100">
     <div class="my-message-container">
-        {{ decryptMessageSender($message->message_sender) }}
+        {{ $message }}
         <span>
-            {{ getHourMessage($message->date) }}
+            {{ $hour }}
         </span>
     </div>
 </div>
