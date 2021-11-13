@@ -23,6 +23,7 @@ class Message extends Model
         'from_user',
         'to_user',
         'message',
+        'message_sender',
         'read',
         'date'
     ];

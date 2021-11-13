@@ -47,7 +47,8 @@ class ConversationController extends Controller
         $friend = $userService->getUserByFriendCode($request->friendCode);
         if ($friend && $request->message != "") {
             $message = encriptMessage($friend->public_key, $request->message);
-            $messageService->createMessage($friend->id, $message);
+            $messageSender = encriptMessage(getUser()->public_key, $request->message);
+            $messageService->createMessage($friend->id, $message, $messageSender);
 
             $success = true;
             $content = $this->messageView($request->message, false);

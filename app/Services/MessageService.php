@@ -15,8 +15,8 @@ class MessageService extends Controller
         $this->messageRepository = new MessageRepository();
     }
 
-    public function createMessage($friendId, $message){
-        $this->messageRepository->create($this->prepareData($friendId, $message));
+    public function createMessage($friendId, $message, $messageSender){
+        $this->messageRepository->create($this->prepareData($friendId, $message, $messageSender));
     }
 
     public function updateNotReadMessages($friendId){
@@ -31,11 +31,12 @@ class MessageService extends Controller
         return $this->messageRepository->getConversationUserNotReadMessages($friendId);
     }
 
-    private function prepareData($friendId, $message){
+    private function prepareData($friendId, $message, $messageSender){
         $data = [
             'from_user' => getUser()->id,
             'to_user' => $friendId,
             'message' => $message,
+            'message_sender' => $messageSender,
             'read' => false,
             'date' => Carbon::now('Europe/Madrid')
         ];
