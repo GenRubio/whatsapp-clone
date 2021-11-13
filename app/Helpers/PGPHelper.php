@@ -33,8 +33,8 @@ class PGPHelper
         try {
             putenv("GNUPGHOME=/tmp");
             $res = gnupg_init();
-            gnupg_import($res, session('privateKey'));
-            gnupg_adddecryptkey($res,  session('privateKeyPassword'));
+            $rtv = gnupg_import($res, session('privateKey'));
+            gnupg_adddecryptkey($res, $rtv["fingerprint"], session('privateKeyPassword'));
             $enc = gnupg_decrypt($res, str_replace("\n","\r\n", $message));
             return $enc;
         
