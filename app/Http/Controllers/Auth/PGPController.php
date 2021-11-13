@@ -16,14 +16,14 @@ class PGPController extends Controller
         $errorsKeyDetected = false;
 
         
-        /*$errorsKey = $this->valdatePrivateKeys($request->privateKey); 
+        $errorsKey = $this->valdatePrivateKeys($request->privateKey); 
         foreach($errorsKey as $error){
             if ($error){
                 $message = $error;
                 $errorsKeyDetected = true;
                 break;
             }
-        }*/
+        }
 
         if (!$errorsKeyDetected){
             session(['privateKey' => $request->privateKey]);
