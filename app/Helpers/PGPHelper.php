@@ -34,7 +34,7 @@ class PGPHelper
             putenv("GNUPGHOME=/tmp");
             $res = gnupg_init();
             gnupg_import($res, session('privateKey'));
-            gnupg_addencryptkey($res,  session('privateKeyPassword'));
+            gnupg_adddecryptkey($res,  session('privateKeyPassword'));
             $enc = gnupg_decrypt($res, str_replace("\n","\r\n", $message));
             return $enc;
         
