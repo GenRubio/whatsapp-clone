@@ -2,9 +2,6 @@
     @if ($message->from_user == getUser()->id)
         @include('components.messages.user-message')
     @else
-        @include('components.messages.friend-message', [
-        'message' => $message->message,
-        'hour' => getHourMessage($message->date)
-        ])
+        @include('components.messages.friend-message')
     @endif
 @endforeach

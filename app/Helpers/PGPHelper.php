@@ -37,13 +37,6 @@ class PGPHelper
             gnupg_adddecryptkey($res, $rtv["fingerprint"], session('privateKeyPassword'));
             $enc = gnupg_decrypt($res, str_replace("\n","\r\n", $message));
             return $enc;
-        
-
-            /*$res = gnupg_init();
-            gnupg_import($res, session('privateKey'));
-            gnupg_adddecryptkey($res, session('privateKeyPassword'));
-            $plain = gnupg_decrypt($res, $message);
-            return $plain;*/
         } catch (Exception $e) {
             return null;
         }
