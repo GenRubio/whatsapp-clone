@@ -6,7 +6,7 @@
         ])
     @else
         @include('components.messages.friend-message', [
-        'message' => $message->message,
+        'message' => decryptMessageSender($message->message),
         'hour' => getHourMessage($message->date)
         ])
     @endif
