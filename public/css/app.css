@@ -10270,7 +10270,10 @@ button.toast-close-button {
 }
 @media (max-width: 660px) {
   .validation-container .validation-login-container {
-    transform: translate(0, 0);
+    transform: none;
+    height: 100%;
+    border-radius: 0;
+    padding-top: 20px;
   }
 }
 .validation-container .validation-login-container .validation-login-title {
@@ -10281,6 +10284,7 @@ button.toast-close-button {
   width: 500px;
   overflow: hidden;
   position: relative;
+  order: 1;
 }
 .validation-container .validation-login-container .validation-image img {
   height: 100%;
@@ -10305,10 +10309,13 @@ button.toast-close-button {
 @media (max-width: 660px) {
   .validation-container .validation-login-container .validation-image {
     width: 100%;
+    order: 2;
+    margin-top: 30px;
   }
 }
 .validation-container .validation-login-container .validation-form {
   width: calc(100% - 520px);
+  order: 2;
 }
 .validation-container .validation-login-container .validation-form .validation-form-title {
   font-size: 35px;
@@ -10325,6 +10332,7 @@ button.toast-close-button {
 @media (max-width: 660px) {
   .validation-container .validation-login-container .validation-form {
     width: 100%;
+    order: 1;
   }
 }
 
@@ -10371,6 +10379,12 @@ button.toast-close-button {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+@media (max-width: 1400px) {
+  #chat-page .page-chat-container .chat-container-content .chat-friends-container {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 #chat-page .page-chat-container .chat-container-content .chat-messages-container {
   width: 70%;
   min-width: 350px;
@@ -10381,6 +10395,12 @@ button.toast-close-button {
   transform: translateZ(0);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+@media (max-width: 1400px) {
+  #chat-page .page-chat-container .chat-container-content .chat-messages-container {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .chat-friends-user-settings-container {

@@ -16,14 +16,6 @@ const ChatController = {
     conversationItemEl: {
         selector: ".conversation-item-js",
     },
-    init() {
-        if (!Utils.checkSection(this.chatPageEl.selector)) {
-            return false;
-        } else {
-            this.setListeners();
-        }
-    },
-    setListeners() {},
     makeNewOrUpdateChatItem(friendCode) {
         const $this = this;
         let container = $(
@@ -60,13 +52,15 @@ const ChatController = {
     reorderChatsByLastMessageDate() {
         let container = $(this.conversationListContainerEl.selector);
         let chats = $(this.conversationItemEl.selector);
-        chats.sort(function(a,b){
-            a = parseFloat($(a).attr("data-last-message-date"));
-            b = parseFloat($(b).attr("data-last-message-date"));
-            return a>b ? -1 : a<b ? 1 : 0;
-        }).each(function(){
-            container.prepend(this);
-        });
+        chats
+            .sort(function (a, b) {
+                a = parseFloat($(a).attr("data-last-message-date"));
+                b = parseFloat($(b).attr("data-last-message-date"));
+                return a > b ? -1 : a < b ? 1 : 0;
+            })
+            .each(function () {
+                container.prepend(this);
+            });
     },
     getChatItemContainer(friendCode) {
         return $(

@@ -47,6 +47,7 @@ const FormLoginController = {
                 if (data.success) {
                     location.href = Utils.getUrl("home");
                 } else {
+                    item[0].reset();
                     toastr.error("Nombre o contraseña incorrectos.");
                 }
                 $item.blockSendButton(false);
