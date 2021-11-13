@@ -28,7 +28,7 @@ class PGPHelper
         }
     }
 
-    public static function decryptMessage($message)
+    public static function decryptMessageSender($message)
     {
         try {
             putenv("GNUPGHOME=/tmp");
