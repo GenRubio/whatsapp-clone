@@ -32,15 +32,10 @@ class PGPHelper
     {
         try {
             putenv("GNUPGHOME=/tmp");
-            $pubkey = session('privateKey');
-            $enc = (null);
             $res = gnupg_init();
-            $rtv = gnupg_import($res, $pubkey);
-            $rtv = gnupg_addencryptkey($res, $rtv["fingerprint"]);
-            $enc = gnupg_decrypt($res, $message);
-            return $enc;
-
-           
+            gnupg_adddecryptkey($res, session('privateKey'), session('privateKey'));
+            $plain = gnupg_decrypt($res, $message);
+            return $plain;
         } catch (Exception $e) {
             return null;
         }
