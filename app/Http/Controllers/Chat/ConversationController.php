@@ -71,7 +71,7 @@ class ConversationController extends Controller
             $messageService->updateNotReadMessages($friend->id);
         }
         return response()->json([
-            'content' => $this->messageView($request->message, true)
+            'content' => $this->messageView(decryptMessage($request->message), true)
         ], Response::HTTP_CREATED);
     }
 
