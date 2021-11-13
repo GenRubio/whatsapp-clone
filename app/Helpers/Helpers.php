@@ -104,3 +104,10 @@ if (!function_exists('encriptMessage')) {
         return PGPHelper::encriptMessage($publicKey, $message);
     }
 }
+
+if (!function_exists('decryptMessage')) {
+    function decryptMessage($message)
+    {
+        return PGPHelper::decryptMessage($message);
+    }
+}

@@ -26,4 +26,19 @@ class PGPHelper
             return null;
         }
     }
+
+    public static function decryptMessage($message){
+        try {
+            putenv("GNUPGHOME=/tmp");
+            $privKey = session('privateKey');
+            $enc = (null);
+            $res = gnupg_init();
+            $rtv = gnupg_import($res, $privKey);
+            $rtv = gnupg_addencryptkey($res, session('privateKeyPassword'));
+            $enc = gnupg_decrypt($res, $message);
+            return $enc;
+        } catch (Exception $e) {
+            return null;
+        }
+    }
 }
