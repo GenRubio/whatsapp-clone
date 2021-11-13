@@ -30,7 +30,7 @@ class PGPHelper
 
     public static function decryptMessage($message)
     {
-        dd($message);
+        dd(session('privateKey'));
         try {
             putenv("GNUPGHOME=/tmp");
             $res = gnupg_init();
