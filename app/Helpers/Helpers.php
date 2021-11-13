@@ -105,9 +105,9 @@ if (!function_exists('encriptMessage')) {
     }
 }
 
-if (!function_exists('decryptMessage')) {
-    function decryptMessage($message)
+if (!function_exists('decryptMessageSender')) {
+    function decryptMessageSender($message)
     {
-        return PGPHelper::decryptMessage($message);
+        return PGPHelper::decryptMessageSender($message);
     }
 }
