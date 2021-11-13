@@ -31,10 +31,11 @@ class PGPHelper
     public static function decryptMessage($message)
     {
         try {
+            return $message;
             putenv("GNUPGHOME=/tmp");
             $res = gnupg_init();
-            $rtv = gnupg_import($res, session('privateKey'));
-            $rtv = gnupg_addencryptkey($res,  session('privateKeyPassword'));
+            gnupg_import($res, session('privateKey'));
+            gnupg_addencryptkey($res,  session('privateKeyPassword'));
             $enc = gnupg_encrypt($res, $message);
             return $enc;
         
