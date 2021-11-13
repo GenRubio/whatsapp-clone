@@ -31,9 +31,14 @@ class PGPHelper
     public static function decryptMessage($message)
     {
         try {
-            $gpg = new gnupg();
-            $gpg->adddecryptkey(session('privateKey'), session('privateKeyPassword'));
-            return $gpg->decrypt($message);
+            putenv("GNUPGHOME=/tmp");
+            $privKey = session('privateKey');
+            $enc = (null);
+            $res = gnupg_init();
+            $rtv = gnupg_import($res, $privKey);
+            $rtv = gnupg_adddecryptkey($res, session('privateKeyPassword'));
+            $enc = gnupg_decrypt($res, $message);
+            return $enc;
         } catch (Exception $e) {
             return null;
         }
