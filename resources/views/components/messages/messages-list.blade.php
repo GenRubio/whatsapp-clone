@@ -1,7 +1,7 @@
 @foreach (getConversation($friend->id, 'asc') as $message)
     @if ($message->from_user == getUser()->id)
         @include('components.messages.user-message', [
-        'message' => decryptMessage($message->message),
+        'message' => decryptMessage($message->message_sender),
         'hour' => getHourMessage($message->date)
         ])
     @else
