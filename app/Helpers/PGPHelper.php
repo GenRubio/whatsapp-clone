@@ -12,7 +12,8 @@ class PGPHelper
         return encriptMessage($publicKey, session('registerEncriptMessage'));
     }
 
-    public static function encriptMessage($publicKey, $message){
+    public static function encriptMessage($publicKey, $message)
+    {
         try {
             putenv("GNUPGHOME=/tmp");
             $pubkey = $publicKey;
@@ -27,16 +28,12 @@ class PGPHelper
         }
     }
 
-    public static function decryptMessage($message){
+    public static function decryptMessage($message)
+    {
         try {
-            putenv("GNUPGHOME=/tmp");
-            $privKey = session('privateKey');
-            $enc = (null);
-            $res = gnupg_init();
-            $rtv = gnupg_import($res, $privKey);
-            $rtv = gnupg_addencryptkey($res, session('privateKeyPassword'));
-            $enc = gnupg_decrypt($res, $message);
-            return $enc;
+            $gpg = new gnupg();
+            $gpg->adddecryptkey(session('privateKey'), session('privateKeyPassword'));
+            return $gpg->decrypt($message);
         } catch (Exception $e) {
             return null;
         }
