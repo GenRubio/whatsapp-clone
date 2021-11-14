@@ -230,5 +230,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    
+    'pgp_encryption' => env('PGP_ENCRYPTION', false),
 ];
