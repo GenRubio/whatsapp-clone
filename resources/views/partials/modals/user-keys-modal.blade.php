@@ -25,7 +25,8 @@
                         <div class="form-group">
                             <label><b>Private Key</b></label>
                             <div class="alert-error-key-container-js"></div>
-                            <textarea name="privateKey" class="form-control" rows="6" required></textarea>
+                            <textarea name="privateKey" class="form-control" rows="10" cols="50"
+                                placeholder="{!! view('components.placeholders.private-key')->render() !!}" required></textarea>
                         </div>
                         <div class="form-group">
                             <label><b>Private key password</b></label>
