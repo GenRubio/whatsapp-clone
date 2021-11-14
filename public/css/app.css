@@ -10674,6 +10674,12 @@ button.toast-close-button {
   }
 }
 
+.spinner-custom {
+  width: 150px;
+  height: 150px;
+  font-size: 45px;
+}
+
 .friends-list-container {
   height: calc(100% - 119px);
   border-right: 1px solid #00000014;

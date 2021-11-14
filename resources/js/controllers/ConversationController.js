@@ -39,6 +39,8 @@ const ConversationController = {
     },
     openConversationHandler(item){
         const $this = this;
+        this.addLoadSpinner();
+       
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $(this.csrfToken.selector).attr("content"),
@@ -56,6 +58,9 @@ const ConversationController = {
                 }
             }
         })
+    },
+    addLoadSpinner(){
+        $(this.conversationContainerEl.selector).html(views.spinner);
     },
     removePendingMessages(item){
         let pendingMessagesContainer = item.find(this.pendingMessagesEl.selector);

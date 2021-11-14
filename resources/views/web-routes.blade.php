@@ -16,3 +16,7 @@ window.routes = {
     'homeTestRegister': "{!! route('home.test.register') !!}",
     'savePrivateKeys': "{!! route('save.private.keys') !!}"
 }
+
+window.views = {
+    'spinner': `{!! view('components.spinners.load-messages')->render() !!}`
+}

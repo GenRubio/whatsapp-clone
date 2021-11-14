@@ -4,8 +4,8 @@
         You can generate your PGP here: <a href="https://pgpkeygen.com/" target="_blank">Click</a>
     </div>
     <div class="alert-error-key-container-js"></div>
-    <textarea name="public_key" class="form-control" id="user-public-pgp" rows="7" 
-    placeholder="{!! view('components.placeholders.public-key')->render() !!}" required></textarea>
+    <textarea name="public_key" class="form-control" id="user-public-pgp" rows="7"
+        placeholder="{!! view('components.placeholders.public-key')->render() !!}" required></textarea>
 </div>
 <button class="btn btn-primary get-encrypt-message-js">Get message</button>
 <div class="result-encription-container-js d-none">
