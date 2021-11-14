@@ -28,6 +28,12 @@ const FormRegisterController = {
     testPGPContainerEl: {
         selector: "#message-encrypted",
     },
+    alertErrorKeyContainerEl:{
+        selector: ".alert-error-key-container-js"
+    },
+    inputMessageDecryptedEl: {
+        selector: "#message-decripted-js"
+    },
     init() {
         if (!Utils.checkSection(this.registerFormEl.selector)) {
             return false;
@@ -43,9 +49,14 @@ const FormRegisterController = {
         $(document).on("click", this.encryptMessageButtonEl.selector, (e) => {
             this.getMessageEncrypted(e);
         });
+
+        $(document).on('input', this.inputMessageDecryptedEl.selector, () => {
+            this.enableRegisterButton();
+        });
     },
     getMessageEncrypted(e) {
         const $this = this;
+        this.removeAlertErrorKey();
         let publicKey = $(this.publicPGPContainerEl.selector).val();
         $.ajax({
             url: Utils.getUrl("homeTestRegister"),
@@ -60,9 +71,7 @@ const FormRegisterController = {
                     );
                     $($this.testPGPContainerEl.selector).text(data.content);
                 } else {
-                    toastr.error(data.message, {
-                        enableHtml: true,
-                    });
+                    $this.addAlertErrorKey(data.message);
                 }
             },
         });
@@ -90,12 +99,20 @@ const FormRegisterController = {
             },
         });
     },
+    enableRegisterButton(){
+        $(this.submitButtonEl.selector).attr("disabled", false);
+    },
+    removeAlertErrorKey(){
+        $(this.alertErrorKeyContainerEl.selector).empty();
+    },
+    addAlertErrorKey(html){
+        $(this.alertErrorKeyContainerEl.selector).html(html);
+    },
     blockSendButton(success) {
+        $(this.submitButtonEl.selector).attr("disabled", success);
         if (success) {
-            $(this.submitButtonEl.selector).attr("disabled", true);
             $(this.submitButtonEl.selector).text("Cargando...");
         } else {
-            $(this.submitButtonEl.selector).attr("disabled", false);
             $(this.submitButtonEl.selector).text("SING UP");
         }
     },

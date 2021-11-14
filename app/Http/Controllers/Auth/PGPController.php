@@ -10,22 +10,23 @@ use Illuminate\Http\Response;
 
 class PGPController extends Controller
 {
-    public function savePrivateKeys(Request $request){
+    public function savePrivateKeys(Request $request)
+    {
         $success = false;
         $message = "Error";
         $errorsKeyDetected = false;
 
-        
-        $errorsKey = $this->valdatePrivateKeys($request->privateKey); 
-        foreach($errorsKey as $error){
-            if ($error){
+
+        $errorsKey = $this->valdatePrivateKeys($request->privateKey);
+        foreach ($errorsKey as $error) {
+            if ($error) {
                 $message = $error;
                 $errorsKeyDetected = true;
                 break;
             }
         }
 
-        if (!$errorsKeyDetected){
+        if (!$errorsKeyDetected) {
             session(['privateKey' => $request->privateKey]);
             session(['privateKeyPassword' => $request->privateKeyPassword]);
             $success = true;
@@ -38,24 +39,25 @@ class PGPController extends Controller
         ], Response::HTTP_CREATED);
     }
 
-    public function getTestRegisterMessage(Request $request){
+    public function getTestRegisterMessage(Request $request)
+    {
         $success = false;
         $message = "Error";
         $content = null;
         $errorsKeyDetected = false;
 
-        $errorsKey = $this->validatePublicKey($request->publicKey); 
-        foreach($errorsKey as $error){
-            if ($error){
+        $errorsKey = $this->validatePublicKey($request->publicKey);
+        foreach ($errorsKey as $error) {
+            if ($error) {
                 $message = $error;
                 $errorsKeyDetected = true;
                 break;
             }
         }
 
-        if (!$errorsKeyDetected){
+        if (!$errorsKeyDetected) {
             $content = getRegisterTestMessage($request->publicKey);
-            if ($content){
+            if ($content) {
                 $success = true;
             }
         }
@@ -67,7 +69,8 @@ class PGPController extends Controller
         ], Response::HTTP_CREATED);
     }
 
-    private function valdatePrivateKeys($key){
+    private function valdatePrivateKeys($key)
+    {
         $errors = [];
         $errors[] = $this->validateKeyContains($key, "-----BEGIN PGP PRIVATE KEY BLOCK-----");
         $errors[] = $this->validateKeyContains($key, "-----END PGP PRIVATE KEY BLOCK-----");
@@ -76,7 +79,8 @@ class PGPController extends Controller
         return $errors;
     }
 
-    private function validatePublicKey($key){
+    private function validatePublicKey($key)
+    {
         $errors = [];
         $errors[] = $this->validateKeyContains($key, "-----BEGIN PGP PUBLIC KEY BLOCK-----");
         $errors[] = $this->validateKeyContains($key, "-----END PGP PUBLIC KEY BLOCK-----");
@@ -85,17 +89,26 @@ class PGPController extends Controller
         return $errors;
     }
 
-    private function validateKeyContains($key, $text){
-        if (!str_contains($key, $text)){
-            return "La clave es incorrecta. </br>Falta: </br>" . $text . "</br> en la clave.";
+    private function validateKeyContains($key, $text)
+    {
+        if (!str_contains($key, $text)) {
+            return $this->getErrorAlertView("Falta: " . $text . " en la clave.");
         }
         return null;
     }
 
-    private function validateKetNotContainsComment($key, $text){
-        if (str_contains($key, $text)){
-            return "La clave es incorrecta. </br>Remueva el Comment:";
+    private function validateKetNotContainsComment($key, $text)
+    {
+        if (str_contains($key, $text)) {
+            return $this->getErrorAlertView("Remueva el Comment: de la clave.");
         }
         return null;
+    }
+
+    private function getErrorAlertView($error)
+    {
+        return view('components.alerts.error-key-alert', [
+            'error' => $error
+        ])->render();
     }
 }

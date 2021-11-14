@@ -10,6 +10,12 @@ const SessionPGPController = {
     saveKeysFormEl: {
         selector: "#save-session-private-keys",
     },
+    alertErrorKeyContainerEl:{
+        selector: ".alert-error-key-container-js"
+    },
+    savePrivateButtonEl:{
+        selector: ".save-private-key-button-js"
+    },
     init() {
         if (!Utils.checkSection(this.chatPageEl.selector)) {
             return false;
@@ -25,6 +31,8 @@ const SessionPGPController = {
     },
     savePrivateKeysHandler(e) {
         e.preventDefault();
+        this.removeAlertErrorKey();
+        this.blockSendButton(true);
         const $this = this;
         const item = $(e.currentTarget);
 
@@ -38,10 +46,25 @@ const SessionPGPController = {
                     $($this.keysModalEl.selector).modal("hide");
                     location.reload();
                 } else {
-                    toastr.error(data.message);
+                    $this.addAlertErrorKey(data.message);
                 }
+                $this.blockSendButton(false);
             },
         });
+    },
+    removeAlertErrorKey(){
+        $(this.alertErrorKeyContainerEl.selector).empty();
+    },
+    addAlertErrorKey(html){
+        $(this.alertErrorKeyContainerEl.selector).html(html);
+    },
+    blockSendButton(success) {
+        $(this.savePrivateButtonEl.selector).attr("disabled", success);
+        if (success) {
+            $(this.savePrivateButtonEl.selector).text("Cargando...");
+        } else {
+            $(this.savePrivateButtonEl.selector).text("Save changes");
+        }
     },
     launchModal() {
         let modal = $(this.keysModalEl.selector).length;

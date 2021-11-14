@@ -24,6 +24,7 @@
                         <hr>
                         <div class="form-group">
                             <label><b>Private Key</b></label>
+                            <div class="alert-error-key-container-js"></div>
                             <textarea name="privateKey" class="form-control" rows="6" required></textarea>
                         </div>
                         <div class="form-group">
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary save-private-key-button-js">Save changes</button>
                     </div>
                 </form>
             </div>

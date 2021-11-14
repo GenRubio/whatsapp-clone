@@ -3,6 +3,7 @@
     <div>
         You can generate your PGP here: <a href="https://pgpkeygen.com/" target="_blank">Click</a>
     </div>
+    <div class="alert-error-key-container-js"></div>
     <textarea name="public_key" class="form-control" id="user-public-pgp" rows="7" 
     placeholder="
     -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -39,7 +40,7 @@
         <label for="exampleInputEmail1">
             <b>Message</b>
         </label>
-        <input name="message_decrypted" type="text" class="form-control" id="exampleInputEmail1"
+        <input name="message_decrypted" type="text" class="form-control" id="message-decripted-js"
             aria-describedby="emailHelp" placeholder="Enter test message">
     </div>
 </div>

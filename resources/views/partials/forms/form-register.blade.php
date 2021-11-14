@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn submit-register-button-js btn-primary ">
+                    <button type="submit" class="btn submit-register-button-js btn-primary" disabled>
                         SING UP
                     </button>
                 </div>

@@ -42,6 +42,7 @@ const FormLoginController = {
                 } else {
                     toastr.error("Nombre o contraseña incorrectos.");
                 }
+                item[0].reset();
                 $item.blockSendButton(false);
             },
             
