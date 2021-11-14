@@ -32,10 +32,12 @@ const ConversationController = {
         });
     },
     openConversation(e){
-        this.removeActiveFromConversationItems();
         let item = $(e.currentTarget);
-        this.openConversationHandler(item);
-        this.setConversationItemActive(item);
+        if (!item.hasClass('selected')){
+            this.removeActiveFromConversationItems();
+            this.openConversationHandler(item);
+            this.setConversationItemActive(item);
+        }
     },
     openConversationHandler(item){
         const $this = this;
