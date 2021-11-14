@@ -3,9 +3,11 @@
     <div>
         You can generate your PGP here: <a href="https://pgpkeygen.com/" target="_blank">Click</a>
     </div>
-    <textarea name="public_key" class="form-control" id="user-public-pgp" rows="5" 
-    placeholder="-----BEGIN PGP PUBLIC KEY BLOCK-----
+    <textarea name="public_key" class="form-control" id="user-public-pgp" rows="7" 
+    placeholder="
+    -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: Keybase OpenPGP v1.0.0
+
     xo0EYYoNDwEEAKw9D69mGj4VSNnJOHrK4SjutgeAqWCFvfQB/EoPZKqnNZQlUQLG
     gJ0TMH2Wes1ioOdUDNm0/HgruyJQxLn0iZX0yhMh/E7vCv62DKVVqHRSfIHKcyjG
     hDCPoqIJ6odaWKLxzetkkr/kFEZTrWxqmVX9tsroYBSZKk5AsQwjeLkpABEBAAHN
