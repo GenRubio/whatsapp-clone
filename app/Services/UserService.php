@@ -83,18 +83,10 @@ class UserService extends Controller
     }
 
     private function makeFriendCode(){
-        $code = uniqid('#');
-        while ($this->userRepository->checkFriendCode($code)){
-            $code = uniqid('#');
-        }
-        return $code;
+        return '#' . md5(rand(1, 10) . microtime());
     }
 
     private function makeUid(){
-        $uid = uniqid();
-        while ($this->userRepository->checkUid($uid)){
-            $uid = uniqid();
-        }
-        return $uid;
+        return md5(rand(1, 10) . microtime());
     }
 }
