@@ -10922,6 +10922,19 @@ button.toast-close-button {
   position: relative;
   top: 6px;
 }
+.chat-friend-messages .date-message {
+  padding: 0 90px;
+}
+.chat-friend-messages .date-message-container {
+  background-color: white;
+  padding: 7px 14px;
+  border-radius: 11px;
+  border: 1px solid #0000001f;
+  font-size: 15px;
+  margin-top: 5px;
+  font-size: 12px;
+  background-color: #f7dab561;
+}
 .chat-friend-sender {
   background-color: #ededed;
   height: 70px;

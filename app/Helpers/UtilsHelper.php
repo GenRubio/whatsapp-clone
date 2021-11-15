@@ -76,4 +76,8 @@ class UtilsHelper
     {
         return Carbon::parse($date)->format('H:i');
     }
+
+    public static function getDateMessages($date){
+        return Carbon::parse($date)->format('l jS \of F Y');
+    }
 }

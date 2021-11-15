@@ -78,6 +78,16 @@
                 }
             }
         }
+
+        .date-message{
+            padding: 0 90px;
+
+            &-container {
+                @include message-content-container();
+                font-size: 12px;
+                background-color: #f7dab561;
+            }
+        }
     }
 
     &-sender {

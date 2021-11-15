@@ -111,3 +111,10 @@ if (!function_exists('decryptMessage')) {
         return PGPHelper::decryptMessage($message);
     }
 }
+
+if (!function_exists('getDateMessages')) {
+    function getDateMessages($date)
+    {
+        return UtilsHelper::getDateMessages($date);
+    }
+}

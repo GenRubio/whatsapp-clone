@@ -5,16 +5,19 @@ const ConversationController = {
         selector: "#chat-page",
     },
     conversationItemEl: {
-        selector: ".conversation-item-js"
+        selector: ".conversation-item-js",
     },
-    conversationContainerEl:{
-        selector: ".chat-messages-container-js"
+    conversationContainerEl: {
+        selector: ".chat-messages-container-js",
     },
     messagesContainerEl: {
-        selector: ".chat-friend-messages-js"
+        selector: ".chat-friend-messages-js",
     },
-    pendingMessagesEl:{
-        selector: ".chat-item-unread-js"
+    pendingMessagesEl: {
+        selector: ".chat-item-unread-js",
+    },
+    itemChatEl: {
+        selector: ".chat-item-container-js",
     },
     csrfToken: {
         selector: 'meta[name="csrf-token"]',
@@ -27,68 +30,98 @@ const ConversationController = {
         }
     },
     setListeners() {
-        $(document).on('click', this.conversationItemEl.selector, (e) => {
+        $(document).on("click", this.conversationItemEl.selector, (e) => {
             this.openConversation(e);
         });
+
+        $(document).on("click", this.itemChatEl.selector, (e) => {
+            this.openNewConversation(e);
+        });
     },
-    openConversation(e){
+    openConversation(e) {
         let item = $(e.currentTarget);
-        if (!item.hasClass('selected') && !item.hasClass('item-blocked')){
+        this.open(item);
+    },
+    openNewConversation(e) {
+        let item = $(e.currentTarget);
+        this.open(item);
+    },
+    open(item) {
+        if (!item.hasClass("selected") && !item.hasClass("item-blocked")) {
             this.blockConversationButtons(true);
             this.removeActiveFromConversationItems();
             this.openConversationHandler(item);
             this.setConversationItemActive(item);
         }
     },
-    openConversationHandler(item){
+    openConversationHandler(item) {
         const $this = this;
         this.addLoadSpinner();
-       
+
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $(this.csrfToken.selector).attr("content"),
             },
             url: Utils.getUrl("openConversation"),
             method: "POST",
-            data:{
-                'friendCode': item.data('friend-code')
+            data: {
+                friendCode: item.data("friend-code"),
             },
-            success:function(data){
-                if (data.success){
-                    $($this.conversationContainerEl.selector).html(data.content);
+            success: function (data) {
+                if (data.success) {
+                    $($this.conversationContainerEl.selector).html(
+                        data.content
+                    );
                     $this.blockConversationButtons(false);
                     $this.scrollToEnd();
                     $this.removePendingMessages(item);
                 }
-            }
-        })
+            },
+        });
     },
-    addLoadSpinner(){
+    addLoadSpinner() {
         $(this.conversationContainerEl.selector).html(views.spinner);
     },
-    removePendingMessages(item){
-        let pendingMessagesContainer = item.find(this.pendingMessagesEl.selector);
-        if (pendingMessagesContainer){
+    removePendingMessages(item) {
+        let pendingMessagesContainer = item.find(
+            this.pendingMessagesEl.selector
+        );
+        if (pendingMessagesContainer) {
             $(pendingMessagesContainer).remove();
         }
     },
-    scrollToEnd(){
+    scrollToEnd() {
         let container = $(this.messagesContainerEl.selector);
         container.scrollTop(container.height());
     },
-    setConversationItemActive(item){
-        item.addClass('selected');
-    },
-    blockConversationButtons(yes){
-        if (yes){
-            $(this.conversationItemEl.selector).addClass('item-blocked');
-        }else{
-            $(this.conversationItemEl.selector).removeClass('item-blocked');
+    setConversationItemActive(item) {
+        item.addClass("selected");
+        if (!item.hasClass(this.conversationItemEl.selector)) {
+            const friendCode = item.data("friend-code");
+            let itemChat = $(
+                this.conversationItemEl.selector +
+                    '[data-friend-code="' +
+                    friendCode +
+                    '"]'
+            );
+            if (itemChat.length){
+                itemChat.addClass("selected");
+            }
         }
     },
-    removeActiveFromConversationItems(){
-        $(this.conversationItemEl.selector).removeClass('selected');
-    }
-}
+    blockConversationButtons(yes) {
+        if (yes) {
+            $(this.conversationItemEl.selector).addClass("item-blocked");
+            $(this.itemChatEl.selector).addClass("item-blocked");
+        } else {
+            $(this.conversationItemEl.selector).removeClass("item-blocked");
+            $(this.itemChatEl.selector).removeClass("item-blocked");
+        }
+    },
+    removeActiveFromConversationItems() {
+        $(this.conversationItemEl.selector).removeClass("selected");
+        $(this.itemChatEl.selector).removeClass("selected");
+    },
+};
 
 module.exports = ConversationController;
