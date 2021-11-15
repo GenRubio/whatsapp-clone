@@ -33,7 +33,8 @@ const ConversationController = {
     },
     openConversation(e){
         let item = $(e.currentTarget);
-        if (!item.hasClass('selected')){
+        if (!item.hasClass('selected') && !item.hasClass('item-blocked')){
+            this.blockConversationButtons(true);
             this.removeActiveFromConversationItems();
             this.openConversationHandler(item);
             this.setConversationItemActive(item);
@@ -55,6 +56,7 @@ const ConversationController = {
             success:function(data){
                 if (data.success){
                     $($this.conversationContainerEl.selector).html(data.content);
+                    $this.blockConversationButtons(false);
                     $this.scrollToEnd();
                     $this.removePendingMessages(item);
                 }
@@ -76,6 +78,13 @@ const ConversationController = {
     },
     setConversationItemActive(item){
         item.addClass('selected');
+    },
+    blockConversationButtons(yes){
+        if (yes){
+            $(this.conversationItemEl.selector).addClass('item-blocked');
+        }else{
+            $(this.conversationItemEl.selector).removeClass('item-blocked');
+        }
     },
     removeActiveFromConversationItems(){
         $(this.conversationItemEl.selector).removeClass('selected');
