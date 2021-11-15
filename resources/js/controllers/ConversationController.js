@@ -95,18 +95,24 @@ const ConversationController = {
         container.scrollTop(container.height());
     },
     setConversationItemActive(item) {
-        item.addClass("selected");
-        if (!item.hasClass(this.conversationItemEl.selector)) {
-            const friendCode = item.data("friend-code");
-            let itemChat = $(
-                this.conversationItemEl.selector +
-                    '[data-friend-code="' +
-                    friendCode +
-                    '"]'
-            );
-            if (itemChat.length){
-                itemChat.addClass("selected");
-            }
+        const friendCode = item.data("friend-code");
+        let itemChat = $(
+            this.conversationItemEl.selector +
+                '[data-friend-code="' +
+                friendCode +
+                '"]'
+        );
+        if (itemChat.length){
+            itemChat.addClass("selected");
+        }
+        let itemNewChat = $(
+            this.itemChatEl.selector +
+                '[data-friend-code="' +
+                friendCode +
+                '"]'
+        );
+        if (itemNewChat.length){
+            itemNewChat.addClass("selected");
         }
     },
     blockConversationButtons(yes) {
