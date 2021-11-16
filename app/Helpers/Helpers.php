@@ -118,3 +118,10 @@ if (!function_exists('getDateMessages')) {
         return UtilsHelper::getDateMessages($date);
     }
 }
+
+if (!function_exists('getMessageTimestamp')) {
+    function getMessageTimestamp($date)
+    {
+        return UtilsHelper::getMessageTimestamp($date);
+    }
+}

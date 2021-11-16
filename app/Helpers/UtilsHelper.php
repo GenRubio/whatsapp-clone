@@ -80,4 +80,8 @@ class UtilsHelper
     public static function getDateMessages($date){
         return Carbon::parse($date)->format('l jS \of F Y');
     }
+
+    public static function getMessageTimestamp($date){
+        return Carbon::parse($date)->timestamp;
+    }
 }
