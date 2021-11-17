@@ -7,6 +7,7 @@ use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\ConversationController;
 use App\Http\Controllers\Chat\MakeFriendController;
 use App\Http\Controllers\Chat\NotificationsController;
+use App\Http\Controllers\Chat\SearchChatController;
 use App\Http\Controllers\Chat\SearchFriendController;
 use App\Http\Controllers\Chat\UploadUserImgController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('chat')->group(function () {
         Route::get('/update-chat-list', [ChatController::class, 'updateChatList'])
             ->name('chat.list.user');
+        Route::get('/search', [SearchChatController::class, 'search'])
+            ->name('chat.search');
     });
 
     Route::prefix('pgp')->group(function () {

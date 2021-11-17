@@ -19,6 +19,8 @@
         </div>
     </div>
     <div class="friends-list-container friends-list-container-js overflow-auto">
-        @include('partials.friends-list')
+        @include('partials.friends-list', [
+            'friends' => getUser()->friends
+        ])
     </div>    
 </div>

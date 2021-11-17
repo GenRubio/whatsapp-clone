@@ -14,7 +14,8 @@ window.routes = {
     'receiveMessage': "{!! route('receive.message') !!}",
     'chatListUserSender': "{!! route('chat.list.user') !!}",
     'homeTestRegister': "{!! route('home.test.register') !!}",
-    'savePrivateKeys': "{!! route('save.private.keys') !!}"
+    'savePrivateKeys': "{!! route('save.private.keys') !!}",
+    'chatSearch': "{!! route('chat.search') !!}"
 }
 
 window.views = {

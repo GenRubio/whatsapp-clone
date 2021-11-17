@@ -49,4 +49,7 @@ class UserFriendService extends Controller
         return $data;
     }
 
+    public function getFriendsByNameLike($name){
+        return $this->userFriendRepository->getFriendsByNameLike($name);
+    }
 }

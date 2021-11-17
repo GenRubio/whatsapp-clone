@@ -60,4 +60,14 @@ class UserFriendRepository extends Repository implements UserFriendRepositoryInt
                 'accepted' => true
             ]);
     }
+
+    public function getFriendsByNameLike($name){
+        $friends = collect();
+        foreach(getUser()->friends as $friend){
+            if (str_contains(strtolower($friend->user->name), strtolower($name))){
+                $friends[] = $friend;
+            }
+        }
+        return $friends;
+    }
 }

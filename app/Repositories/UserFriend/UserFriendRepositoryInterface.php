@@ -13,4 +13,5 @@ interface UserFriendRepositoryInterface
     public function getFriendRequest($requestFriendId);
     public function checkIfExistRequest($friendId);
     public function create($data);
+    public function getFriendsByNameLike($name);
 }
