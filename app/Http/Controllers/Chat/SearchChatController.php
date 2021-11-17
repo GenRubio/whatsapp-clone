@@ -13,14 +13,30 @@ class SearchChatController extends Controller
     {
         $search = $request->value;
         $friends = $this->getFriendByName($search);
+        $conteiner = $request->type;
+        $content = null;
+
+        if ($conteiner == "newChat"){
+            $content = $this->getFriendListView($friends);
+        }
+        elseif($conteiner == "Chat"){
+            $content = $this->getChatsListView($friends);
+        }
 
         return response()->json([
-            'content' => $this->getFriendListView($friends)
+            'content' => $content,
+            'container' => $conteiner
         ], Response::HTTP_CREATED);
     }
 
     private function getFriendByName($name){
         return (new UserFriendService())->getFriendsByNameLike($name);
+    }
+
+    private function getChatsListView($friends){
+        return view('partials.conversations-list', [
+            'friends' => $friends
+        ])->render();
     }
 
     private function getFriendListView($friends)

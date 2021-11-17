@@ -5,5 +5,7 @@
 @include('components.user-settings-container')
 @include('components.chat-search')
 <div class="conversations-list-container conversations-list-container-js overflow-auto">
-    @include('partials.conversations-list')
+    @include('partials.conversations-list', [
+        'friends' => getChatsStarted()
+    ])
 </div>    
