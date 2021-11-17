@@ -34,7 +34,8 @@ php artisan serv
 node server.js
 ```
 ## Encriptación PGP
-Para poder activar encriptación PGP de mensajes tenemos que tener desplegado nuestro proyecto en una máquina Linux y hacer la configuración del Apache. El manual de configuración se encuentra en la raíz de proyecto GNUPG.pdf
+Para poder activar encriptación PGP de mensajes tenemos que tener desplegado nuestro proyecto en una máquina Linux y hacer la configuración del Apache.<br/> 
+El manual de configuración se encuentra en la raíz de proyecto GNUPG.pdf<br/>
 Activación de PGP en proyecto: Tenemos que dirigirnos a .env y habilitar la encriptación modificando la variable PGP_ENCRYPTION
 
 ``` bash
