@@ -4,8 +4,9 @@ Whatsapp clone es una app basada en Whtsapp Web que cuenta con las opciones:
 - Login/Registro de usuarios.
 - Agregar amigos.
 - Chatear con los amigos agregados.
-- Administración de la app mediante Backpack
-- Desktop App usando Electron
+- Administración de la app mediante Backpack.
+- Desktop App usando Electron.
+- Encriptación PGP de mensajes.
 
 ## Install
 1) En la terminal:
@@ -32,6 +33,18 @@ php artisan serv
 ``` bash
 node server.js
 ```
+## Encriptación PGP
+Para poder activar encriptación PGP de mensajes tenemos que tener desplegado nuestro proyecto en una máquina Linux y hacer la configuración del Apache.<br/> 
+El manual de configuración se encuentra en la raíz de proyecto GNUPG.pdf<br/>
+Activación de PGP en proyecto: Tenemos que dirigirnos a .env y habilitar la encriptación modificando la variable PGP_ENCRYPTION
+
+``` bash
+PGP_ENCRYPTION=false
+```
+``` bash
+PGP_ENCRYPTION=true
+```
+
 ## Electron Install
 1) Abrimos nueva terminal dentro de la carpeta 'electron' de raiz del proyecto
 
