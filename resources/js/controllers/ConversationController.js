@@ -91,8 +91,7 @@ const ConversationController = {
         }
     },
     scrollToEnd() {
-        let container = $(this.messagesContainerEl.selector);
-        container.scrollTop(container.height());
+        $(this.messagesContainerEl.selector).scrollTop($(this.messagesContainerEl.selector)[0].scrollHeight);
     },
     setConversationItemActive(item) {
         const friendCode = item.data("friend-code");

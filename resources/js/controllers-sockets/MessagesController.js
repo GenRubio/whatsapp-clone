@@ -1,5 +1,5 @@
 const Utils = require("../objects/Utils");
-const ChatController = require('../controllers/ChatController');
+const ChatController = require("../controllers/ChatController");
 
 const MessagesController = {
     chatPageEl: {
@@ -46,19 +46,21 @@ const MessagesController = {
                     message: data.message,
                 },
                 success: function (data) {
-                   $($this.messagesContainerEl.selector).append(data.content);
-                   $this.scrollToEnd();
+                    $.playSound(window.sounds.openChat);
+                    $($this.messagesContainerEl.selector).append(data.content);
+                    $this.scrollToEnd();
                 },
             });
+        } else {
+            $.playSound(window.sounds.newChat);
         }
         ChatController.makeNewOrUpdateChatItem(data.friendCode);
-        setTimeout(function(){
+        setTimeout(function () {
             ChatController.reorderChatsByLastMessageDate();
         }, 800);
     },
-    scrollToEnd(){
-        let container = $(this.messagesContainerEl.selector);
-        container.scrollTop(container.height());
+    scrollToEnd() {
+        $(this.messagesContainerEl.selector).scrollTop($(this.messagesContainerEl.selector)[0].scrollHeight);
     },
 };
 

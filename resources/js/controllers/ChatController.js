@@ -57,15 +57,21 @@ const ChatController = {
     reorderChatsByLastMessageDate() {
         let container = $(this.conversationListContainerEl.selector);
         let chats = $(this.conversationItemEl.selector);
-        container.html($(
-            $(chats)
-                .toArray()
-                .sort(function (a, b) {
-                    var aVal = parseInt(a.getAttribute('data-last-message-date')),
-                        bVal = parseInt(b.getAttribute('data-last-message-date'));
-                    return bVal - aVal;
-                })
-        ))
+        container.html(
+            $(
+                $(chats)
+                    .toArray()
+                    .sort(function (a, b) {
+                        var aVal = parseInt(
+                                a.getAttribute("data-last-message-date")
+                            ),
+                            bVal = parseInt(
+                                b.getAttribute("data-last-message-date")
+                            );
+                        return bVal - aVal;
+                    })
+            )
+        );
     },
     getChatItemContainer(friendCode) {
         return $(

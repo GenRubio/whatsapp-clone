@@ -21,3 +21,8 @@ window.routes = {
 window.views = {
     'spinner': `{!! view('components.spinners.load-messages')->render() !!}`
 }
+
+window.sounds = {
+    newChat: "{{ asset('sound/new-chat.mp3') }}",
+    openChat: "{{ asset('sound/open-chat.mp3') }}"
+}

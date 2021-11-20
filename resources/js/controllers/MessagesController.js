@@ -54,8 +54,7 @@ const MessagesController = {
         });
     },
     scrollToEnd(){
-        let container = $(this.messagesContainerEl.selector);
-        container.scrollTop(container.height());
+        $(this.messagesContainerEl.selector).scrollTop($(this.messagesContainerEl.selector)[0].scrollHeight);
     },
     sendMessageToFriendSocket(data) {
         if (typeof data.socketData != "undefined" && data.socketData !== null) {

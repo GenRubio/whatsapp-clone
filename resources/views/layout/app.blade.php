@@ -9,6 +9,7 @@
     <script src="{{ asset('js/library/socket.io.min.js') }}"></script>
     @stack('socket')
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/library/jquery.playSound.js') }}" defer></script>
     @stack('extra_scripts')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +22,7 @@
     @yield('personal-style')
 
     <script type="text/javascript">
-        @include('web-routes');
+        @include('web-config');
     </script>
 </head>
 
