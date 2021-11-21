@@ -52,6 +52,7 @@ const ConversationController = {
             this.removeActiveFromConversationItems();
             this.openConversationHandler(item);
             this.setConversationItemActive(item);
+            this.setEmojisChat();
         }
     },
     openConversationHandler(item) {
@@ -91,7 +92,9 @@ const ConversationController = {
         }
     },
     scrollToEnd() {
-        $(this.messagesContainerEl.selector).scrollTop($(this.messagesContainerEl.selector)[0].scrollHeight);
+        $(this.messagesContainerEl.selector).scrollTop(
+            $(this.messagesContainerEl.selector)[0].scrollHeight
+        );
     },
     setConversationItemActive(item) {
         const friendCode = item.data("friend-code");
@@ -101,16 +104,13 @@ const ConversationController = {
                 friendCode +
                 '"]'
         );
-        if (itemChat.length){
+        if (itemChat.length) {
             itemChat.addClass("selected");
         }
         let itemNewChat = $(
-            this.itemChatEl.selector +
-                '[data-friend-code="' +
-                friendCode +
-                '"]'
+            this.itemChatEl.selector + '[data-friend-code="' + friendCode + '"]'
         );
-        if (itemNewChat.length){
+        if (itemNewChat.length) {
             itemNewChat.addClass("selected");
         }
     },

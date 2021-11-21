@@ -24,8 +24,8 @@
         style="background-image: url('{{ asset('/images/chat/background.png') }}')">
         @include('components.messages.messages-list')
     </div>
-    <div class="chat-friend-sender border w-100">
-        <div class="chat-friend-input h-100">
+    <div class="chat-friend-sender d-flex border w-100">
+        <div class="chat-friend-input w-100 h-100">
             <input id="input-message" type="text" data-friend-code="{{ $friend->friend_code }}"
                 placeholder="Escribe un mensaje aquí">
         </div>

@@ -1,4 +1,4 @@
-@if (!session()->has('privateKey') && !session()->has('privateKeyPassword'))
+@if (!session()->has('privateKey') && !session()->has('privateKeyPassword') && config('app.pgp_encryption'))
     <div class="modal fade" id="userPrivateKeys" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
