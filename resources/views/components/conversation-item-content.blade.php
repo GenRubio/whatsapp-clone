@@ -7,15 +7,13 @@
         @endif
     </div>
 </div>
-@php
-$lastMessage = getLastMessage($friend->user->id);
-@endphp
 <div class="chat-item-content-container d-flex flex-wrap justify-content-between">
     <div class="chat-item-data">
         <div class="chat-item-name">
             {{ $friend->user->name }}
         </div>
-        <div class="chat-item-message">
+        <div class="chat-item-message chat-item-message-js"
+            data-last-message-date="{{ getMessageTimestamp(getLastMessage($friend->user->id)->date) }}">
             @if ($lastMessage->from_user == getUser()->id)
                 {{ decryptMessage($lastMessage->message_sender) }}
             @else
@@ -27,9 +25,9 @@ $lastMessage = getLastMessage($friend->user->id);
         <div class="chat-item-time">
             {{ getHourMessage($lastMessage->date) }}
         </div>
-        @if (getNotReadMessages($friend->user->id) > 0)
+        @if ($notReadMessages > 0)
             <div class="chat-item-unread chat-item-unread-js">
-                {{ getNotReadMessages($friend->user->id) }}
+                {{ $notReadMessages }}
             </div>
         @endif
     </div>

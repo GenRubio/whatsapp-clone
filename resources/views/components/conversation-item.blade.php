@@ -1,5 +1,7 @@
 <div class="chat-item-container conversation-item-js d-flex justify-content-between align-items-center"
-    data-friend-code="{{ $friend->user->friend_code }}"
-    data-last-message-date="{{ getMessageTimestamp(getLastMessage($friend->user->id)->date) }}">
-    @include('components.conversation-item-content')
+    data-friend-code="{{ $friend->user->friend_code }}">
+    @include('components.conversation-item-content', [
+        'lastMessage' => getLastMessage($friend->user->id),
+        'notReadMessages' => getNotReadMessages($friend->user->id)
+    ])
 </div>

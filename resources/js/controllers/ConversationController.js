@@ -52,7 +52,6 @@ const ConversationController = {
             this.removeActiveFromConversationItems();
             this.openConversationHandler(item);
             this.setConversationItemActive(item);
-            this.setEmojisChat();
         }
     },
     openConversationHandler(item) {

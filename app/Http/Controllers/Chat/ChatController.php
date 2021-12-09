@@ -26,7 +26,7 @@ class ChatController extends Controller
                     $success = true;
                     $container = $request->container == "true" ? true : false;
                     if ($container){
-                        $content = $this->getChatItemContentView($friend);
+                        $content = $this->getChatItemContentView($friend, $lastMessage);
                     }
                     else{
                         $content = $this->getChatItemView($friend);
@@ -47,9 +47,11 @@ class ChatController extends Controller
         ])->render();
     }
 
-    private function getChatItemContentView($friend){
+    private function getChatItemContentView($friend, $lastMessage){
         return view('components.conversation-item-content', [
-            'friend' => $friend
+            'friend' => $friend,
+            'lastMessage' => $lastMessage,
+            'notReadMessages' => getNotReadMessages($friend->user->id)
         ])->render();
     }
 }

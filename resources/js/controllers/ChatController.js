@@ -16,6 +16,9 @@ const ChatController = {
     conversationItemEl: {
         selector: ".conversation-item-js",
     },
+    messageContentEl:{
+        selector: ".chat-item-message-js"
+    },
     init() {
         if (!Utils.checkSection(this.chatPageEl.selector)) {
             return false;
@@ -57,21 +60,15 @@ const ChatController = {
     reorderChatsByLastMessageDate() {
         let container = $(this.conversationListContainerEl.selector);
         let chats = $(this.conversationItemEl.selector);
-        container.html(
-            $(
-                $(chats)
-                    .toArray()
-                    .sort(function (a, b) {
-                        var aVal = parseInt(
-                                a.getAttribute("data-last-message-date")
-                            ),
-                            bVal = parseInt(
-                                b.getAttribute("data-last-message-date")
-                            );
-                        return bVal - aVal;
-                    })
-            )
-        );
+        this.sortChats(container, chats, this.messageContentEl.selector);
+    },
+    sortChats(parent, childSelector, keySelector) {
+        let items = parent.children(childSelector).sort(function (a, b) {
+            let vA = parseInt($(keySelector, a).data("last-message-date"));
+            let vB = parseInt($(keySelector, b).data("last-message-date"));
+            return vA > vB ? -1 : vA < vB ? 1 : 0;
+        });
+        parent.append(items);
     },
     getChatItemContainer(friendCode) {
         return $(
