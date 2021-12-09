@@ -22,6 +22,9 @@ const ConversationController = {
     csrfToken: {
         selector: 'meta[name="csrf-token"]',
     },
+    inputMessageEl:{
+        selector: "#input-message"
+    },
     init() {
         if (!Utils.checkSection(this.chatPageEl.selector)) {
             return false;
@@ -74,10 +77,14 @@ const ConversationController = {
                     );
                     $this.blockConversationButtons(false);
                     $this.scrollToEnd();
+                    $this.focusMessageInputHandler();
                     $this.removePendingMessages(item);
                 }
             },
         });
+    },
+    focusMessageInputHandler(){
+        $(this.inputMessageEl.selector).trigger('focus');
     },
     addLoadSpinner() {
         $(this.conversationContainerEl.selector).html(views.spinner);
