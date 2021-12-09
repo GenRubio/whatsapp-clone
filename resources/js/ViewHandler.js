@@ -10,6 +10,7 @@ const ConversationController = require('./controllers/ConversationController');
 const ChatUtilsController = require('./controllers/ChatUtilsController');
 const SessionPGPController = require('./controllers/SessionPGPController');
 const SearchChatController = require('./controllers/SearchChatController');
+const LayoutController = require('./controllers/LayoutController');
 const SocketNotificationsController = require('./controllers-sockets/NotificationsController');
 const SocketMessagesController = require('./controllers-sockets/MessagesController');
 const ElectronController = require('./controllers/electron/ElectronController');
@@ -35,6 +36,7 @@ const ViewHandler = {
         ChatUtilsController.init();
         SessionPGPController.init();
         SearchChatController.init();
+        LayoutController.init();
         SocketNotificationsController.init();
         SocketMessagesController.init();
         ElectronController.init();
